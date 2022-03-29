@@ -215,8 +215,8 @@
           }
 
           if(event.target.value == "tutor"){
+              document.getElementById('registro2').remove();
               document.getElementById('registro1').style.visibility = 'visible';
-              //document.getElementById('registro2').remove();
           } else if(event.target.value == "practicante"){
               document.getElementById('registro1').remove();
               document.getElementById('registro2').style.visibility = 'visible';

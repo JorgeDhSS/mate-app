@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\registroController;
 use App\Http\Controllers\sesionController;
+use App\Http\Controllers\ActividadesController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -22,3 +23,5 @@ Route::get('/', function () {
 Route::get('asesor/addUsario','registroController@createRegistroView')->name('asesor.addUsuario');
 
 Route::get('director/addAsesor','DirectorController@createAsesorView')->name('director.addAsesor');
+
+Route::get('asesor/actividadnueva',[ActividadesController::class, 'create'])->name('asesor_views.addActividades');

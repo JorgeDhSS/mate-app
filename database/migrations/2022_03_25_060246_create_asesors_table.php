@@ -16,6 +16,7 @@ class CreateAsesorsTable extends Migration
         Schema::create('asesors', function (Blueprint $table) {
             $table->id();
             $table->integer('cedProfesional')->unique();
+            $table->integer('nivelEscolar');
             $table->integer('noGrupos');
             $table->integer('noAsesorados');
             $table->foreignId('user_id');

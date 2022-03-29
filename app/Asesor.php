@@ -12,7 +12,7 @@ class Asesor extends Model
      * @var array
      */
     protected $fillable = [
-        'cedProfesional', 'noGrupos', 'noAsesorados', 'user_id'
+        'cedProfesional', 'noGrupos', 'noAsesorados', 'user_id', 'nivelEscolar'
     ];
 
     public function user()

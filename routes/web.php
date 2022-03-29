@@ -27,3 +27,4 @@ Route::get('/', function () {
 Route::get('registro', function(){
     return view('registro');
 });
+Route::get('director/addAsesor','DirectorController@createAsesorView')->name('director.addAsesor');

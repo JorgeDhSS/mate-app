@@ -15,5 +15,15 @@ use App\Http\Controllers\sesionController;
 */
 
 Route::get('/', function () {
-    return view('home');
+    return view('welcome');
+});
+
+
+
+
+
+
+
+Route::get('registro', function(){
+    return view('registro');
 });

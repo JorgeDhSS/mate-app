@@ -1,7 +1,8 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-
+use App\Http\Controllers\registroController;
+use App\Http\Controllers\sesionController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -14,6 +15,6 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('home');
 });
 Route::get('director/addAsesor','DirectorController@createAsesorView')->name('director.addAsesor');

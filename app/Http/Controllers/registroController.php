@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Tutor;
+use App\User;
 
 class registroController extends Controller
 {

@@ -24,6 +24,9 @@ Route::get('/', function () {
 Route::get('asesor/addUsario','registroController@createRegistroView')->name('asesor.addUsuario');
 
 Route::get('director/addAsesor','DirectorController@createAsesorView')->name('director.addAsesor');
+
+//Agrupar practicante
 Route::get('asesor/groupPract', 'AsesorController@groupPractView')->name('asesor.groupPract');
+Route::get('asesor/groupPract', 'AsesorController@showTablePract')->name('asesor.groupPract');
 
 Route::get('asesor/actividadnueva',[ActividadesController::class, 'create'])->name('asesor_views.addActividades');

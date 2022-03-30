@@ -22,8 +22,7 @@
         <div>
           <!--FORMULARIO DEL TUTOR-->
         <div class="registro1" id="registro1" style="visibility:hidden;" >
-          <form class="w-full max-w-full">
-
+          <form id="registroT" name="registroT" class="w-full max-w-full" method="POST" action="{{route('asesor_views.addActividades')}}">
               <!-- SECCION 1 -->
               <div class="flex mb-4">
                 <div class="w-1/2 p-2 text-center">
@@ -104,9 +103,12 @@
 
             <!-- BOTON -->
             <div class="w-full p-2 text-center">
-              <button class="bg-green-400  hover:bg-green-500 text-white font-bold py-4 px-6 rounded-full">
-                    Registrar Tutor
-              </button> 
+              <p>
+                <input type="submit" value="Registrar Tutor" class="bg-green-400  hover:bg-green-500 text-white font-bold py-4 px-6 rounded-full">
+                      
+                </input> 
+              </p>
+              
             </div>
                 
         </div>

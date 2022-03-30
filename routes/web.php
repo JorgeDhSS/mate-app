@@ -25,3 +25,4 @@ Route::get('asesor/addUsario','registroController@createRegistroView')->name('as
 Route::get('director/addAsesor','DirectorController@createAsesorView')->name('director.addAsesor');
 
 Route::get('asesor/actividadnueva',[ActividadesController::class, 'create'])->name('asesor_views.addActividades');
+

@@ -12,7 +12,7 @@ class Actividad extends Model
      * @var array
      */
     protected $fillable = [
-        'descripcion', 'titulo', 'fechaInicio', 'fechaCierre', 'asesor_id'
+        'descripcion', 'titulo', 'fechaInicio', 'fechaCierre', 'valor', 'idgrupo', 'asesor_id'
     ];
     public function asesor()
     {

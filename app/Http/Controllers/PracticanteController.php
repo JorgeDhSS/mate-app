@@ -10,7 +10,7 @@ use App\User;
 class PracticanteController extends Controller{
 
     
-    //Agrega un tutor a la BD
+    //Agrega un practicante a la BD
     public function enviarPracticante(Request $request){
         $practicante = new Practicante();
         $practicante->matricula = $request->matricula;

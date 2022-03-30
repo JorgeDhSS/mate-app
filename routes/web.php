@@ -17,4 +17,6 @@ use App\Http\Controllers\sesionController;
 Route::get('/', function () {
     return view('home');
 });
-Route::get('director/addAsesor','DirectorController@createAsesorView')->name('director.addAsesor');
+Route::get('director/addAsesor','DirectorController@createAsesorView')->name('director.addAsesorView');
+Route::post('director/createUser','DirectorController@createUser')->name('director.createUser');
+Route::post('director/saveAsesor','DirectorController@saveAsesor')->name('director.saveAsesor');

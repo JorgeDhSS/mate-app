@@ -5,6 +5,8 @@ use App\Http\Controllers\registroController;
 use App\Http\Controllers\sesionController;
 use App\Http\Controllers\AsesorController;
 use App\Http\Controllers\ActividadesController;
+use App\Http\Controllers\TutorController;
+use App\Http\Controllers\PracticanteController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -21,10 +23,19 @@ Route::get('/', function () {
 });
 
 
+
+//RUTA PARA MOSTRAR LA VISTA DE REGISTRO DE TUTOR Y PRACTICANTE 
 Route::get('asesor/addUsario','registroController@createRegistroView')->name('asesor.addUsuario');
+
 
 Route::get('director/addAsesor','DirectorController@createAsesorView')->name('director.addAsesor');
 Route::get('asesor/groupPract', 'AsesorController@groupPractView')->name('asesor.groupPract');
 
 Route::get('asesor/actividadnueva',[ActividadesController::class, 'create'])->name('asesor_views.addActividades');
 
+
+//RUTA PARA AGREGAR TUTOR A LA BD - A
+Route::post('asesor/enviarTutor', [TutorController::class, 'enviarTutor'])->name('tutor.enviarTutor');
+
+//RUTA PARA AGREGAR PRACTICANTE A LA BD - A
+Route::post('asesor/enviarPracticante', [PracticanteController::class, 'enviarPracticante'])->name('practicante.enviarPracticante');

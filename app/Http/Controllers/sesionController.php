@@ -18,16 +18,18 @@ class sesionController extends Controller{
     #}
  
     public function store(Request $request){
- 
+       return request()->only('name','email','password');
         $credentials = request()->only('name','email','password');
         if(Auth::attempt($credentials)){
             return 'estas dentro';
+           
         }else{
             return 'no estas dentro';
 
         }
-        
     }
+
+    
 
     
 }

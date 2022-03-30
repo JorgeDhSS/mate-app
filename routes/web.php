@@ -1,8 +1,8 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\registroController;
 use App\Http\Controllers\sesionController;
+use App\Http\Controllers\homeController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -15,6 +15,12 @@ use App\Http\Controllers\sesionController;
 */
 
 Route::get('/', function () {
-    return view('home');
+    return view('');
 });
 Route::get('director/addAsesor','DirectorController@createAsesorView')->name('director.addAsesor');
+Route::get('sesion','sesionController@LoginView')->name('sesion.index');
+Route::post('sesion','sesionController@store')->name('sesion.store');
+Route::get('home','homeController@HomeView')->name('home.index');
+
+
+

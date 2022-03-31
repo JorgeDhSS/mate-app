@@ -33,7 +33,7 @@
                     <div>
                         <label>grupo: </label>
                         <select name="selecionaGrupo" id="selecionaGrupo" class="w-1/2 py-2 text-base border-2 mt-2 block rounded-md">  
-                            <option class="bg-white" value="">Grupo</option> 
+                            <option class="bg-white" value="1">Grupo</option> 
                             @foreach(App\Grupo::get() as $grupo)
                                 <option class="bg-white" value="{{$grupo->id}}">{{$grupo->nombreGrupo}}</option>
                             @endforeach

@@ -27,13 +27,14 @@ class DirectorController extends Controller
             $password       = Str::random(8);
             $user->password = Hash::make($password);
             $user->save();
-            $objDemo = new \stdClass();
+
+            /*$objDemo = new \stdClass();
             $objDemo->demo_one = 'Demo One Value';
             $objDemo->demo_two = 'Demo Two Value';
             $objDemo->sender = 'SenderUserName';
             $objDemo->receiver = 'ReceiverUserName';
  
-            Mail::to($user->email)->send(new SendWelcomeEmail($objDemo));
+            Mail::to($user->email)->send(new SendWelcomeEmail($objDemo));*/
             return (['status' => 'ok', 'hashedPassword' => $user->password, 'userId' => $user->id]);
         }catch(Exception $e)
         {
@@ -42,10 +43,12 @@ class DirectorController extends Controller
     }
     public function saveAsesor(Request $request)
     {
-        $asesor = new Asesor();
-        $asesor->user_id = $request->userId;
+        $asesor                 = new Asesor();
+        $asesor->user_id        = $request->userId;
         $asesor->cedProfesional = $request->cedProf;
-        $asesor->nivelEscolar = $request->nivelEscolar;
+        $asesor->nivelEscolar   = $request->nivelEscolar;
+        $asesor->noGrupos       = 0;
+        $asesor->noAsesorados   =  0;
         $asesor->save();
         redirect('/');
     }

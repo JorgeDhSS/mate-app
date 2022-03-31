@@ -28,10 +28,12 @@
                 <label for="">Contraseña</label>
                 <input class="px-4 py-2 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-gray-200 w-full" disabled type="password" name="password" id="password">
             </div>
-            <form action="{{route('director.saveAsesor')}}" method="post">
-                @csrf
-                <input class="hidden" type="text" id="userId" name="userId">
+        </div>
+        <form action="{{route('director.saveAsesor')}}" method="post">
+            <div class="grid grid-cols-2 gap-4 px-8 py-2 md:px-20 md:py-10">
                 <div class="col-span-2 md:col-span-1 hidden hiddenElements">
+                    @csrf
+                    <input class="hidden" type="text" id="userId" name="userId">
                     <label for="">Cédula profesional</label>
                     <input class="px-4 py-2 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-gray-200 w-full" type="number" name="cedProf" id="cedProf">
                 </div>
@@ -49,8 +51,8 @@
                 <div class="col-span-2">
                     <button type="submit" class="bg-green-500 rounded-lg font-bold text-white text-center px-4 py-3 transition duration-300 ease-in-out hover:bg-green-700 mr-6">Guardar asesor</button>
                 </div>
-            </form>
-        </div>
+            </div>
+        </form>
 @endsection
 @section('scripts')
     <script type="text/javascript">
@@ -84,8 +86,8 @@
                                     {
                                         if (response.status == 'ok')
                                         {
-                                            $('#password').val = response.hashedPassword;
-                                            $('#userId').val = response.userId;
+                                            $('#password').val(response.hashedPassword);
+                                            $('#userId').val(response.userId);
                                             $('.hiddenElements').each(function (){
                                                 $(this).removeClass('hidden').addClass('block')
                                             });

@@ -1,8 +1,8 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\registroController;
 use App\Http\Controllers\sesionController;
+use App\Http\Controllers\homeController;
 use App\Http\Controllers\AsesorController;
 use App\Http\Controllers\ActividadesController;
 use App\Http\Controllers\TutorController;
@@ -19,8 +19,16 @@ use App\Http\Controllers\PracticanteController;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('');
 });
+Route::get('director/addAsesor','DirectorController@createAsesorView')->name('director.addAsesor');
+Route::get('sesion','sesionController@LoginView')->name('sesion.index');
+Route::post('sesion','sesionController@store')->name('sesion.store');
+
+Route::get('home','homeController@HomeView')->name('home.index');
+
+
+
 Route::get('director/addAsesor','DirectorController@createAsesorView')->name('director.addAsesorView');
 Route::post('director/createUser','DirectorController@createUser')->name('director.createUser');
 Route::post('director/saveAsesor','DirectorController@saveAsesor')->name('director.saveAsesor');
@@ -36,8 +44,13 @@ Route::get('director/addAsesor','DirectorController@createAsesorView')->name('di
 Route::get('asesor/groupPract', 'AsesorController@groupPractView')->name('asesor.groupPract');
 Route::get('asesor/groupPract', 'AsesorController@showTablePract')->name('asesor.groupPract');
 
+//Agregar actividad
+
 Route::get('asesor/actividadnueva',[ActividadesController::class, 'create'])->name('asesor_views.addActividades');
 
+Route::post('asesor/actividadnueva', [ActividadesController::class, 'showGrupo'])->name('addActividades.agrega');
+
+Route::post('asesor/actividadnueva', [ActividadesController::class, 'guardarActividad'])->name('addActividades.agrega');
 
 //RUTA PARA AGREGAR TUTOR A LA BD - A
 Route::post('asesor/enviarTutor', [TutorController::class, 'enviarTutor'])->name('tutor.enviarTutor');

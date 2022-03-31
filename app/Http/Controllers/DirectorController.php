@@ -27,6 +27,7 @@ class DirectorController extends Controller
             $password       = Str::random(8);
             $user->password = Hash::make($password);
             $user->save();
+
             /*$objDemo = new \stdClass();
             $objDemo->demo_one = 'Demo One Value';
             $objDemo->demo_two = 'Demo Two Value';

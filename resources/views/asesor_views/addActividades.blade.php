@@ -9,9 +9,25 @@
 
         </div>
         <link href="https://unpkg.com/tailwindcss@^1.0/dist/tailwind.min.css" rel="stylesheet">
+        <script src="//code.jquery.com/jquery.min.js"></script>
+        <script src="jquery.numeric.js"></script>
     </header>
+    <script type="text/javascript">
+        $(document).ready(function(){
+            ValidarNumeros()
+        })
+        function ValidarNumeros(){
+            $('.valorActividad').numeric({
+                negative:false
+            })
+        }
 
-    <form action="{{route('addActividades.agrega')}}" method="post" id="addActividad" name="addActividad">
+        function EnviarDatos(){
+            addActividad.submit();
+        }
+    </script>
+
+    <form action="{{route('addActividades.agrega')}}" method="post" submit="" id="addActividad" name="addActividad">
         @csrf
         <div class="grid grid-cols-2 gap-4 px-8 py-2 md:px-20 md:py-10">
             <div class="col-span-2 md:col-span-1 text-3xl md:text-4xl">
@@ -36,7 +52,7 @@
 
             <div class="col-span-2 md:col-span-1 text-3xl md:text-4xl">
                 <label class="">Valor: </label>
-                <input type="" class="w-full text-base border-2 py-2  mt-2 block rounded-lg" name="valorActividad">
+                <input type=""  class=" w-full text-base border-2 py-2  mt-2 block rounded-lg  " id="valorActividad" name="valorActividad">
             </div>
              
             <div class="col-span-2 md:col-span-1 text-3xl md:text-4xl">
@@ -50,10 +66,10 @@
             </div>
             
             <div class="w-wull mt-4" align="right" >
-                <button type="submit" class="bg-green-600 hover:bg-green-700 text-white font-bold py-2 px-8 border-b-23 transition delay-150 duration-300 ease-in-out rounded ">
-                    Guardar 
-                </button>
+                <input type="button" id="Guardar" name="Guardar" value="Guardar" onclick="EnviarDatos()" class="bg-green-600 hover:bg-green-700 text-white font-bold py-2 px-8 border-b-23 transition delay-150 duration-300 ease-in-out rounded ">
             </div>
                 
         </div>
     </form>
+
+

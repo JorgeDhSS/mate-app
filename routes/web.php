@@ -33,9 +33,5 @@ Route::get('asesor/groupPract', 'AsesorController@groupPractView')->name('asesor
 
 Route::get('asesor/actividadnueva',[ActividadesController::class, 'create'])->name('asesor_views.addActividades');
 
-
-//RUTA PARA AGREGAR TUTOR A LA BD - A
-Route::post('asesor/enviarTutor', [TutorController::class, 'enviarTutor'])->name('tutor.enviarTutor');
-
-//RUTA PARA AGREGAR PRACTICANTE A LA BD - A
-Route::post('asesor/enviarPracticante', [PracticanteController::class, 'enviarPracticante'])->name('practicante.enviarPracticante');
+//ENVIAR TUTOR O PRACTICANTE
+Route::post('asesor/enviarUsuario', [registroController::class, 'enviarUsuario'])->name('asesor.enviarUsuario');

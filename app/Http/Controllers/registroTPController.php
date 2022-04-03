@@ -7,7 +7,7 @@ use App\Tutor;
 use App\User;
 use App\Practicante;
 
-class registroController extends Controller
+class registroTPController extends Controller
 {
     public function createRegistroView()
     {
@@ -15,7 +15,7 @@ class registroController extends Controller
     }
 
 
-    //Agrega un practicante a la BD
+    //Agrega un usuario a la BD
     public function enviarUsuario(Request $request){
         $user = new User();
         $user->name = $request->nombre;

@@ -5,8 +5,8 @@ use App\Http\Controllers\sesionController;
 use App\Http\Controllers\homeController;
 use App\Http\Controllers\AsesorController;
 use App\Http\Controllers\ActividadesController;
-use App\Http\Controllers\TutorController;
-use App\Http\Controllers\PracticanteController;
+use App\Http\Controllers\registroTPController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -36,7 +36,7 @@ Route::post('director/saveAsesor','DirectorController@saveAsesor')->name('direct
 
 
 //RUTA PARA MOSTRAR LA VISTA DE REGISTRO DE TUTOR Y PRACTICANTE 
-Route::get('asesor/addUsario','registroController@createRegistroView')->name('asesor.addUsuario');
+Route::get('asesor/addUsuario','registroTPController@createRegistroView')->name('asesor.addUsuario');
 
 Route::get('asesor/groupPract', 'AsesorController@groupPractView')->name('asesor.groupPract');
 
@@ -50,4 +50,4 @@ Route::post('asesor/actividadnueva', [ActividadesController::class, 'guardarActi
 
 
 //ENVIAR TUTOR O PRACTICANTE
-Route::post('asesor/enviarUsuario', [registroController::class, 'enviarUsuario'])->name('asesor.enviarUsuario');
+Route::post('asesor/enviarUsuario', [registroTPController::class, 'enviarUsuario'])->name('asesor.enviarUsuario');

@@ -10,6 +10,7 @@
 
         <!-- INPUTS PRINCIPALES-->
         <form  id="registro" name="registro" class="w-full max-w-full" method="POST" action="{{route('asesor.enviarUsuario')}}">
+          @csrf
             <div class="flex mb-4">
                   <div class="w-2/3 p-2 text-center">
                       <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="materiasP">

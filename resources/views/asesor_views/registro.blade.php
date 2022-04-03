@@ -15,14 +15,14 @@
                       <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="materiasP">
                             Nombre
                       </label>
-                      <input class="appearance-none block w-full bg-gray-200 text-gray-700 border border-green-700 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" id="nombre" type="text" name="nombre">   
+                      <input class="w-full content-center text-base py-2 border-b border-gray-500 focus:outline-none focus:border-green-500" id="nombre" type="text" name="nombre">   
                   </div>
 
                   <div class="w-2/3 p-2 text-center">
                       <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="horasP">
                             Email
                       </label>
-                      <input class="appearance-none block w-full bg-gray-200 text-gray-700 border border-green-700 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" id="email" type="email" name="email">   
+                      <input class="w-full content-center text-base py-2 border-b border-gray-500 focus:outline-none focus:border-green-500" id="email" type="email" name="email">   
                   </div>
              </div>
 
@@ -31,7 +31,7 @@
                       <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="materiasP">
                             Password
                       </label>
-                      <input class="appearance-none block w-full bg-gray-200 text-gray-700 border border-green-700 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" id="password" type="password" name="password">   
+                      <input class="w-full content-center text-base py-2 border-b border-gray-500 focus:outline-none focus:border-green-500" id="password" type="password" name="password">   
                   </div>
 
                   <div class="w-2/3 p-2 text-center">
@@ -61,7 +61,7 @@
                             <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="curp">
                               CURP
                             </label>
-                            <input class="appearance-none block w-full bg-gray-200 text-gray-700 border border-green-700 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" id="curp" type="text" name="curpT" >
+                            <input class="w-full content-center text-base py-2 border-b border-gray-500 focus:outline-none focus:border-green-500" id="curp" type="text" name="curpT" >
                           </div>
                       </div>
                   </div>
@@ -71,7 +71,7 @@
                           <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="domicilio">
                             Domicilio
                           </label>
-                          <input class="appearance-none block w-full bg-gray-200 text-gray-700 border border-green-700 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" id="domicilio" type="text" name="domicilioT">
+                          <input class="w-full content-center text-base py-2 border-b border-gray-500 focus:outline-none focus:border-green-500" id="domicilio" type="text" name="domicilioT">
                         </div>
                       </div>
                   </div>
@@ -84,7 +84,7 @@
                             <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="numT">
                               Numero de telefono 
                             </label>
-                            <input class="appearance-none block w-full bg-gray-200 text-gray-700 border border-green-700 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" id="numT" type="text" name="numeroT">
+                            <input class="w-full content-center text-base py-2 border-b border-gray-500 focus:outline-none focus:border-green-500" id="numT" type="text" name="numeroT">
                           </div>
                       </div>
                   </div>
@@ -111,7 +111,7 @@
                             <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="matriculaP">
                               Matricula 
                             </label>
-                            <input class="appearance-none block w-full bg-gray-200 text-gray-700 border border-green-700 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" id="matriculaP" type="text" name="matricula">
+                            <input class="w-full content-center text-base py-2 border-b border-gray-500 focus:outline-none focus:border-green-500" id="matriculaP" type="text" name="matricula">
                           </div>
                       </div>
                   </div>
@@ -121,7 +121,7 @@
                             <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="materiasP">
                                 Nivel Escolar 
                             </label>
-                            <input class="appearance-none block w-full bg-gray-200 text-gray-700 border border-green-700 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" id="nivelEsc" type="text" name="nivelEsc">   
+                            <input class="w-full content-center text-base py-2 border-b border-gray-500 focus:outline-none focus:border-green-500" id="nivelEsc" type="text" name="nivelEsc">   
                          </div>
                       </div>
                   </div>
@@ -131,21 +131,21 @@
                       <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="horasP">
                             Horas Semanales
                       </label>
-                      <input class="appearance-none block w-full bg-gray-200 text-gray-700 border border-green-700 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" id="horasSem" type="text" name="horasSem">   
+                      <input class="w-full content-center text-base py-2 border-b border-gray-500 focus:outline-none focus:border-green-500" id="horasSem" type="text" name="horasSem">   
                   </div>
 
                   <div class="w-2/3 p-2 text-center">
                       <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="caliP">
                             Calificación
                       </label>
-                      <input class="appearance-none block w-full bg-gray-200 text-gray-700 border border-green-700 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" id="calificacion" type="text" name="calificacion">   
+                      <input class="w-full content-center text-base py-2 border-b border-gray-500 focus:outline-none focus:border-green-500" id="calificacion" type="text" name="calificacion">   
                   </div>
 
                   <div class="w-2/3 p-2 text-center">
                       <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="materiasP">
                             Numero de materias
                       </label>
-                      <input class="appearance-none block w-full bg-gray-200 text-gray-700 border border-green-700 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500" id="noMaterias" type="text" name="numMaterias">   
+                      <input class="w-full content-center text-base py-2 border-b border-gray-500 focus:outline-none focus:border-green-500" id="noMaterias" type="text" name="numMaterias">   
                   </div>
                 </div>
               <div class="w-full p-2 text-center">

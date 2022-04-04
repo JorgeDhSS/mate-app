@@ -13,16 +13,64 @@
         <script src="jquery.numeric.js"></script>
     </header>
     <script type="text/javascript">
-        $(document).ready(function(){
-            ValidarNumeros()
-        })
-        function ValidarNumeros(){
-            $('.valorActividad').numeric({
-                negative:false
-            })
-        }
+        
 
         function EnviarDatos(){
+
+            var hoy = new Date();
+            var inicio = document.getElementById("fechaInicio").value
+            var termina = document.getElementById("fechaTermina").value
+            var mes = (hoy.getMonth()+1).toString();
+            var dia = hoy.getDate().toString();          
+
+            if(mes.length <= 1){
+                mes = "0" + mes;
+            }
+            if(dia.length <=1){
+                dia = "0" + dia;
+            }
+
+            var fecha = hoy.getFullYear() + "-" + mes + "-" + dia; 
+
+            
+
+         
+
+            if (document.getElementById("valorActividad").value == "") {
+                alert("Debes asignar un valor a la actividad.");
+                return;
+            }
+            if (document.getElementById("selecionaGrupo").value == "") {
+                alert("Debes seleccionar un grupo.");
+                return;
+            }
+            if (document.getElementById("descripcionActividad").value == "") {
+                alert("Debes describir la actividad.");
+                return;
+            }
+            if(document.getElementById("nombreActividad").value == "") {
+                alert("Debes asignar un nombre a la actividad.");
+                return;
+            }
+            if(inicio == "") {
+                alert("Debes asignar la fecha para iniciar la actividad.");
+                return;
+            }
+            if(termina == "") {
+                alert("Debes asignar la fecha en la que finaliza la actividad.");
+                return;
+                
+            }
+            if( fecha > inicio){
+                alert("Debes escoger una fecha valida.") 
+                return;   
+            }
+            if(inicio > termina){
+                alert("La fecha final no puede ser menor a la de inicio")
+                return;
+            }
+
+
             addActividad.submit();
         }
     </script>
@@ -32,18 +80,18 @@
         <div class="grid grid-cols-2 gap-4 px-8 py-2 md:px-20 md:py-10">
             <div class="col-span-2 md:col-span-1 text-3xl md:text-4xl">
                 <label >Inicia: </label>
-                <input type="date" name="fechaInicio" class="w-full border-2 rounded-md mt-2 block">
+                <input type="date" name="fechaInicio" id="fechaInicio" class="w-full border-2 rounded-md mt-2 block">
             </div>
 
             <div class="col-span-2 md:col-span-1 text-3xl md:text-4xl">
                 <label class="">Termina: </label>
-                <input type="date" name="fechaTermina" class="w-full border-2 rounded-md mt-2 block">
+                <input type="date" name="fechaTermina" id="fechaTermina" class="w-full border-2 rounded-md mt-2 block">
             </div>
 
             <div class="col-span-2 md:col-span-1 text-3xl md:text-4xl">
                 <label>grupo: </label>
                 <select name="selecionaGrupo" id="selecionaGrupo" class="w-full py-2 text-base border-2 mt-2 block rounded-md">  
-                    <option class="bg-white" value="1">Grupo</option> 
+                    <option class="bg-white" value="">Grupo</option> 
                     @foreach(App\Grupo::get() as $grupo)
                         <option class="bg-white" value="{{$grupo->id}}">{{$grupo->nombreGrupo}}</option>
                     @endforeach
@@ -57,12 +105,12 @@
              
             <div class="col-span-2 md:col-span-1 text-3xl md:text-4xl">
                 <label class=" ">Nombre de la actividad</label>
-                <input type="" class="w-full py-2 border-2 mt-4 block rounded-md" name="nombreActividad">
+                <input type="" class="w-full py-2 border-2 mt-4 block rounded-md" name="nombreActividad" id="nombreActividad">
             </div>
             
             <div class="col-span-2 md:col-span-1 text-3xl md:text-4xl">
                 <label class="">Descripción de la catividad </label>
-                <textarea name="descripcionActividad" class="w-full h-32 border-2 mt-4 block rounded-md" style=""></textarea>
+                <textarea name="descripcionActividad" id="descripcionActividad" class="w-full h-32 border-2 mt-4 block rounded-md" style=""></textarea>
             </div>
             
             <div class="w-wull mt-4" align="right" >

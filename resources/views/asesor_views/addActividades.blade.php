@@ -90,18 +90,18 @@
         @csrf
         <div class="grid grid-cols-2 gap-4 px-8 py-2 md:px-20 md:py-10">
             <div class="col-span-2 md:col-span-1 text-3xl md:text-4xl">
-                <label >Inicia: </label>
-                <input type="date" name="fechaInicio" id="fechaInicio" class="w-full border-2 rounded-md mt-2 block">
+                <label  class=" text-gray-900 ">Inicia: </label>
+                <input type="date" name="fechaInicio" id="fechaInicio" class="w-full border-2 rounded-md mt-2 block text-base py-2 border-b border-gray-500 focus:outline-none focus:border-green-500">
             </div>
 
             <div class="col-span-2 md:col-span-1 text-3xl md:text-4xl">
-                <label class="">Termina: </label>
-                <input type="date" name="fechaTermina" id="fechaTermina" class="w-full border-2 rounded-md mt-2 block">
+                <label class="text-gray-900 ">Termina: </label>
+                <input type="date" name="fechaTermina" id="fechaTermina" class="w-full border-2 rounded-md mt-2 block text-base py-2 border-b border-gray-500 focus:outline-none focus:border-green-500">
             </div>
 
             <div class="col-span-2 md:col-span-1 text-3xl md:text-4xl">
-                <label>grupo: </label>
-                <select name="selecionaGrupo" id="selecionaGrupo" class="w-full py-2 text-base border-2 mt-2 block rounded-md">  
+                <label class="text-gray-900  ">grupo: </label>
+                <select name="selecionaGrupo" id="selecionaGrupo" class="w-full py-2 text-base border-2 mt-2 block rounded-md text-base py-2 border-b border-gray-500 focus:outline-none focus:border-green-500">  
                     <option class="bg-white" value="">Grupo</option> 
                     @foreach(App\Grupo::get() as $grupo)
                         <option class="bg-white" value="{{$grupo->id}}">{{$grupo->nombreGrupo}}</option>
@@ -110,22 +110,23 @@
             </div>
 
             <div class="col-span-2 md:col-span-1 text-3xl md:text-4xl">
-                <label class="">Valor: </label>
-                <input type="" onkeyup="this.value=Numeros(this.value)" class="positive w-full text-base border-2 py-2  mt-2 block rounded-lg  " id="valorActividad" name="valorActividad">
+                <label class="text-gray-900 ">Valor: </label>
+                <input type="" onkeyup="this.value=Numeros(this.value)" class="positive w-full text-base border-2 py-2  mt-2 block rounded-lg text-base py-2 border-b border-gray-500 focus:outline-none focus:border-green-500 " id="valorActividad" name="valorActividad">
             </div>
              
             <div class="col-span-2 md:col-span-1 text-3xl md:text-4xl">
-                <label class=" ">Nombre de la actividad</label>
-                <input type="" class="w-full py-2 border-2 mt-4 block rounded-md" name="nombreActividad" id="nombreActividad">
+                <label class="text-gray-900 ">Nombre de la actividad</label>
+                <input type="" class="w-full py-2 border-2 mt-4 block rounded-md text-base py-2 border-b border-gray-500 focus:outline-none focus:border-green-500" name="nombreActividad" id="nombreActividad">
             </div>
             
             <div class="col-span-2 md:col-span-1 text-3xl md:text-4xl">
-                <label class="">Descripción de la catividad </label>
-                <textarea name="descripcionActividad" id="descripcionActividad" class="w-full h-32 border-2 mt-4 block rounded-md" style=""></textarea>
+                <label class="text-gray-900 ">Descripción de la catividad </label>
+                <textarea name="descripcionActividad" id="descripcionActividad" class="w-full h-32 border-2 mt-4 block rounded-md text-base py-2 border-b border-gray-500 focus:outline-none focus:border-green-500" style=""></textarea>
             </div>
             
             <div class="w-wull mt-4" align="right" >
-                <input type="button" id="Guardar" name="Guardar" value="Guardar" onclick="EnviarDatos()" class="bg-green-600 hover:bg-green-700 text-white font-bold py-2 px-8 border-b-23 transition delay-150 duration-300 ease-in-out rounded ">
+                <input type="button" id="Guardar" name="Guardar" value="Guardar" onclick="EnviarDatos()" class=" bg-green-500 text-gray-100 p-4 rounded-full tracking-wide
+                            font-bold py-2 px-8 focus:outline-none focus:shadow-outline hover:bg-green-700 shadow-lg cursor-pointer ">
             </div>
                 
         </div>

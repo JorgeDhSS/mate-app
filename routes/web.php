@@ -24,10 +24,7 @@ Route::get('/', function () {
 Route::get('director/addAsesor','DirectorController@createAsesorView')->name('director.addAsesor');
 Route::get('sesion','sesionController@LoginView')->name('sesion.index');
 Route::post('sesion','sesionController@authenticate')->name('sesion.authenticate');
-
 Route::get('home','homeController@HomeView')->name('home.index');
-
-
 
 Route::get('director/addAsesor','DirectorController@createAsesorView')->name('director.addAsesorView');
 Route::post('director/createUser','DirectorController@createUser')->name('director.createUser');
@@ -47,7 +44,8 @@ Route::get('asesor/actividadnueva',[ActividadesController::class, 'create'])->na
 Route::post('asesor/actividadnueva', [ActividadesController::class, 'showGrupo'])->name('addActividades.agrega');
 
 Route::post('asesor/actividadnueva', [ActividadesController::class, 'guardarActividad'])->name('addActividades.agrega');
-
+//AGREGAR RESPUSTAS 
+Route::get('asesor/addAnswer',[ActividadesController::class, 'addAnswerView'])->name('Answer.index');
 
 //ENVIAR TUTOR O PRACTICANTE
 Route::post('asesor/enviarUsuario', [registroTPController::class, 'enviarUsuario'])->name('asesor.enviarUsuario');

@@ -14,6 +14,10 @@ class ActividadesController extends Controller{
         return view('asesor_views.addActividades');
     }
 
+    public function addAnswerView() {
+        return view('asesor_views.addAnswer');
+    }
+
     //Muestra los grupos en la vista addActividad 
     public function showGrupo($id){
     
@@ -42,4 +46,6 @@ class ActividadesController extends Controller{
         return view('asesor_views.addActividades');
 
     }
+
+    
 }

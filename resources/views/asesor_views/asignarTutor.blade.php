@@ -14,24 +14,29 @@
 
 <br>
 <div class="px-8">
-    <div class="flex mb-4">
-        <div class="w-1/2 p-2 text-center">
-            <label class="block uppercase tracking-wide text-blue-700 font-bold mb-2 text-left">
-                Ingrese el nombre del Tutor que desea asignar
-            </label>    
+        <div class="flex mb-4">
+            <div class="w-1/2 p-2 text-center">
+                <label class="block uppercase tracking-wide text-blue-700 font-bold mb-2 text-left">
+                    Ingrese el nombre del Tutor que desea asignar
+                </label>    
+            </div>
+            <div class="w-1/2 p-2 text-center">
+                    <input class="w-full content-center text-base py-2 border-b border-gray-500 focus:outline-none focus:border-green-500" id="tutor" type="text" name="tutor" required>   
+            </div>
+            <div class="w-1/2 p-2 text-center">
+                <button class="bg-green-400  hover:bg-green-500 text-white font-bold py-4 px-6 rounded-full" type="submit" id="searchTutor">
+                    Buscar Tutor
+                </button>
+            </div>
         </div>
-        <div class="w-1/2 p-2 text-center">
-                <input class="w-full content-center text-base py-2 border-b border-gray-500 focus:outline-none focus:border-green-500" id="tutor" type="text" name="tutor" required>   
-        </div>
-        <div class="w-1/2 p-2 text-center">
-            <button class="bg-green-400  hover:bg-green-500 text-white font-bold py-4 px-6 rounded-full" type="submit">
-                Buscar Tutor
-            </button>
-        </div>
-    </div>
+        
     <!--DIV DE TUTOR-->
     <div>
-
+        <!--style="visibility:hidden;-->
+        <div id="tutores">
+        
+        </div>
+            
 
 
 
@@ -90,4 +95,32 @@
 </div>
 
 
+@endsection
+
+
+@section('scripts')
+    <script type="text/javascript">
+        $(document).ready(function(){
+            $('#searchTutor').on('click', function(){
+                $.ajax({
+                    url: "{{route('asesor.buscarTutor')}}",
+                    data: {
+                        'name'  : $('#tutor').val(),
+                        "_token": "{{csrf_token()}}"
+                    },
+                    dataType:"json",
+                    method: "POST",
+                    success: function(response)
+                    {
+                        console.log('hi')
+                        console.log(response);
+                        $('#tutores').html(response);
+                    },
+                    fail: function(){
+                        console.log('HOLA')
+                    }
+                });
+            });
+        });
+    </script>
 @endsection

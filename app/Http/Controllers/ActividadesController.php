@@ -30,6 +30,7 @@ class ActividadesController extends Controller{
 
         
         $actividad = new Actividad();
+        
         $actividad->descripcion = $request->descripcionActividad;
         $actividad->titulo = $request->nombreActividad;
         $actividad->fechaInicio = $request->fechaInicio;
@@ -38,8 +39,10 @@ class ActividadesController extends Controller{
         $actividad->idgrupo = $request->selecionaGrupo;
         $actividad->asesor_id= 1;
         $actividad->save();
-        
         return view('asesor_views.addActividades');
+        
+        
+        
 
     }
 }

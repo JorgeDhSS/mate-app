@@ -54,6 +54,10 @@ Route::post('asesor/actividadnueva', [ActividadesController::class, 'showGrupo']
 
 Route::post('asesor/actividadnueva', [ActividadesController::class, 'guardarActividad'])->name('addActividades.agrega');
 
+//Agregar respuesta 'asesor_views.addRespuestas'
+
+Route::get('asesor/respuesta',[ActividadesController::class, 'createRespuestas'])->name('asesor_views.respuestas');
+
 
 //ENVIAR TUTOR O PRACTICANTE
 Route::post('asesor/enviarUsuario', [registroTPController::class, 'enviarUsuario'])->name('asesor.enviarUsuario');

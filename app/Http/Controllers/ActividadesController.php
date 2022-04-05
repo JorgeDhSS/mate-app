@@ -40,9 +40,10 @@ class ActividadesController extends Controller{
         $actividad->asesor_id= 1;
         $actividad->save();
         return view('asesor_views.addActividades');
-        
-        
-        
+    }
 
+    public function createRespuestas()
+    {
+        return view('asesor_views.respuestas');
     }
 }

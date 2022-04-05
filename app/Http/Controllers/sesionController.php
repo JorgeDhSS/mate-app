@@ -37,10 +37,6 @@ class sesionController extends Controller{
            
         
     }
-
-    
-
-    
 }
 
 

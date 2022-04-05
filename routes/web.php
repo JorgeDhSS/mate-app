@@ -38,7 +38,13 @@ Route::post('director/saveAsesor','DirectorController@saveAsesor')->name('direct
 //RUTA PARA MOSTRAR LA VISTA DE REGISTRO DE TUTOR Y PRACTICANTE 
 Route::get('asesor/addUsuario','registroTPController@createRegistroView')->name('asesor.addUsuario');
 
+Route::get('director/addAsesor','DirectorController@createAsesorView')->name('director.addAsesor');
+
+//Agrupar practicante
 Route::get('asesor/groupPract', 'AsesorController@groupPractView')->name('asesor.groupPract');
+Route::get('asesor/groupPract', 'AsesorController@showTablePract')->name('asesor.groupPract');
+Route::post('asesor/groupPract/searchNameGroup', 'AsesorController@searchNameGroup')->name('asesor.searchNameGroup');
+Route::post('asesor/groupPract', 'AsesorController@saveGroup')->name('asesor.saveGroup');
 
 //Agregar actividad
 
@@ -51,3 +57,7 @@ Route::post('asesor/actividadnueva', [ActividadesController::class, 'guardarActi
 
 //ENVIAR TUTOR O PRACTICANTE
 Route::post('asesor/enviarUsuario', [registroTPController::class, 'enviarUsuario'])->name('asesor.enviarUsuario');
+
+
+//VISTA PARA MOSTRAR ASIGNAR TUTOR
+Route::get('asesor/asignarTutor','AsesorController@asignarTutorView')->name('asesor.asignarTutor');

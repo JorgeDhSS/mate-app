@@ -5,8 +5,8 @@ use App\Http\Controllers\sesionController;
 use App\Http\Controllers\homeController;
 use App\Http\Controllers\AsesorController;
 use App\Http\Controllers\ActividadesController;
-use App\Http\Controllers\TutorController;
-use App\Http\Controllers\PracticanteController;
+use App\Http\Controllers\registroTPController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -23,7 +23,7 @@ Route::get('/', function () {
 });
 Route::get('director/addAsesor','DirectorController@createAsesorView')->name('director.addAsesor');
 Route::get('sesion','sesionController@LoginView')->name('sesion.index');
-Route::post('sesion','sesionController@store')->name('sesion.store');
+Route::post('sesion','sesionController@authenticate')->name('sesion.authenticate');
 
 Route::get('home','homeController@HomeView')->name('home.index');
 
@@ -36,7 +36,7 @@ Route::post('director/saveAsesor','DirectorController@saveAsesor')->name('direct
 
 
 //RUTA PARA MOSTRAR LA VISTA DE REGISTRO DE TUTOR Y PRACTICANTE 
-Route::get('asesor/addUsario','registroController@createRegistroView')->name('asesor.addUsuario');
+Route::get('asesor/addUsuario','registroTPController@createRegistroView')->name('asesor.addUsuario');
 
 Route::get('asesor/groupPract', 'AsesorController@groupPractView')->name('asesor.groupPract');
 
@@ -48,8 +48,10 @@ Route::post('asesor/actividadnueva', [ActividadesController::class, 'showGrupo']
 
 Route::post('asesor/actividadnueva', [ActividadesController::class, 'guardarActividad'])->name('addActividades.agrega');
 
-//RUTA PARA AGREGAR TUTOR A LA BD - A
-Route::post('asesor/enviarTutor', [TutorController::class, 'enviarTutor'])->name('tutor.enviarTutor');
 
-//RUTA PARA AGREGAR PRACTICANTE A LA BD - A
-Route::post('asesor/enviarPracticante', [PracticanteController::class, 'enviarPracticante'])->name('practicante.enviarPracticante');
+//ENVIAR TUTOR O PRACTICANTE
+Route::post('asesor/enviarUsuario', [registroTPController::class, 'enviarUsuario'])->name('asesor.enviarUsuario');
+
+
+//VISTA PARA MOSTRAR ASIGNAR TUTOR
+Route::get('asesor/asignarTutor','AsesorController@asignarTutorView')->name('asesor.asignarTutor');

@@ -1,9 +1,11 @@
 @extends('mainLayout')
  
  @section('body')
- <div class="relative min-h-screen flex items-center justify-center bg-gray-50 py-12 px-4 sm:px-6 lg:px-8 bg-gray-500 bg-no-repeat bg-cover relative items-center"
- style="background-image: url(Users/macbook/Downloads/WRITING_JavierLopez.jpeg);">
-	<div class="absolute bg-black opacity-60 inset-0 z-0"></div>
+
+ <div class="relative min-h-screen flex items-center justify-center bg-purple-500 py-12 px-4 sm:px-6 lg:px-8 bg-purple-500 bg-no-repeat bg-cover relative items-center"
+ style="background-color: yellow">
+
+	<div class="absolute bg-blue-200 opacity-60 inset-0 z-0"></div>
 	<div class="max-w-md w-full space-y-8 p-10 bg-white rounded-xl z-10">
 		<div class="text-center">
 			<h2 class="mt-6 text-3xl font-bold text-gray-900">
@@ -21,7 +23,8 @@
 			<input type="hidden" name="remember" value="true">
             <div class="mt-8 content-center">
 				<label class="text-sm font-bold text-gray-700 tracking-wide">Nombre</label>
-				<input class="w-full content-center text-base py-2 border-b border-gray-500 focus:outline-none focus:border-green-500" name="name" type=" " placeholder="Nombre de usuario" >
+				<input class="w-full content-center text-base py-2 border-b border-gray-500 focus:outline-none focus:border-green-500" name="name" type="text " placeholder="Nombre de usuario" value ="{{ old('name') }}" > 
+                {!! $errors->first('name','<span class="helpblock">:message</span>')!!}
             </div>
 			<div class="relative">
 				<div class="absolute right-0 mt-4"><svg xmlns="http://www.w3.org/2000/svg"
@@ -31,20 +34,16 @@
 					</svg>
                 </div>
 				<label class="text-sm font-bold text-gray-700 tracking-wide">Correo electrónico</label>
-				<input class=" w-full text-base py-2 border-b border-gray-300 focus:outline-none focus:border-green-500" name="email" type="" placeholder="Dirección de correo electrónico" >
+				<input class=" w-full text-base py-2 border-b border-gray-300 focus:outline-none focus:border-green-500" name="email" type="text" placeholder="Dirección de correo electrónico" value ="{{ old('email') }}"> 
+                {!! $errors->first('email','<span class="helpblock">:message</span>')!!}
             </div>
 			<div class="mt-8 content-center">
 				<label class="text-sm font-bold text-gray-700 tracking-wide">Contraseña</label>
-				<input class="w-full content-center text-base py-2 border-b border-gray-300 focus:outline-none focus:border-green-500" name="password" type="" placeholder="Ingresa tu contraseña" >
+				<input class="w-full content-center text-base py-2 border-b border-gray-300 focus:outline-none focus:border-green-500" name="password" type="password" placeholder="Ingresa tu contraseña" > {!! $errors->first('password','<span class="helpblock">:message</span>')!!}
             </div>
 
 			<div class="mt-8 content-center">
-				@error('messageUserNotFound')
-				<p class="border-b border-red-500 rounded-md bg-red-100 w-full text-red-500 p-2 my-2">Usuario no encontrado </p>
-				@enderror
-				@error('messageInvalidedData')
-				<p class="border-b border-red-500 rounded-md bg-red-100 w-full text-red-500 p-2 my-2">Datos con formato invalido </p>
-				@enderror
+				
 				
 				
             </div>
@@ -62,8 +61,8 @@
 				</div>
 			</div>
 			<div>
-				<button type="submit" class="w-full flex justify-center bg-green-300 text-gray-100 p-4  rounded-full tracking-wide
-                                font-semibold  focus:outline-none focus:shadow-outline hover:bg-green-500 shadow-lg cursor-pointer transition ease-in duration-300">
+				<button type="submit" class="w-full flex justify-center bg-green-500 text-gray-100 p-4  rounded-full tracking-wide
+                                font-semibold  focus:outline-none focus:shadow-outline hover:bg-green-700 shadow-lg cursor-pointer transition ease-in duration-300">
                     INICIAR SESIÓN
                 </button>
 			</div>
@@ -71,6 +70,6 @@
 		</form>
 	</div>
 </div>
- @endsection
 
+ @endsection
  

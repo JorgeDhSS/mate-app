@@ -23,7 +23,7 @@ Route::get('/', function () {
 });
 Route::get('director/addAsesor','DirectorController@createAsesorView')->name('director.addAsesor');
 Route::get('sesion','sesionController@LoginView')->name('sesion.index');
-Route::post('sesion','sesionController@store')->name('sesion.store');
+Route::post('sesion','sesionController@authenticate')->name('sesion.authenticate');
 
 Route::get('home','homeController@HomeView')->name('home.index');
 

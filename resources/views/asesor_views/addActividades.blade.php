@@ -1,4 +1,3 @@
-
 <header class="interfaz_Principal">
         <div class="titulo_cata">
         <div class="bg-blue-700">
@@ -9,11 +8,25 @@
 
         </div>
         <link href="https://unpkg.com/tailwindcss@^1.0/dist/tailwind.min.css" rel="stylesheet">
-        <script src="//code.jquery.com/jquery.min.js"></script>
-        <script src="jquery.numeric.js"></script>
+        <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+        <script type="text/javascript"></script> 
     </header>
+
     <script type="text/javascript">
-        
+
+        function Numeros(string){//Solo numeros
+            var out = '';
+            var filtro = '1234567890';//Caracteres validos
+            
+            //Recorrer el texto y verificar si el caracter se encuentra en la lista de validos 
+            for (var i=0; i<string.length; i++)
+            if (filtro.indexOf(string.charAt(i)) != -1) 
+                    //Se añaden a la salida los caracteres validos
+                out += string.charAt(i);
+            
+            //Retornar valor filtrado
+            return out;
+        }  
 
         function EnviarDatos(){
 
@@ -32,9 +45,7 @@
 
             var fecha = hoy.getFullYear() + "-" + mes + "-" + dia; 
 
-            
-
-         
+       
 
             if (document.getElementById("valorActividad").value == "") {
                 alert("Debes asignar un valor a la actividad.");
@@ -100,7 +111,7 @@
 
             <div class="col-span-2 md:col-span-1 text-3xl md:text-4xl">
                 <label class="">Valor: </label>
-                <input type=""  class=" w-full text-base border-2 py-2  mt-2 block rounded-lg  " id="valorActividad" name="valorActividad">
+                <input type="" onkeyup="this.value=Numeros(this.value)" class="positive w-full text-base border-2 py-2  mt-2 block rounded-lg  " id="valorActividad" name="valorActividad">
             </div>
              
             <div class="col-span-2 md:col-span-1 text-3xl md:text-4xl">
@@ -119,5 +130,4 @@
                 
         </div>
     </form>
-
 

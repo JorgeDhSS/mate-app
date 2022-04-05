@@ -8,6 +8,10 @@ class AsesorController extends Controller{
         return view('asesor_views.groupPract');
     }
 
+    public function asignarTutorView(){
+        return view('asesor_views.asignarTutor');
+    }
+
 }
 
 ?>

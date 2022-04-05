@@ -51,3 +51,7 @@ Route::post('asesor/actividadnueva', [ActividadesController::class, 'guardarActi
 
 //ENVIAR TUTOR O PRACTICANTE
 Route::post('asesor/enviarUsuario', [registroTPController::class, 'enviarUsuario'])->name('asesor.enviarUsuario');
+
+
+//VISTA PARA MOSTRAR ASIGNAR TUTOR
+Route::get('asesor/asignarTutor','AsesorController@asignarTutorView')->name('asesor.asignarTutor');

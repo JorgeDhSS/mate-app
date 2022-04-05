@@ -49,6 +49,10 @@ class AsesorController extends Controller{
         $pg->grupo_id = $grupo->id;
         }*/
     }
+    public function asignarTutorView(){
+        return view('asesor_views.asignarTutor');
+    }
+
 }
 
 ?>

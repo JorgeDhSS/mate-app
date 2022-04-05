@@ -145,7 +145,8 @@
                                     url: "{{ route('asesor.saveGroup')}}",
                                     data: {
                                         'nameGroup' : nameGroup,
-                                        'practicante' : seleccion,
+                                        'levelSchool' : cambioSelect,
+                                        'practicante' : ('input:checkbox'),
                                         "_token": "{{csrf_token()}}"
                                     },
                                     dataType:"json",

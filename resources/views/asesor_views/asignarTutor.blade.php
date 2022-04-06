@@ -14,6 +14,22 @@
 
 <br>
 <div class="px-8">
+    <!--DIV DE TUTOR-->
+    <div class="flex mb-4">
+        <div class="w-1/2 p-2 text-center">
+            <label class="block uppercase tracking-wide text-blue-700 font-bold mb-2 text-left">
+                Ingrese el nombre del Tutor que desea asignar
+            </label>    
+        </div>
+        <div class="w-1/2 p-2 text-center">
+                <input class="w-full content-center text-base py-2 border-b border-gray-500 focus:outline-none focus:border-green-500" id="tutor" type="text" name="tutor" required>   
+        </div>
+        <div class="w-1/2 p-2 text-center">
+            <button class="bg-green-400  hover:bg-green-500 text-white font-bold py-4 px-6 rounded-full" type="submit">
+                Buscar Tutor
+            </button>
+        </div>
+    </div>
         <div class="flex mb-4">
             <div class="w-1/2 p-2 text-center">
                 <label class="block uppercase tracking-wide text-blue-700 font-bold mb-2 text-left">
@@ -31,9 +47,6 @@
         </div>
         
     <!--DIV DE TUTOR-->
-<<<<<<< HEAD
-=======
-<<<<<<< HEAD
     <div >
         <!-- <table class="table col-12">
         <thead>
@@ -49,50 +62,27 @@
             </tr>
         </tbody>
 </table> -->
-=======
->>>>>>> 715640d5a9cb743d5ace471c3aadf94c92404a5e
->>>>>>> 53cee9a741332871282a7a7adf972099a0020a9e
     <div>
         <!--style="visibility:hidden;-->
         <div id="tutores">
         
         </div>
-            
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
->>>>>>> a361f3b957cd883888c9a99ca808ec53c77c2dd6
-
-
-    <table class="table-auto" border="1">
-    <thead>
-        <tr>
-        <th class="px-4 py-2">Nombre</th>
-        <th class="px-4 py-2">CURP</th>
-        <th class="px-4 py-2">Numero de telefono</th>
-        </tr>
-    </thead>
-    <tbody>
-        <tr>
-            <div id="tutores">
-            </div>
-        </tr>
-    </tbody>
-    </table>
+        <table class="table-auto" border="1">
+            <thead>
+                <tr>
+                <th class="px-4 py-2">Nombre</th>
+                <th class="px-4 py-2">CURP</th>
+                <th class="px-4 py-2">Numero de telefono</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <div id="tutores">
+                    </div>
+                </tr>
+            </tbody>
+        </table>
 
 
     </div>
@@ -121,21 +111,6 @@
         </div>
     </div>
 </div>
-<<<<<<< HEAD
-
-
-@endsection
-
-
-@section('scripts')
-    <script type="text/javascript">
-        $(document).ready(function(){
-            $('#searchTutor').on('click', function(){
-                $.ajax({
-                    url: "{{route('asesor.buscarTutor')}}",
-                    data: {
-                        'name'  : $('#tutor').val(),
-=======
 @endsection
 @section('scripts')
     <script>
@@ -145,15 +120,12 @@
                     url: "{{ route('asesor.buscarPracticante')}}",
                     data: {
                         'name'  : $('#namePracticante').val(),
->>>>>>> 53cee9a741332871282a7a7adf972099a0020a9e
                         "_token": "{{csrf_token()}}"
                     },
                     dataType:"json",
                     method: "POST",
                     success: function(response)
                     {
-<<<<<<< HEAD
-=======
                         $('#practicantes').append(response.html);
                     },
                     fail: function(){
@@ -171,7 +143,6 @@
                     method: "POST",
                     success: function(response)
                     {  
->>>>>>> 53cee9a741332871282a7a7adf972099a0020a9e
                         console.log('hi')
                         console.log(response);
                         $('#tutores').html(response);

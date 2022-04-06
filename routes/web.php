@@ -55,3 +55,4 @@ Route::post('asesor/enviarUsuario', [registroTPController::class, 'enviarUsuario
 
 //VISTA PARA MOSTRAR ASIGNAR TUTOR
 Route::get('asesor/asignarTutor','AsesorController@asignarTutorView')->name('asesor.asignarTutor');
+Route::post('asesor/buscarPracticante','AsesorController@buscarPracticante')->name('asesor.buscarPracticante');

@@ -59,14 +59,12 @@ class AsesorController extends Controller{
     }
 
     
-    public function buscarTutor(Request $request){
+    public function buscarTutor(){
         $tutores = Tutor::join('users', 'users.id', '=', 'tutors.user_id')
             ->select('users.name', 'tutors.CURP', 'tutors.numberPhone')
             ->get();
 
-        $tutorBuscado = $request->tutor;
-
-            return view('asesor_views.tutorList', ['tutores' => $tutores, 'buscado' => $tutorBuscado])->render();
+            return view('asesor_views.tutorList', ['tutores' => $tutores])->render();
     }
 }
 

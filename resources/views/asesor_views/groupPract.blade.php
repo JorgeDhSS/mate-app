@@ -180,7 +180,6 @@
                 var nombrePract = document.getElementById('btnSearchPract').value;
                 Swal({
                     title:"Buscando practicante...",
-                    //text: "Estás por crear un usuario ¿Confirmas que los datos son correctos?",
                     icon: "warning",
                     buttons: true,
                     dangerMode: true,

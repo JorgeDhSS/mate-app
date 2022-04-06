@@ -81,22 +81,23 @@ class AsesorController extends Controller{
         return view('asesor_views.asignarTutor');
         //return view('asesor_views.asignarTutor', array('tutores'=>$tutores));
     }
-    public function buscarPracticante(Request $request)
-    {
+
+    
+    
+    public function buscarPracticante(Request $request){
         $practicantes = User::whereHas('practicante', function ($query) use($request){
             $query->where('name', 'like', '%'.$request->name.'%');
         })->get();
         $view = view('asesor_views.practicantesLista', ["users" => $practicantes])->render();
         return (["html" => $view]);
     }
+    
     public function buscarTutor(Request $request){
         $tutores = Tutor::join('users', 'users.id', '=', 'tutors.user_id')
             ->select('users.name', 'tutors.CURP', 'tutors.numberPhone')
             ->get();
 
-        $tutorBuscado = $request->tutor;
-
-            return view('asesor_views.tutorList', ['tutores' => $tutores, 'buscado' => $tutorBuscado])->render();
+            return view('asesor_views.tutorList', ['tutores' => $tutores])->render();
     }
 }
 

@@ -4,7 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Asesor extends Model
+class Actividad extends Model
 {
     /**
      * The attributes that are mass assignable.
@@ -12,11 +12,10 @@ class Asesor extends Model
      * @var array
      */
     protected $fillable = [
-        'cedProfesional', 'noGrupos', 'noAsesorados', 'user_id', 'nivelEscolar'
+        'descripcion', 'titulo', 'fechaInicio', 'fechaCierre', 'valor', 'idgrupo', 'asesor_id'
     ];
-
-    public function user()
+    public function asesor()
     {
-        return $this->hasOne(User::class);
+        return $this->hasOne(Asesor::class);
     }
 }

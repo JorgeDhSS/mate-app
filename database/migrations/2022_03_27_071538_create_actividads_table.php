@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateAsesorsTable extends Migration
+class CreateActividadsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,13 +13,13 @@ class CreateAsesorsTable extends Migration
      */
     public function up()
     {
-        Schema::create('asesors', function (Blueprint $table) {
+        Schema::create('actividads', function (Blueprint $table) {
             $table->id();
-            $table->integer('cedProfesional')->unique();
-            $table->integer('nivelEscolar');
-            $table->integer('noGrupos');
-            $table->integer('noAsesorados');
-            $table->foreignId('user_id');
+            $table->string('descripcion');
+            $table->string('titulo');
+            $table->date('fechaInicio');
+            $table->date('fechaCierre');
+            $table->foreignId('asesor_id');
             $table->timestamps();
         });
     }
@@ -31,6 +31,6 @@ class CreateAsesorsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('asesors');
+        Schema::dropIfExists('actividads');
     }
 }

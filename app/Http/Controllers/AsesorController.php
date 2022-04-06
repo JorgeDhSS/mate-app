@@ -35,16 +35,17 @@ class AsesorController extends Controller{
     public function searchNamePract(Request $request){
         try {
             $buscarPracticante = User::join('practicantes', 'users.id', '=', 'practicantes.user_id')
-            ->where('practicantes', 'users.name', 'LIKE', '%{ $request->nombrePrat }%')
-            ->select('users.name', 'practicantes.matricula', 'practicantes.nivelEscolar', 'practicantes.id')
-            ->paginate(8);
+                ->select('users.name', 'practicantes.matricula', 'practicantes.nivelEscolar', 'practicantes.id')
+                ->where('users.name', '=', '%'.$request->nombrePrat.'%')
+                ->paginate(8);
 
             /*$buscarPracticante = User::join('practicantes', 'users.name', 'LIKE', '%{ $request->nombrePrat }%')
                 ->on('users.id', '=', 'practicantes.user_id')
                 ->select('users.name', 'practicantes.matricula', 'practicantes.nivelEscolar', 'practicantes.id')
                 ->paginate(8);*/
 
-            return view('tableSearchPract.blade.php', array('practicantesBuscar' => $buscarPracticante));
+            $view = view('asesor_views.tableSearchPract', ['practicantesBuscar' => $buscarPracticante])->render();
+            return (['html' => $view]);
         } catch (\Throwable $th) {
             return (['status' => 'fail']);
         }
@@ -72,18 +73,6 @@ class AsesorController extends Controller{
         } catch (\Exception $th) {
             return (['status' => 'fail', 'exception' => $th->__toString()]);
         }
-        
-            /*$grupo->nam,me = $request->name;
-            $grupo->save(;);
-
-            foreach($request->btnCheckbox as $check)
-            {
-                $pg = nwew PracticantreGrupo()
-            ;
-        
-        $pg->practicante_id = $check
-        $pg->grupo_id = $grupo->id;
-        }*/
     }
     public function asignarTutorView(){
         // $tutores = Tutor::join('users', 'users.id', '=', 'tutors.user_id')

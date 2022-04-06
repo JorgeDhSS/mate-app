@@ -45,6 +45,7 @@ Route::get('asesor/groupPract', 'AsesorController@groupPractView')->name('asesor
 Route::get('asesor/groupPract', 'AsesorController@showTablePract')->name('asesor.groupPract');
 Route::post('asesor/groupPract/searchNameGroup', 'AsesorController@searchNameGroup')->name('asesor.searchNameGroup');
 Route::post('asesor/groupPract/searchNamePract', 'AsesorController@searchNamePract')->name('asesor.searchNamePract');
+Route::post('asesor/tableSearchPract', 'AsesorController@tableSearchPract')->name('asesor.tableSearchPract');
 Route::post('asesor/groupPract', 'AsesorController@saveGroup')->name('asesor.saveGroup');
 
 //Agregar actividad

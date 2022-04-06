@@ -45,7 +45,7 @@
                     <option value=6>Sexto</option>
                 </select>
             </div>
-            <div class="my-2 ml-4 col-span-2 md:col-span-1" id="table">
+            <div class="my-2 ml-4 col-span-2 md:col-span-1" name="table" id="table">
                 <table class="table-auto">
                     <thead class="bg-gray-100">
                         <th class="border-2 px-4 py-2 text-base font-bold text-gray-700 tracking-wide">Nombre</th>
@@ -53,7 +53,7 @@
                         <th class="border-2 px-4 py-2 text-base font-bold text-gray-700 tracking-wide">Nivel escolar</th>
                         <th class="border-2 px-4 py-2 text-base font-bold text-gray-700 tracking-wide">Acción</th>
                     </thead>
-                    <tbody>
+                    <tbody id="tableBody">
                         @foreach($resultados as $resultado)
                             <tr>
                                 <td class="text-center border-2 px-4 py-2 text-sm font-bold text-gray-700 tracking-wide">{{ $resultado->name }}</td>
@@ -156,7 +156,7 @@
                                     success: function(response){
                                         if (response.status == 'ok'){
                                             $('#alertContainer').removeClass('bg-red-600').addClass('bg-green-500');
-                                            $('#alertText').html('Todo bien hasta el momento');
+                                            $('#alertText').html('El grupo se ha creado');
                                         }else{
                                             //alert(response.status)
                                             $('#alertContainer').addClass('bg-red-600').removeClass('bg-green-500');
@@ -177,6 +177,7 @@
             });
 
             $('#btnSearchPract').on('change', function(){
+                var nombrePract = document.getElementById('btnSearchPract').value;
                 Swal({
                     title:"Buscando practicante...",
                     //text: "Estás por crear un usuario ¿Confirmas que los datos son correctos?",
@@ -188,13 +189,13 @@
                         $.ajax({
                             url: "{{ route('asesor.searchNamePract')}}",
                             data: {
-                                'nombrePrat' : ('#btnSearchPract').value,
+                                'nombrePrat' : nombrePract,
                                 "_token": "{{csrf_token()}}"
                             },
                             dataType:"json",
                             method: "POST",
                             success: function(response){
-                                $('#table').html(response);
+                                $('#tableBody').append(response.html);
                                 if(response.status=='fail'){
                                     $('#alertContainer').addClass('bg-red-600').removeClass('bg-green-500');
                                     $('#alertText').html('Error, al buscar practicante');

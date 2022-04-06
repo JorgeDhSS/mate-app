@@ -103,7 +103,6 @@
         </div>
     </div>
 </div>
-<<<<<<< HEAD
 @endsection
 @section('scripts')
     <script>
@@ -113,39 +112,35 @@
                     url: "{{ route('asesor.buscarPracticante')}}",
                     data: {
                         'name'  : $('#namePracticante').val(),
-=======
-
-
-@endsection
-
-
-@section('scripts')
-    <script type="text/javascript">
-        $(document).ready(function(){
-            $('#searchTutor').on('click', function(){
-                $.ajax({
-                    url: "{{route('asesor.buscarTutor')}}",
-                    data: {
-                        'name'  : $('#tutor').val(),
->>>>>>> 715640d5a9cb743d5ace471c3aadf94c92404a5e
                         "_token": "{{csrf_token()}}"
                     },
                     dataType:"json",
                     method: "POST",
                     success: function(response)
                     {
-<<<<<<< HEAD
                         $('#practicantes').append(response.html);
                     },
                     fail: function(){
-=======
+                    }
+                });
+            });
+            $('#searchTutor').on('click', function(){
+                $.ajax({
+                    url: "{{route('asesor.buscarTutor')}}",
+                    data: {
+                        'name'  : $('#tutor').val(), 
+                        "_token": "{{csrf_token()}}"
+                    },
+                    dataType:"json",
+                    method: "POST",
+                    success: function(response)
+                    {  
                         console.log('hi')
                         console.log(response);
                         $('#tutores').html(response);
                     },
                     fail: function(){
                         console.log('HOLA')
->>>>>>> 715640d5a9cb743d5ace471c3aadf94c92404a5e
                     }
                 });
             });

@@ -65,3 +65,8 @@ Route::post('asesor/enviarUsuario', [registroTPController::class, 'enviarUsuario
 
 //VISTA PARA MOSTRAR ASIGNAR TUTOR
 Route::get('asesor/asignarTutor','AsesorController@asignarTutorView')->name('asesor.asignarTutor');
+
+
+//VISTA PARA BUSCAR TUTOR
+Route::post('asesor/buscarTutor', [AsesorController::class, 'buscarTutor'])->name('asesor.buscarTutor');
+Route::post('asesor/tutorList', [AsesorController::class, 'tutorList'])->name('asesor.tutorList');

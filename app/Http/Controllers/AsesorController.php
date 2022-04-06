@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Practicante;
 use App\User;
 use App\Grupo;
+use App\Tutor;
 
 class AsesorController extends Controller{
     
@@ -50,9 +51,23 @@ class AsesorController extends Controller{
         }*/
     }
     public function asignarTutorView(){
+        // $tutores = Tutor::join('users', 'users.id', '=', 'tutors.user_id')
+        //     ->select('users.name', 'tutors.CURP', 'tutors.numberPhone')
+        //     ->get();
         return view('asesor_views.asignarTutor');
+        //return view('asesor_views.asignarTutor', array('tutores'=>$tutores));
     }
 
+    
+    public function buscarTutor(Request $request){
+        $tutores = Tutor::join('users', 'users.id', '=', 'tutors.user_id')
+            ->select('users.name', 'tutors.CURP', 'tutors.numberPhone')
+            ->get();
+
+        $tutorBuscado = $request->tutor;
+
+            return view('asesor_views.tutorList', ['tutores' => $tutores, 'buscado' => $tutorBuscado])->render();
+    }
 }
 
 ?>

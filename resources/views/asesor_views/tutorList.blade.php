@@ -7,16 +7,14 @@
         </tr>
     </thead>
     <tbody>
-        <tr>
-            @isset($tutores)
+        <tr> 
             @foreach($tutores as $tutor)
-            @if( $tutor->name == $buscado)
-                <td>{{$tutor->name}}</td>
-                <td>{{$tutor->CURP}}</td>
-                <td>{{$tutor->numberPhone}}</td>
+            @if( $tutor->name == 'Pietro')
+                <td class="border px-4 py-2">{{$tutor->name}}</td>
+                <td class="border px-4 py-2">{{$tutor->CURP}}</td>
+                <td class="border px-4 py-2">{{$tutor->numberPhone}}</td>
             @endif
             @endforeach
-            @endisset
         </tr>
     </tbody>
 </table>

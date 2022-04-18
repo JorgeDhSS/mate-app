@@ -1,5 +1,5 @@
 @extends('mainLayout')
-<header class="interfaz_Principal">
+<!--<header class="interfaz_Principal">
         <div class="titulo_cata">
         <div class="bg-blue-700">
             <div class="max-w-7xl mx-auto py-3 px-3 sm:px-6 lg:px-8">                
@@ -9,9 +9,11 @@
 
         </div>
 
-    </header>
+    </header> -->
 
 @section('body')
+
+
 <form >
     @csrf
 
@@ -31,12 +33,11 @@
     </div>
 
 
-
+<!--
     <div class="w-wull mt-4" align="right" >
         <input type="button" id="Guardar" name="Guardar" value="Guardar" onclick="EnviarDatos()" class=" bg-green-500 text-gray-100 p-4 rounded-full tracking-wide
         font-bold py-2 px-8 focus:outline-none focus:shadow-outline hover:bg-green-700 shadow-lg cursor-pointer ">
-    </div>
-
+    </div> -->
 
 
 </div>
@@ -117,7 +118,6 @@ $(document).ready(function(){
                             <label class="font-semibold leading-none text-gray-300">Valor: </label>
                             <input type="" onkeyup="this.value=Numeros(this.value)" class="w-full border-2 rounded-md mt-2 block text-base py-2 border-b border-gray-500 focus:outline-none focus:border-green-500" id="valorActividad" name="valorActividad">
                         </div>
-
 
                         
                     </div>

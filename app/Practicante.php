@@ -17,7 +17,7 @@ class Practicante extends Model
 
     public function user()
     {
-        return $this->hasOne(User::class);
+        return $this->belongsTo('App\User');
     }
     public function tutor()
     {

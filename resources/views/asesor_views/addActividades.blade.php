@@ -120,7 +120,7 @@
             </div>
             
             <div class="col-span-2 md:col-span-1 text-3xl md:text-4xl">
-                <label class="text-gray-900 ">Descripción de la catividad </label>
+                <label class="text-gray-900 ">Descripción de la actividad </label>
                 <textarea name="descripcionActividad" id="descripcionActividad" class="w-full h-32 border-2 mt-4 block rounded-md text-base py-2 border-b border-gray-500 focus:outline-none focus:border-green-500" style=""></textarea>
             </div>
             

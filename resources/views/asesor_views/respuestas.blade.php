@@ -1,131 +1,134 @@
-    <header class="interfaz_Principal">
-	 <link href="https://unpkg.com/tailwindcss@^1.0/dist/tailwind.min.css" rel="stylesheet">
-        <div class="titulo_seri">
-            <h2 class="titulo-1">Serigrafía</h2>
-        </div>
+@extends('mainLayout')
+<header class="interfaz_Principal">
         <div class="titulo_cata">
-            <h1 class="titulo-2">Catálogos</h1>
+        <div class="bg-blue-700">
+            <div class="max-w-7xl mx-auto py-3 px-3 sm:px-6 lg:px-8">                
+                <h1 style="font-size: 32px;" class="font-extrabold; text-white pl-16 "> Actividad nueva</h1>
+            </div>
+            </div>
+
         </div>
+        <link href="https://unpkg.com/tailwindcss@^1.0/dist/tailwind.min.css" rel="stylesheet">
+        <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+        <script type="text/javascript"></script> 
     </header>
 
-    <div class="crear_nuevo_catalogo w-full max-w-lg" id="crearNuevoC">
-        <div class="flex flex-wrap -mx-3 mb-6 text-black">
-            <div class="w-2/3">
-                <h3 class="text-xl">Ingresar Datos</h3>
-            </div>
-            <div class="w-1/3">
-                <button class="bg-transparent" onclick="document.getElementById('crearNuevoC').style.display='none';" class="imagen_cerrar"><img src="../image/error.png" alt="cerrar"></button class="bg-transparent">
-            </div>
-            <form action="{{route('catalog.store')}}" method="post" enctype="multipart/form-data">
-                @csrf
-                <div class="flex flex-wrap -mx-3 mb-6 ">
-                    <div class="w-full md:w-1/2 px-3 mb-6 md:mb-0 label_nombre">
-                        <label for="nombre">Nombre: </label>
-                        <input type="text" name="nombre" id="nombre" class="appearance-none block w-full bg-gray-200 text-gray-700 border rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white input_nombre">
-                        @error('nombre')<p class="text-red-500 text-xs italic">{{$message}}</p>@enderror
-                    </div><br>
-                    <div class="w-full md:w-1/2 px-3 mb-6 md:mb-0 label_categoria">
-                        <label for="categoria">Categoría: </label>
-                        <input type="text" name="categoria" id="categoria" class="appearance-none block w-full bg-gray-200 text-gray-700 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white input_categoria">
-                        @error('categoria')<p class="text-red-500 text-xs italic">{{$message}}</p>@enderror
-                    </div><br>
-                    <h3 class="w-full text-xl">Agregar un diseño</h3>
-                    <div class="w-full md:w-1/2 px-3 mb-6 md:mb-0 label_foto">
-                        <label for="foto">Foto: </label>
-                        <input type="file" name="foto" id="foto" accept=".png, .jpg, .jpeg" class="appearance-none block w-full bg-gray-200 text-gray-700 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white input_foto">
-                        @error('foto')<p class="text-red-500 text-xs italic">{{$message}}</p>@enderror
-                    </div><br>
-                    <div class="w-full md:w-1/2 px-3 mb-6 md:mb-0 label_textura">
-                        <label for="textura">Textura: </label>
-                        <input type="text" name="textura" id="textura" class="appearance-none block w-full bg-gray-200 text-gray-700 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white">
-                        @error('textura')<p class="text-red-500 text-xs italic">{{$message}}</p>@enderror
-                    </div><br>
-                    <div class="w-full md:w-1/3 px-3 mb-6 md:mb-0 label_color">
-                        <label for="color">Color: </label>
-                        <input type="color" name="color" id="color" class="appearance-none block w-full text-gray-700 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white">
-                        @error('color')<p class="text-red-500 text-xs italic">{{$message}}</p>@enderror
-                    </div><br>
-                    <div class="w-full md:w-1/3 px-3 mb-6 md:mb-0 label_dimensionX">
-                        <label for="dimension_x">Dimensión X </label>
-                        <input type="number" name="dimension_x" id="dimension_x" class="appearance-none block w-full bg-gray-200 text-gray-700 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white">
-                        @error('dimension_x')<p class="text-red-500 text-xs italic">{{$message}}</p>@enderror
-                    </div><br>
-                    <div class="w-full md:w-1/3 px-3 mb-6 md:mb-0 label_dimensionY">
-                        <label for="dimension_y">Dimensión Y </label>
-                        <input type="number" name="dimension_y" id="dimension_y" accept=".png, .jpg, .jpeg" class="appearance-none block w-full bg-gray-200 text-gray-700 border rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white">
-                        @error('dimension_y')<p class="text-red-500 text-xs italic">{{$message}}</p>@enderror
-                    </div><br>
-                    <div class="botones_crear_cata">
-                        <input type="submit" value="Aceptar" class="crear_cata_enviar">
-                        <input type="button" value="Cancelar" class="crear_cata_cancelar" onclick="document.getElementById('crearNuevoC').style.display='none';">
-                    </div>
-                </div>
-            </form>
-        </div>
-    </div>
+    <script type="text/javascript">
 
-    <div class="flex flex-wrap -mx-3 p-3 mb-6 text-black">
-        <div class="w-full md:w-1/3 px-3 mb-6 md:mb-0">
-            <div class="nuevo-catalogo">
-                <img src="../image/photo-icon.png" alt="nuevo_catalogo" class="imagen-catalogo">
-                <button id="newCatalog" class="link_crear_catalogo">Nuevo catálogo</button>
-            </div>
-        </div>
+        function Numeros(string){//Solo numeros
+            var out = '';
+            var filtro = '1234567890';//Caracteres validos
+            
+            //Recorrer el texto y verificar si el caracter se encuentra en la lista de validos 
+            for (var i=0; i<string.length; i++)
+            if (filtro.indexOf(string.charAt(i)) != -1) 
+                    //Se añaden a la salida los caracteres validos
+                out += string.charAt(i);
+            
+            //Retornar valor filtrado
+            return out;
+        }  
 
-        @foreach(App\Models\Catalogo::get() as $catalog)
-        @if($catalog->Estado == 1)
-        <div class="w-full max-w-sm md:w-1/3 p-3 mb-6 md:mb-0">
-            <div class="rounded overflow-hidden shadow-lg">
-                <img class="w-full" src="/storage/@if(!empty($catalog->disenos->first())){{$catalog->disenos->first()->Foto}}@endif" alt="Sunset in the mountains">
-                <div class="px-6 py-4">
-                    <div class="font-bold text-xl mb-2">{{$catalog->Nombre}}</div>
-                </div>
-                <div class="px-6 pt-4 pb-2">
-                    <div class="flex flex-wrap -mx-3 mb-6 text-black">
-                        <div class="w-full md:w-1/2 px-3 mb-6 md:mb-0">
-                            
-                            
-                            <a class="bg-blue-600 hover:bg-blue-700 text-white hover:text-black font-semibold py-2 px-4 rounded shadow" href="{{route('catalog.deleteCatalog', $catalog->id)}}">
-                                Eliminar
-                            </a>
-                        
-                        </div>
-                        <div class="w-full md:w-1/2 px-3 mb-6 md:mb-0">
-                            <a class="bg-blue-600 hover:bg-blue-700 text-white hover:text-black font-semibold py-2 px-4 rounded shadow" href="{{route('catalog.edit', $catalog->id)}}">
-                                Editar
-                            </a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        @endif
-        @endforeach
-    </div>
-    
+        function EnviarDatos(){
 
-    <script>
-        
-        @if(Session::has('success'))
-            Swal.fire(
-                {
-                    icon: 'success',
-                    title: '¡Listo!',
-                    text: '{{Session::get("success")}}',
-                    showConfirmButton: false,
-                    timer: 1500
-                }
-            )
-        @endif
-        @if(Session::has('error'))
-            Swal.fire(
-                {
-                    icon: 'error',
-                    title: '¡Error!',
-                    text: '{{ Session::get("error") }}',
-                    showConfirmButton: false,
-                    timer: 1500
-                }
-            )
-        @endif
+            var hoy = new Date();
+            var inicio = document.getElementById("fechaInicio").value
+            var termina = document.getElementById("fechaTermina").value
+            var mes = (hoy.getMonth()+1).toString();
+            var dia = hoy.getDate().toString();          
+
+            if(mes.length <= 1){
+                mes = "0" + mes;
+            }
+            if(dia.length <=1){
+                dia = "0" + dia;
+            }
+
+            var fecha = hoy.getFullYear() + "-" + mes + "-" + dia; 
+
+       
+
+            if (document.getElementById("valorActividad").value == "") {
+                alert("Debes asignar un valor a la actividad.");
+                return;
+            }
+            if (document.getElementById("selecionaGrupo").value == "") {
+                alert("Debes seleccionar un grupo.");
+                return;
+            }
+            if (document.getElementById("descripcionActividad").value == "") {
+                alert("Debes describir la actividad.");
+                return;
+            }
+            if(document.getElementById("nombreActividad").value == "") {
+                alert("Debes asignar un nombre a la actividad.");
+                return;
+            }
+            if(inicio == "") {
+                alert("Debes asignar la fecha para iniciar la actividad.");
+                return;
+            }
+            if(termina == "") {
+                alert("Debes asignar la fecha en la que finaliza la actividad.");
+                return;
+                
+            }
+            if( fecha > inicio){
+                alert("Debes escoger una fecha valida.") 
+                return;   
+            }
+            if(inicio > termina){
+                alert("La fecha final no puede ser menor a la de inicio")
+                return;
+            }
+
+
+            addActividad.submit();
+        }
     </script>
+
+@section('body')
+<form action="{{route('asesor_views.respuestas')}}" method="post" submit="" id="addActividad" name="addActividad">
+@csrf
+        <div class="grid grid-cols-2 gap-4 px-8 py-2 md:px-20 md:py-10">
+            <div class="col-span-2 md:col-span-1 text-3xl md:text-4xl">
+                <label  class=" text-gray-900 ">Inicia: </label>
+                <input type="date" name="fechaInicio" id="fechaInicio" class="w-full border-2 rounded-md mt-2 block text-base py-2 border-b border-gray-500 focus:outline-none focus:border-green-500">
+            </div>
+
+            <div class="col-span-2 md:col-span-1 text-3xl md:text-4xl">
+                <label class="text-gray-900 ">Termina: </label>
+                <input type="date" name="fechaTermina" id="fechaTermina" class="w-full border-2 rounded-md mt-2 block text-base py-2 border-b border-gray-500 focus:outline-none focus:border-green-500">
+            </div>
+
+            <div class="col-span-2 md:col-span-1 text-3xl md:text-4xl">
+                <label class="text-gray-900  ">grupo: </label>
+                <select name="selecionaGrupo" id="selecionaGrupo" class="w-full py-2 text-base border-2 mt-2 block rounded-md text-base py-2 border-b border-gray-500 focus:outline-none focus:border-green-500">  
+                    <option class="bg-white" value="">Grupo</option> 
+                    @foreach(App\Grupo::get() as $grupo)
+                        <option class="bg-white" value="{{$grupo->id}}">{{$grupo->nombreGrupo}}</option>
+                    @endforeach
+                </select>
+            </div>
+
+            <div class="col-span-2 md:col-span-1 text-3xl md:text-4xl">
+                <label class="text-gray-900 ">Valor: </label>
+                <input type="" onkeyup="this.value=Numeros(this.value)" class="positive w-full text-base border-2 py-2  mt-2 block rounded-lg text-base py-2 border-b border-gray-500 focus:outline-none focus:border-green-500 " id="valorActividad" name="valorActividad">
+            </div>
+             
+            <div class="col-span-2 md:col-span-1 text-3xl md:text-4xl">
+                <label class="text-gray-900 ">Nombre de la actividad</label>
+                <input type="" class="w-full py-2 border-2 mt-4 block rounded-md text-base py-2 border-b border-gray-500 focus:outline-none focus:border-green-500" name="nombreActividad" id="nombreActividad">
+            </div>
+            
+
+            
+            <div class="w-wull mt-4" align="right" >
+                <input type="button" id="Guardar" name="Guardar" value="Guardar" onclick="EnviarDatos()" class=" bg-green-500 text-gray-100 p-4 rounded-full tracking-wide
+                            font-bold py-2 px-8 focus:outline-none focus:shadow-outline hover:bg-green-700 shadow-lg cursor-pointer ">
+            </div>
+                
+        </div>
+</form>
+
+@endsection

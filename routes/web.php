@@ -41,6 +41,8 @@ Route::get('director/addAsesor','DirectorController@createAsesorView')->name('di
 Route::get('asesor/groupPract', 'AsesorController@groupPractView')->name('asesor.groupPract');
 Route::get('asesor/groupPract', 'AsesorController@showTablePract')->name('asesor.groupPract');
 Route::post('asesor/groupPract/searchNameGroup', 'AsesorController@searchNameGroup')->name('asesor.searchNameGroup');
+Route::post('asesor/groupPract/searchNamePract', 'AsesorController@searchNamePract')->name('asesor.searchNamePract');
+Route::post('asesor/tableSearchPract', 'AsesorController@tableSearchPract')->name('asesor.tableSearchPract');
 Route::post('asesor/groupPract', 'AsesorController@saveGroup')->name('asesor.saveGroup');
 
 //Agregar actividad
@@ -53,9 +55,20 @@ Route::post('asesor/actividadnueva', [ActividadesController::class, 'guardarActi
 //AGREGAR RESPUSTAS 
 Route::get('asesor/addAnswer',[ActividadesController::class, 'addAnswerView'])->name('Answer.index');
 
+//Agregar respuesta 'asesor_views.addRespuestas'
+
+Route::get('asesor/respuesta',[ActividadesController::class, 'createRespuestas'])->name('asesor_views.respuestas');
+
+
 //ENVIAR TUTOR O PRACTICANTE
 Route::post('asesor/enviarUsuario', [registroTPController::class, 'enviarUsuario'])->name('asesor.enviarUsuario');
 
 
 //VISTA PARA MOSTRAR ASIGNAR TUTOR
 Route::get('asesor/asignarTutor','AsesorController@asignarTutorView')->name('asesor.asignarTutor');
+Route::post('asesor/buscarPracticante','AsesorController@buscarPracticante')->name('asesor.buscarPracticante');
+
+
+//VISTA PARA BUSCAR TUTOR
+Route::post('asesor/buscarTutor', [AsesorController::class, 'buscarTutor'])->name('asesor.buscarTutor');
+Route::post('asesor/tutorList', [AsesorController::class, 'tutorList'])->name('asesor.tutorList');

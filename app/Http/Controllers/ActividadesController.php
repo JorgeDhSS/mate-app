@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Actividad;
 use App\Grupo;
+Use App\pregunta;
+Use App\respuesta;
 
 class ActividadesController extends Controller{
 
@@ -19,6 +21,7 @@ class ActividadesController extends Controller{
     }
 
     //Muestra los grupos en la vista addActividad 
+
     public function showGrupo($id){
     
         $grupos = collect();
@@ -28,6 +31,7 @@ class ActividadesController extends Controller{
         return $grupos;
         //return response(json_encode($disenos),200)->header('Content-type','text/plain');
     }
+    
 
     //Agrega la actividad nueva a la base de datos
     public function guardarActividad(Request $request){
@@ -51,5 +55,22 @@ class ActividadesController extends Controller{
         return view('asesor_views.respuestas');
     }
 
+<<<<<<< HEAD
+=======
+    public function mostrarActividades($id){
+        $actividades = collect();
+        foreach(Grupo::where('id', $id)->get() as $grupo){
+
+            $actividades = $actividades->concat(Actividad::where('idgrupo', $id)->get());
+        }
+        return $actividades;
+
+    }
+
+ 
+
+ 
+
+>>>>>>> a65fe3a030808262bd44ec7dc57bbc117c31a6a8
     
 }

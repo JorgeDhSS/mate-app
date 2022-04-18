@@ -57,7 +57,8 @@ Route::get('asesor/addAnswer',[ActividadesController::class, 'addAnswerView'])->
 
 //Agregar respuesta 'asesor_views.addRespuestas'
 
-Route::get('asesor/respuesta',[ActividadesController::class, 'createRespuestas'])->name('asesor_views.respuestas');
+Route::get('/asesor/respuesta',[ActividadesController::class, 'createRespuestas'])->name('asesor_views.respuestas');
+Route::get('/addActividades/ mostrarActividades/{id}', [ActividadesController::class, 'mostrarActividades'])->name('respuestas.mostrarActividades');
 
 
 //ENVIAR TUTOR O PRACTICANTE

@@ -57,6 +57,18 @@ class ActividadesController extends Controller{
     }
     public function guardarPregunta(Request $request){
 
+        $actividad = new Actividad();
+        
+        $actividad->descripcion = "";
+        $actividad->titulo = $request->nombreActividad;
+        $actividad->fechaInicio = $request->fechaInicio;
+        $actividad->fechaCierre = $request->fechaTermina;
+        $actividad->valor = $request->valorActividad;
+        $actividad->idgrupo = $request->selecionaGrupo;
+        $actividad->asesor_id= 1;
+        $actividad->save();
+        return view('asesor_views.respuestas');
+
     }
 
     public function mostrarActividades($id){

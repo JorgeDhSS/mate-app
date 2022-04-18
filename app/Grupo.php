@@ -14,4 +14,8 @@ class Grupo extends Model
     protected $fillable = [
         'nombreGrupo', 'nivelEscolar'
     ];
+
+    public function verActividad(){
+        return $this->hasMany(Actividad::class);
+    }
 }

@@ -39,6 +39,15 @@
         font-bold py-2 px-8 focus:outline-none focus:shadow-outline hover:bg-green-700 shadow-lg cursor-pointer ">
     </div> -->
 
+    <!----<div class="w-wull mt-4" align="right" >
+        <input type="button" id="Guardar" name="Guardar" value="Guardar" onclick="EnviarDatos()" class=" bg-green-500 text-gray-100 p-4 rounded-full tracking-wide
+        font-bold py-2 px-8 focus:outline-none focus:shadow-outline hover:bg-green-700 shadow-lg cursor-pointer ">
+    </div>--->
+
+    <h1 class="text-center">Crear pregunta</h1>
+    <hr class="bg-dark border-1 border-top border-dark">
+
+
 
 </div>
 </form>

@@ -49,10 +49,14 @@ class ActividadesController extends Controller{
         $actividad->save();
         return view('asesor_views.addActividades');
     }
+     
 
     public function createRespuestas()
     {
         return view('asesor_views.respuestas');
+    }
+    public function guardarPregunta(Request $request){
+
     }
 
     public function mostrarActividades($id){

@@ -59,7 +59,7 @@ Route::get('asesor/addAnswer',[ActividadesController::class, 'addAnswerView'])->
 
 Route::get('/asesor/respuesta',[ActividadesController::class, 'createRespuestas'])->name('asesor_views.respuestas');
 Route::get('/addActividades/ mostrarActividades/{id}', [ActividadesController::class, 'mostrarActividades'])->name('respuestas.mostrarActividades');
-
+Route::post('/actividadnueva/guardarPregunta/', [ActividadesController::class, 'guardarPregunta'])->name('respuesta.guardarPregunta');
 
 //ENVIAR TUTOR O PRACTICANTE
 Route::post('asesor/enviarUsuario', [registroTPController::class, 'enviarUsuario'])->name('asesor.enviarUsuario');

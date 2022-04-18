@@ -59,8 +59,6 @@ class ActividadesController extends Controller{
 
     }
 
-<<<<<<< HEAD
-=======
     public function mostrarActividades($id){
         $actividades = collect();
         foreach(Grupo::where('id', $id)->get() as $grupo){
@@ -75,6 +73,5 @@ class ActividadesController extends Controller{
 
  
 
->>>>>>> a65fe3a030808262bd44ec7dc57bbc117c31a6a8
     
 }

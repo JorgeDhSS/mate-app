@@ -59,7 +59,7 @@ class ActividadesController extends Controller{
 
         $actividad = new Actividad();
         
-        $actividad->descripcion = "";
+        $actividad->descripcion = "Responde las siguientes pregntas";
         $actividad->titulo = $request->nombreActividad;
         $actividad->fechaInicio = $request->fechaInicio;
         $actividad->fechaCierre = $request->fechaTermina;

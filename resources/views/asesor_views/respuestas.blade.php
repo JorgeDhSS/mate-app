@@ -1,37 +1,44 @@
 @extends('mainLayout')
-<!--<header class="interfaz_Principal">
-        <div class="titulo_cata">
-        <div class="bg-blue-700">
-            <div class="max-w-7xl mx-auto py-3 px-3 sm:px-6 lg:px-8">                
-                <h1 style="font-size: 32px;" class="font-extrabold; text-white pl-16 "> Actividad nueva</h1>
-            </div>
-            </div>
-
-        </div>
-
-    </header> -->
-
     @section('scripts')
-    <!--<script type="text/javascript">
-    $(document).ready(function(){
-        $('#selecionaGrupo').on('change', function(){
-            var grupoId = $(this).val();
-                $.get('/addActividades/ mostrarActividades/'+grupoId, function(res){
-                    console.log(res);
-                    var html_select = '<option class="bg-white" value="">Título de la actividad</option>';
-                    for (var i=0; i<res.length; i++){
-                        html_select += '<option class="bg-white" value="'+res[i].id+'">'+res[i].titulo+'</option>';
-                    }
-                    $('#seleccionaActividad').html(html_select);
-                }); 
-        }); 
-    });
-    </script>-->
+
 
     <script type="text/javascript">
 
-   
+    
 
+/////////////////////////////////////////////////////////////////////////////////////////////
+
+        var btnAgregar = document.getElementById("preguntaN");
+        btnAgregar.addEventListener("click", agregar);
+
+        var txtTarea = document.getElementById("PreguntaEscribe");
+        var listTareas = document.getElementById("preguntas");
+        var txtRespuesta = document.getElementById("respuesta");
+
+        let botonRespuestas = document.createElement("button");
+
+        botonRespuestas.innerHTML = "Agregar respuestas";
+        
+
+
+
+
+        function agregar(){
+            let tarea = document.createElement("li");
+            tarea.textContent = txtTarea.value;
+            
+            botonRespuestas.className = 'bg-green-500 text-gray-100 p-4 rounded-full tracking-wide font-bold py-2 px-8 focus:outline-none focus:shadow-outline hover:bg-green-700 shadow-lg cursor-pointer'
+
+            listTareas.appendChild(tarea); 
+            listTareas.appendChild(botonRespuestas); 
+            botonRespuestas.onclick=RespuestaVentana();
+        
+        }
+
+        function RespuestaVentana(){
+            var edad = prompt('Cuantos años tienes?', '100');
+        }
+             
         function Numeros(string){//Solo numeros
             var out = '';
             var filtro = '1234567890';//Caracteres validos
@@ -44,9 +51,9 @@
             
             //Retornar valor filtrado
             return out;
-        }  
-
-        function nuevaPregunta(){
+        } 
+        
+        function  AgregaAct(){
 
             var hoy = new Date();
             var inicio = document.getElementById("fechaInicio").value
@@ -63,7 +70,7 @@
 
             var fecha = hoy.getFullYear() + "-" + mes + "-" + dia; 
 
-       
+
 
             if (document.getElementById("valorActividad").value == "") {
                 alert("Debes asignar un valor a la actividad.");
@@ -73,7 +80,7 @@
                 alert("Debes seleccionar un grupo.");
                 return;
             }
-            
+
             if(document.getElementById("nombreActividad").value == "") {
                 alert("Debes asignar un nombre a la actividad.");
                 return;
@@ -98,77 +105,15 @@
 
 
             addActividad.submit();
+
         }
+
+
     </script>
 @endsection
 
 @section('body')
 
-
-<!--<form >
-    
-
-<div>
-    <div class="min-w-full p-2 text-center">
-        <label class="text-gray-900  ">Grupo: </label>
-        <select name="selecionaGrupo" id="selecionaGrupo" class="w-1/3 py-2 text-base border-2 ">  
-            <option class="bg-white" value="">Grupo</option> 
-            @foreach(App\Grupo::get() as $grupo)
-                <option class="bg-white" value="{{$grupo->id}}">{{$grupo->nombreGrupo}}</option>     
-            @endforeach
-        </select>
-        <label class="text-gray-900  ">Actividad: </label>
-        <select name="seleccionaActividad" id="seleccionaActividad" class="w-1/3 py-2 text-base border-2">
-            <option class="bg-white" value="">Título de la actividad</option>
-        </select>
-    </div>
-
-
-
-    <div class="w-wull mt-4" align="right" >
-        <input type="button" id="Guardar" name="Guardar" value="Guardar" onclick="EnviarDatos()" class=" bg-green-500 text-gray-100 p-4 rounded-full tracking-wide
-        font-bold py-2 px-8 focus:outline-none focus:shadow-outline hover:bg-green-700 shadow-lg cursor-pointer ">
-    </div> -->
-
-    <!----<div class="w-wull mt-4" align="right" >
-        <input type="button" id="Guardar" name="Guardar" value="Guardar" onclick="EnviarDatos()" class=" bg-green-500 text-gray-100 p-4 rounded-full tracking-wide
-        font-bold py-2 px-8 focus:outline-none focus:shadow-outline hover:bg-green-700 shadow-lg cursor-pointer ">
-    </div>--->
-
-    <!---<h1 class="text-center">Crear pregunta</h1>
-    <hr class="bg-dark border-1 border-top border-dark">
-
-
-
-</div>
-</form>--->
-
-
-
-<!-- 
-    
-            
-            <div class="w-wull mt-4" align="right" >
-                <input type="button" id="Guardar" name="Guardar" value="Guardar" onclick="EnviarDatos()" class=" bg-green-500 text-gray-100 p-4 rounded-full tracking-wide
-                            font-bold py-2 px-8 focus:outline-none focus:shadow-outline hover:bg-green-700 shadow-lg cursor-pointer ">
-            </div>
-            !<div class="w-wull mt-4" align="right" >
-                <input type="button" id="NuevaPregunta" name="NuevaPregunta" value="NuevaPregunta" onclick="ActivaPreguntas()" class=" bg-green-500 text-gray-100 p-4 rounded-full tracking-wide
-                            font-bold py-2 px-8 focus:outline-none focus:shadow-outline hover:bg-green-700 shadow-lg cursor-pointer ">
-            </div>
-            
-            <div class="col-span-2 md:col-span-1 text-3xl md:text-4xl">
-                <label class="text-gray-900 ">Escribe una pregunta</label>
-                <input type="" class="w-full py-2 border-2 mt-4 block rounded-md text-base py-2 border-b border-gray-500 focus:outline-none focus:border-green-500" name="nombreActividad" id="nombreActividad">
-            </div>
-
-            
-                
-        </div>
-</form>
- 
-
-component -->
 
 @csrf
 
@@ -214,17 +159,29 @@ component -->
                             <input type="" class="w-full py-2 border-2 mt-4 block rounded-md text-base py-2 border-b border-gray-500 focus:outline-none focus:border-green-500" name="nombreActividad" id="nombreActividad">
                         </div>
                     </div>
-                    <div class="flex items-center justify-center w-full">
-                        <label class="font-semibold leading-none text-gray-300">Pregunta nueva</label>
+                    <div class="w-full flex flex-col mt-8">
+                        <label class="font-semibold leading-none text-gray-300">Crear una pregunta</label>
                         <input id= "PreguntaEscribe" name="PreguntaEscribe" class="w-full py-2 border-2 mt-4 block rounded-md text-base py-2 border-b border-gray-500 focus:outline-none focus:border-green-500 " type="text" value="">
-                        <label class="pregunta">Pregunta nueva</label>
+                    </div>
+                    <div class="w-full flex flex-col mt-8">
+                        <div class="row">
+                            <div class="col-auto">
+                                <ul id="preguntas" class="font-semibold leading-none text-gray-300">
+                                    <label for="" id="respuesta" ></label>
+                                </ul>
+                            </div>
+                        </div>
                     </div>
                     <div class="flex items-center justify-center w-full">
-                    <input type="button" id="preguntaN" name="preguntaN" value="Pregunta Nueva" onclick="nuevaPregunta()" class=" bg-green-500 text-gray-100 p-4 rounded-full tracking-wide font-bold py-2 px-8 focus:outline-none focus:shadow-outline hover:bg-green-700 shadow-lg cursor-pointer ">
+                    <input type="button" id="preguntaN" name="preguntaN" value="Pregunta Nueva" class=" bg-green-500 text-gray-100 p-4 rounded-full tracking-wide font-bold py-2 px-8 focus:outline-none focus:shadow-outline hover:bg-green-700 shadow-lg cursor-pointer ">
                     </div>
                 </form>
             </div>
         </div>
+
+
+  
+    <div id="preview"></div>
     </div>
 </form>
 

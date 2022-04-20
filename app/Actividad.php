@@ -18,4 +18,7 @@ class Actividad extends Model
     {
         return $this->hasOne(Asesor::class);
     }
+    public function grupo(){
+        return $this->belongsTo(Grupo::class);
+    }
 }

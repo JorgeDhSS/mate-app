@@ -80,6 +80,11 @@ class AsesorController extends Controller{
 
             return view('asesor_views.tutorList', ['tutores' => $tutores])->render();
     }
+
+    public function actividadToCuadernilloView(Request $request)
+    {
+        return view('asesor_views.activityToCuadernillo');
+    }
 }
 
 ?>

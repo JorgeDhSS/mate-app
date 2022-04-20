@@ -1,9 +1,18 @@
 @extends('mainLayout')
  
  @section('body')
+    <header class="interfaz_Principal">
+        <div class="titulo_cata">
+        <div class="bg-blue-700">
+            <div class="max-w-7xl mx-auto py-3 px-3 sm:px-6 lg:px-8 ">                
+                <h1 style="font-size: 32px;" class="font-extrabold; text-white pl-16 justify-center"> Actividad nueva</h1>
+            </div>
+            </div>
 
- <div class="relative min-h-screen flex items-center justify-center bg-purple-500 py-12 px-4 sm:px-6 lg:px-8 bg-purple-500 bg-no-repeat bg-cover relative items-center"
- style="background-color: yellow">
+        </div>
+       
+    </header>
+ <div class="relative min-h-screen flex items-center justify-center bg-purple-500 py-12 px-4 sm:px-6 lg:px-8 bg-purple-500 bg-no-repeat bg-cover relative items-center">
 
 	<div class="absolute bg-blue-200 opacity-60 inset-0 z-0"></div>
 	<div class="max-w-md w-full space-y-8 p-10 bg-white rounded-xl z-10">

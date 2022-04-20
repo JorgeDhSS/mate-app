@@ -1,6 +1,6 @@
 @extends('mainLayout')
            
-    @section('scripts')
+@section('scripts')
 
 
     <script type="text/javascript">
@@ -18,21 +18,7 @@
         
         
         botonRespuestas.innerHTML="agregar respuestas";
-        botonRespuestas.onClick= function ventanaemergente(){
-            all_modals = ['main-modal', 'another-modal']
-        all_modals.forEach((modal)=>{
-            const modalSelected = document.querySelector('.'+modal);
-            modalSelected.classList.remove('fadeIn');
-            modalSelected.classList.add('fadeOut');
-            modalSelected.style.display = 'none';
-        })
-        const modalClose = (modal) => {
-            const modalToClose = document.querySelector('.'+modal);
-            modalToClose.classList.remove('fadeIn');
-            modalTo
-            
-
-        }
+       
       
 
 
@@ -125,17 +111,7 @@
 
 @section('body')
 
-
-    
-
-
-
-@section('body')
-
-@csrf
-
-
-    <div class="w-full bg-blue-200 h-screen">
+<div class="w-full bg-blue-200 h-screen">
         <div class="bg-gradient-to-b from-blue-200 to-blue-200 h-96"></div>
         <div class="max-w-5xl mx-auto px-6 sm:px-6 lg:px-8 mb-12">
             <div class="bg-blue-700 w-full shadow rounded p-8 sm:p-12 -mt-72">
@@ -186,7 +162,7 @@
                             <div class="col-auto">
                                 <ul id="preguntas" class="font-semibold leading-none text-gray-300">
                                     <label for="" id="respuesta"  ></label>
-                                    <input onclick="openModal('main-modal')" class='bg-blue-500 text-white p-2 rounded text-2xl font-bold'></input>
+                                    <button onclick="openModal('main-modal')" class='bg-blue-500 text-white p-2 rounded text-2xl font-bold'>Open Modal</button>
                                 </ul>
                             </div>
                         </div>
@@ -194,22 +170,21 @@
                     <div class="flex items-center justify-center w-full">
                     <input type="button" id="preguntaN" name="preguntaN" value="Pregunta Nueva" class=" bg-green-500 text-gray-100 p-4 rounded-full tracking-wide font-bold py-2 px-8 focus:outline-none focus:shadow-outline hover:bg-green-700 shadow-lg cursor-pointer ">
                     
-                    </div>saasca
+                    </div>
                 </form>
             </div>
         </div>
 
 
-  
-    <div id="preview"></div>
-</div>
-    @endsection
-    </div>
-</form>
+    
 
 
 
+@section('body')
 
+
+<!-- component -->
+<!-- component -->
 <style>
 		.animated {
 			-webkit-animation-duration: 1s;
@@ -273,7 +248,7 @@
 				</div>
 				<!--Body-->
 				<div class="my-5 mr-5 ml-5 flex justify-center">
-                   <form method="POST" id="add_caretaker_form"  class="w-full">
+                    <form  method="POST" id="add_caretaker_form"  class="w-full">
                         <div class="">
                             <div class="">
                                 <label for="names" class="text-md text-gray-600">Full Names</label>
@@ -323,7 +298,7 @@
 				</div>
 				<!--Body-->
 				<div class="my-5 mr-5 ml-5 flex justify-center">
-                    <form method="POST" id="add_caretaker_form"  class="w-full">
+                    <form  method="POST" id="add_caretaker_form"  class="w-full">
                         <div class="">
                             <div class="">
                                 <label for="names" class="text-md text-gray-600">Full Names</label>
@@ -357,6 +332,28 @@
 		</div>
 	</div>
 
+	<script>
+        all_modals = ['main-modal', 'another-modal']
+        all_modals.forEach((modal)=>{
+            const modalSelected = document.querySelector('.'+modal);
+            modalSelected.classList.remove('fadeIn');
+            modalSelected.classList.add('fadeOut');
+            modalSelected.style.display = 'none';
+        })
+        const modalClose = (modal) => {
+            const modalToClose = document.querySelector('.'+modal);
+            modalToClose.classList.remove('fadeIn');
+            modalToClose.classList.add('fadeOut');
+            setTimeout(() => {
+                modalToClose.style.display = 'none';
+            }, 500);
+        }
 
-@endsection
-
+        const openModal = (modal) => {
+            const modalToOpen = document.querySelector('.'+modal);
+            modalToOpen.classList.remove('fadeOut');
+            modalToOpen.classList.add('fadeIn');
+            modalToOpen.style.display = 'flex';
+        }
+    
+	</script>

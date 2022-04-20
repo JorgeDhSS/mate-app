@@ -18,7 +18,7 @@
         
         
         botonRespuestas.innerHTML="agregar respuestas";
-        botonRespuestas.onClick= function ventanaemergente(){
+        botonRespuestas.onClick = openModal('main-modal'){
             all_modals = ['main-modal', 'another-modal']
         all_modals.forEach((modal)=>{
             const modalSelected = document.querySelector('.'+modal);
@@ -30,9 +30,8 @@
             const modalToClose = document.querySelector('.'+modal);
             modalToClose.classList.remove('fadeIn');
             modalTo
-            
-
         }
+      
       
 
 
@@ -186,7 +185,7 @@
                             <div class="col-auto">
                                 <ul id="preguntas" class="font-semibold leading-none text-gray-300">
                                     <label for="" id="respuesta"  ></label>
-                                    <input onclick="openModal('main-modal')" class='bg-blue-500 text-white p-2 rounded text-2xl font-bold'></input>
+
                                 </ul>
                             </div>
                         </div>

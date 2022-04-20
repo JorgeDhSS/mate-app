@@ -19,6 +19,7 @@
 
         botonRespuestas.innerHTML = "Agregar respuestas";
         
+        
 
 
 
@@ -31,12 +32,7 @@
 
             listTareas.appendChild(tarea); 
             listTareas.appendChild(botonRespuestas); 
-            botonRespuestas.onclick=RespuestaVentana();
         
-        }
-
-        function RespuestaVentana(){
-            var edad = prompt('Cuantos años tienes?', '100');
         }
              
         function Numeros(string){//Solo numeros
@@ -117,7 +113,7 @@
 
 @csrf
 
-<form action="{{route('respuesta.guardarPregunta')}}" method="post" submit="" id="addActividad" name="addActividad">
+
     <div class="w-full bg-blue-200 h-screen">
         <div class="bg-gradient-to-b from-blue-200 to-blue-200 h-96"></div>
         <div class="max-w-5xl mx-auto px-6 sm:px-6 lg:px-8 mb-12">
@@ -182,8 +178,6 @@
 
   
     <div id="preview"></div>
-    </div>
-</form>
-
+</div>
     @endsection
 

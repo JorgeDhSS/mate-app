@@ -193,7 +193,7 @@
                     <div class="flex items-center justify-center w-full">
                     <input type="button" id="preguntaN" name="preguntaN" value="Pregunta Nueva" class=" bg-green-500 text-gray-100 p-4 rounded-full tracking-wide font-bold py-2 px-8 focus:outline-none focus:shadow-outline hover:bg-green-700 shadow-lg cursor-pointer ">
                     
-                    </div>
+                    </div>saasca
                 </form>
             </div>
         </div>

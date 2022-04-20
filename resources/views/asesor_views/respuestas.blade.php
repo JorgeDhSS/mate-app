@@ -18,7 +18,21 @@
         
         
         botonRespuestas.innerHTML="agregar respuestas";
-        
+        botonRespuestas.onClick= function ventanaemergente(){
+            all_modals = ['main-modal', 'another-modal']
+        all_modals.forEach((modal)=>{
+            const modalSelected = document.querySelector('.'+modal);
+            modalSelected.classList.remove('fadeIn');
+            modalSelected.classList.add('fadeOut');
+            modalSelected.style.display = 'none';
+        })
+        const modalClose = (modal) => {
+            const modalToClose = document.querySelector('.'+modal);
+            modalToClose.classList.remove('fadeIn');
+            modalTo
+            
+
+        }
       
 
 
@@ -172,7 +186,7 @@
                             <div class="col-auto">
                                 <ul id="preguntas" class="font-semibold leading-none text-gray-300">
                                     <label for="" id="respuesta"  ></label>
-                                    <button onclick="openModal('main-modal')" class='bg-blue-500 text-white p-2 rounded text-2xl font-bold'>Open Modal</button>
+                                    <input onclick="openModal('main-modal')" class='bg-blue-500 text-white p-2 rounded text-2xl font-bold'></input>
                                 </ul>
                             </div>
                         </div>
@@ -343,30 +357,6 @@
 		</div>
 	</div>
 
-	<script>
-        all_modals = ['main-modal', 'another-modal']
-        all_modals.forEach((modal)=>{
-            const modalSelected = document.querySelector('.'+modal);
-            modalSelected.classList.remove('fadeIn');
-            modalSelected.classList.add('fadeOut');
-            modalSelected.style.display = 'none';
-        })
-        const modalClose = (modal) => {
-            const modalToClose = document.querySelector('.'+modal);
-            modalToClose.classList.remove('fadeIn');
-            modalToClose.classList.add('fadeOut');
-            setTimeout(() => {
-                modalToClose.style.display = 'none';
-            }, 500);
-        }
 
-        const openModal = (modal) => {
-            const modalToOpen = document.querySelector('.'+modal);
-            modalToOpen.classList.remove('fadeOut');
-            modalToOpen.classList.add('fadeIn');
-            modalToOpen.style.display = 'flex';
-        }
-    
-	</script>
 @endsection
 

@@ -1,12 +1,11 @@
 @extends('mainLayout')
+           
     @section('scripts')
 
 
     <script type="text/javascript">
 
     
-
-/////////////////////////////////////////////////////////////////////////////////////////////
 
         var btnAgregar = document.getElementById("preguntaN");
         btnAgregar.addEventListener("click", agregar);
@@ -16,12 +15,14 @@
         var txtRespuesta = document.getElementById("respuesta");
 
         let botonRespuestas = document.createElement("button");
-
-        botonRespuestas.innerHTML = "Agregar respuestas";
         
         
+        botonRespuestas.innerHTML="agregar respuestas";
+        botonRespuestas.onClick= function ventanaemergente(){
+            <input onclick="openModal('main-modal')" class='bg-blue-500 text-white p-2 rounded text-2xl font-bold'></input>
 
-
+        }
+      
 
 
         function agregar(){
@@ -91,11 +92,11 @@
                 
             }
             if( fecha > inicio){
-                alert("Debes escoger una fecha valida.") 
+                alert("Debes escoger una fecha valida.");
                 return;   
             }
             if(inicio > termina){
-                alert("La fecha final no puede ser menor a la de inicio")
+                alert("La fecha final no puede ser menor a la de inicio");
                 return;
             }
 
@@ -105,11 +106,20 @@
         }
 
 
+        
+
+
     </script>
 @endsection
 
 @section('body')
 
+
+    
+
+
+
+@section('body')
 
 @csrf
 
@@ -158,18 +168,21 @@
                     <div class="w-full flex flex-col mt-8">
                         <label class="font-semibold leading-none text-gray-300">Crear una pregunta</label>
                         <input id= "PreguntaEscribe" name="PreguntaEscribe" class="w-full py-2 border-2 mt-4 block rounded-md text-base py-2 border-b border-gray-500 focus:outline-none focus:border-green-500 " type="text" value="">
+                        <label class="pregunta"></label>
                     </div>
                     <div class="w-full flex flex-col mt-8">
                         <div class="row">
                             <div class="col-auto">
                                 <ul id="preguntas" class="font-semibold leading-none text-gray-300">
-                                    <label for="" id="respuesta" ></label>
+                                    <label for="" id="respuesta"  ></label>
+                                    <input onclick="openModal('main-modal')" class='bg-blue-500 text-white p-2 rounded text-2xl font-bold'></input>
                                 </ul>
                             </div>
                         </div>
                     </div>
                     <div class="flex items-center justify-center w-full">
                     <input type="button" id="preguntaN" name="preguntaN" value="Pregunta Nueva" class=" bg-green-500 text-gray-100 p-4 rounded-full tracking-wide font-bold py-2 px-8 focus:outline-none focus:shadow-outline hover:bg-green-700 shadow-lg cursor-pointer ">
+                    
                     </div>
                 </form>
             </div>
@@ -180,4 +193,163 @@
     <div id="preview"></div>
 </div>
     @endsection
+    </div>
+</form>
+
+
+
+
+<style>
+		.animated {
+			-webkit-animation-duration: 1s;
+			animation-duration: 1s;
+			-webkit-animation-fill-mode: both;
+			animation-fill-mode: both;
+		}
+
+		.animated.faster {
+			-webkit-animation-duration: 500ms;
+			animation-duration: 500ms;
+		}
+
+		.fadeIn {
+			-webkit-animation-name: fadeIn;
+			animation-name: fadeIn;
+		}
+
+		.fadeOut {
+			-webkit-animation-name: fadeOut;
+			animation-name: fadeOut;
+		}
+
+		@keyframes fadeIn {
+			from {
+				opacity: 0;
+			}
+
+			to {
+				opacity: 1;
+			}
+		}
+
+		@keyframes fadeOut {
+			from {
+				opacity: 1;
+			}
+
+			to {
+				opacity: 0;
+			}
+		}
+	</style>
+
+	
+
+	<div class="main-modal fixed w-full inset-0 z-50 overflow-hidden flex justify-center items-center animated fadeIn faster" style="background: rgba(0,0,0,.7);">
+		<div class="border border-blue-500 shadow-lg modal-container bg-white w-4/12 md:max-w-11/12 mx-auto rounded-xl shadow-lg z-50 overflow-y-auto">
+			<div class="modal-content py-4 text-left px-6">
+				<!--Title-->
+				<div class="flex justify-between items-center pb-3">
+					<p class="text-2xl font-bold text-gray-500">Add Caretaker</p>
+					<div class="modal-close cursor-pointer z-50" onclick="modalClose('main-modal')">
+						<svg class="fill-current text-gray-500" xmlns="http://www.w3.org/2000/svg" width="18" height="18"
+							viewBox="0 0 18 18">
+							<path
+								d="M14.53 4.53l-1.06-1.06L9 7.94 4.53 3.47 3.47 4.53 7.94 9l-4.47 4.47 1.06 1.06L9 10.06l4.47 4.47 1.06-1.06L10.06 9z">
+							</path>
+						</svg>
+					</div>
+				</div>
+				<!--Body-->
+				<div class="my-5 mr-5 ml-5 flex justify-center">
+                   <form method="POST" id="add_caretaker_form"  class="w-full">
+                        <div class="">
+                            <div class="">
+                                <label for="names" class="text-md text-gray-600">Full Names</label>
+                            </div>
+                            <div class="">
+                                <input type="text" id="names" autocomplete="off" name="names" class="h-3 p-6 w-full border-2 border-gray-300 mb-5 rounded-md" placeholder="Example. John Doe">
+                            </div>
+                            <div class="">
+                                <label for="phone" class="text-md text-gray-600">Phone Number</label>
+                            </div>
+                            <div class="">
+                                <input type="text" id="phone" autocomplete="off" name="phone" class="h-3 p-6 w-full border-2 border-gray-300 mb-5 rounded-md" placeholder="Example. 0729400426">
+                            </div>
+                            <div class="">
+                                <label for="id_number" class="text-md text-gray-600">ID Number</label>
+                            </div>
+                            <div class="">
+                                <input type="number" id="id_number" autocomplete="off" name="id_number" class="h-3 p-6 w-full border-2 border-gray-300 mb-5 rounded-md" placeholder="Caretaker's ID number">
+                            </div>
+                        </div>
+                    </form>
+				</div>
+				<!--Footer-->
+				<div class="flex justify-end pt-2 space-x-14">
+					<button
+						class="px-4 bg-gray-200 p-3 rounded text-black hover:bg-gray-300 font-semibold" onclick="modalClose('main-modal')">Cancel</button>
+					<button
+						class="px-4 bg-blue-500 p-3 ml-3 rounded-lg text-white hover:bg-teal-400" onclick="validate_form(document.getElementById('add_caretaker_form'))">Confirm</button>
+				</div>
+			</div>
+		</div>
+	</div>
+    <div class="another-modal fixed w-full inset-0 z-50 overflow-hidden flex justify-center items-center animated fadeIn faster" style="background: rgba(0,0,0,.7);">
+		<div class="border border-blue-500 shadow-lg modal-container bg-white w-4/12 md:max-w-11/12 mx-auto rounded-xl shadow-lg z-50 overflow-y-auto">
+			<div class="modal-content py-4 text-left px-6">
+				<!--Title-->
+				<div class="flex justify-between items-center pb-3">
+					<p class="text-2xl font-bold text-gray-500">Edit Caretaker</p>
+					<div class="modal-close cursor-pointer z-50" onclick="modalClose('another-modal')">
+						<svg class="fill-current text-gray-500" xmlns="http://www.w3.org/2000/svg" width="18" height="18"
+							viewBox="0 0 18 18">
+							<path
+								d="M14.53 4.53l-1.06-1.06L9 7.94 4.53 3.47 3.47 4.53 7.94 9l-4.47 4.47 1.06 1.06L9 10.06l4.47 4.47 1.06-1.06L10.06 9z">
+							</path>
+						</svg>
+					</div>
+				</div>
+				<!--Body-->
+				<div class="my-5 mr-5 ml-5 flex justify-center">
+                    <form method="POST" id="add_caretaker_form"  class="w-full">
+                        <div class="">
+                            <div class="">
+                                <label for="names" class="text-md text-gray-600">Full Names</label>
+                            </div>
+                            <div class="">
+                                <input type="text" id="names" autocomplete="off" name="names" class="h-3 p-6 w-full border-2 border-gray-300 mb-5 rounded-md" placeholder="Example. John Doe">
+                            </div>
+                            <div class="">
+                                <label for="phone" class="text-md text-gray-600">Phone Number</label>
+                            </div>
+                            <div class="">
+                                <input type="text" id="phone" autocomplete="off" name="phone" class="h-3 p-6 w-full border-2 border-gray-300 mb-5 rounded-md" placeholder="Example. 0729400426">
+                            </div>
+                            <div class="">
+                                <label for="id_number" class="text-md text-gray-600">ID Number</label>
+                            </div>
+                            <div class="">
+                                <input type="number" id="id_number" autocomplete="off" name="id_number" class="h-3 p-6 w-full border-2 border-gray-300 mb-5 rounded-md" placeholder="Caretaker's ID number">
+                            </div>
+                        </div>
+                    </form>
+				</div>
+				<!--Footer-->
+				<div class="flex justify-end pt-2 space-x-14">
+					<button
+						class="px-4 bg-gray-200 p-3 rounded text-black hover:bg-gray-300 font-semibold" onclick="modalClose('another-modal')">Cancel</button>
+					<button
+						class="px-4 bg-blue-500 p-3 ml-3 rounded-lg text-white hover:bg-teal-400" onclick="validate_form(document.getElementById('add_caretaker_form'))">Confirm</button>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<script>
+        
+    
+	</script>
+
+@endsection
 

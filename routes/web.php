@@ -6,6 +6,7 @@ use App\Http\Controllers\homeController;
 use App\Http\Controllers\AsesorController;
 use App\Http\Controllers\ActividadesController;
 use App\Http\Controllers\registroTPController;
+use App\Http\Controllers\DirectorController;
 
 /*
 |--------------------------------------------------------------------------
@@ -65,5 +66,13 @@ Route::post('asesor/buscarPracticante','AsesorController@buscarPracticante')->na
 
 
 //VISTA PARA BUSCAR TUTOR
-Route::post('asesor/buscarTutor', [AsesorController::class, 'buscarTutor'])->name('asesor.buscarTutor');
-Route::post('asesor/tutorList', [AsesorController::class, 'tutorList'])->name('asesor.tutorList');
+Route::post('asesor/buscarTutor', 'AsesorController@buscarTutor')->name('asesor.buscarTutor');
+//Route::post('asesor/tutorList', [AsesorController::class, 'tutorList'])->name('asesor.tutorList');
+
+
+//VISTA PARA MOSTRAR ELIMINAR ASESOR
+Route::get('director/deleteAsesor','DirectorController@createDeleteView')->name('director.deleteUsuario');
+Route::post('director/buscarAsesor','DirectorController@buscarAsesor')->name('director.buscarAsesor');
+Route::get('director/eliminarAsesor/{id}/{id2}','DirectorController@eliminarAsesor')->name('director.eliminarAsesor');
+
+

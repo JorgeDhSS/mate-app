@@ -2,12 +2,15 @@
     
 namespace App\Http\Controllers;
 
+use App\Actividad;
+use App\Asesor;
 use App\Practicante;
 use App\User;
 use Illuminate\Http\Request;
 use App\Grupo;
 use App\PracticanteGrupo;
 use App\Tutor;
+use Illuminate\Support\Facades\Auth;
 
 class AsesorController extends Controller{
     
@@ -102,7 +105,10 @@ class AsesorController extends Controller{
 
     public function actividadToCuadernilloView(Request $request)
     {
-        return view('asesor_views.activityToCuadernillo');
+        //$asesor = Asesor::where('user_id', Auth::id())->first();
+        //$activities = Actividad::where('asesor_id', $asesor->id)->get();
+        $activities = Actividad::where('asesor_id', 1)->get();
+        return view('asesor_views.activityToCuadernillo', ['activities' => $activities]);
     }
 }
 

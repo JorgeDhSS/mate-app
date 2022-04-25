@@ -76,3 +76,4 @@ Route::post('asesor/tutorList', [AsesorController::class, 'tutorList'])->name('a
 
 //ACTIVIDADES-CUADERNILLO 
 Route::get('asesor/actividadToCuadernillo/view', 'AsesorController@actividadToCuadernilloView')->name('asesor.actividadToCuadernillo.view');
+Route::post('asesor/actividadToCuadernillo/store', 'AsesorController@actividadToCuadernilloStore')->name('asesor.actividadToCuadernillo.store');

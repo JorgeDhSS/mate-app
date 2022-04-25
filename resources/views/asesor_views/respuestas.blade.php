@@ -1,131 +1,354 @@
-    <header class="interfaz_Principal">
-	 <link href="https://unpkg.com/tailwindcss@^1.0/dist/tailwind.min.css" rel="stylesheet">
-        <div class="titulo_seri">
-            <h2 class="titulo-1">Serigrafía</h2>
-        </div>
-        <div class="titulo_cata">
-            <h1 class="titulo-2">Catálogos</h1>
-        </div>
-    </header>
+@extends('mainLayout')
+           
+    @section('scripts')
 
-    <div class="crear_nuevo_catalogo w-full max-w-lg" id="crearNuevoC">
-        <div class="flex flex-wrap -mx-3 mb-6 text-black">
-            <div class="w-2/3">
-                <h3 class="text-xl">Ingresar Datos</h3>
-            </div>
-            <div class="w-1/3">
-                <button class="bg-transparent" onclick="document.getElementById('crearNuevoC').style.display='none';" class="imagen_cerrar"><img src="../image/error.png" alt="cerrar"></button class="bg-transparent">
-            </div>
-            <form action="{{route('catalog.store')}}" method="post" enctype="multipart/form-data">
-                @csrf
-                <div class="flex flex-wrap -mx-3 mb-6 ">
-                    <div class="w-full md:w-1/2 px-3 mb-6 md:mb-0 label_nombre">
-                        <label for="nombre">Nombre: </label>
-                        <input type="text" name="nombre" id="nombre" class="appearance-none block w-full bg-gray-200 text-gray-700 border rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white input_nombre">
-                        @error('nombre')<p class="text-red-500 text-xs italic">{{$message}}</p>@enderror
-                    </div><br>
-                    <div class="w-full md:w-1/2 px-3 mb-6 md:mb-0 label_categoria">
-                        <label for="categoria">Categoría: </label>
-                        <input type="text" name="categoria" id="categoria" class="appearance-none block w-full bg-gray-200 text-gray-700 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white input_categoria">
-                        @error('categoria')<p class="text-red-500 text-xs italic">{{$message}}</p>@enderror
-                    </div><br>
-                    <h3 class="w-full text-xl">Agregar un diseño</h3>
-                    <div class="w-full md:w-1/2 px-3 mb-6 md:mb-0 label_foto">
-                        <label for="foto">Foto: </label>
-                        <input type="file" name="foto" id="foto" accept=".png, .jpg, .jpeg" class="appearance-none block w-full bg-gray-200 text-gray-700 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white input_foto">
-                        @error('foto')<p class="text-red-500 text-xs italic">{{$message}}</p>@enderror
-                    </div><br>
-                    <div class="w-full md:w-1/2 px-3 mb-6 md:mb-0 label_textura">
-                        <label for="textura">Textura: </label>
-                        <input type="text" name="textura" id="textura" class="appearance-none block w-full bg-gray-200 text-gray-700 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white">
-                        @error('textura')<p class="text-red-500 text-xs italic">{{$message}}</p>@enderror
-                    </div><br>
-                    <div class="w-full md:w-1/3 px-3 mb-6 md:mb-0 label_color">
-                        <label for="color">Color: </label>
-                        <input type="color" name="color" id="color" class="appearance-none block w-full text-gray-700 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white">
-                        @error('color')<p class="text-red-500 text-xs italic">{{$message}}</p>@enderror
-                    </div><br>
-                    <div class="w-full md:w-1/3 px-3 mb-6 md:mb-0 label_dimensionX">
-                        <label for="dimension_x">Dimensión X </label>
-                        <input type="number" name="dimension_x" id="dimension_x" class="appearance-none block w-full bg-gray-200 text-gray-700 rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white">
-                        @error('dimension_x')<p class="text-red-500 text-xs italic">{{$message}}</p>@enderror
-                    </div><br>
-                    <div class="w-full md:w-1/3 px-3 mb-6 md:mb-0 label_dimensionY">
-                        <label for="dimension_y">Dimensión Y </label>
-                        <input type="number" name="dimension_y" id="dimension_y" accept=".png, .jpg, .jpeg" class="appearance-none block w-full bg-gray-200 text-gray-700 border rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white">
-                        @error('dimension_y')<p class="text-red-500 text-xs italic">{{$message}}</p>@enderror
-                    </div><br>
-                    <div class="botones_crear_cata">
-                        <input type="submit" value="Aceptar" class="crear_cata_enviar">
-                        <input type="button" value="Cancelar" class="crear_cata_cancelar" onclick="document.getElementById('crearNuevoC').style.display='none';">
+
+        <script type="text/javascript">
+
+        
+///////////////////777//Mostrar la lista de preguntas/////////////////////////////////////////////////////////
+            /*var btnAgregar = document.getElementById("preguntaN");
+            btnAgregar.addEventListener("click", agregar);*/
+
+            var txtTarea = document.getElementById("PreguntaEscribe");
+            var listTareas = document.getElementById("preguntas");   
+            var salto = document.createElement("br");
+            /*function agregar(){
+                let tarea = document.createElement("li");
+                tarea.textContent = txtTarea.value;
+                listTareas.appendChild(tarea);
+            
+            }*/
+
+            $(document).ready(function(){
+                let listaPreguntas=[]
+                $('#preguntaN').on('click', function(){
+                    let preg = document.createElement("li");
+                    preg.textContent = txtTarea.value;
+                    listTareas.appendChild(preg);
+                    listaPreguntas.push(preg);
+
+                    console.log(listaPreguntas)
+                });
+            });
+//////////////////////////Mostrar las respuesta//////////////////////////////
+           /* var btnAgregarRespuestas = document.getElementById("respuestaboton")
+            btnAgregarRespuestas.addEventListener("click", agregaRespuesta);*/
+
+            var txtRespuesta = document.getElementById("respuestaEscribe");
+            var labelRespuestas = document.getElementById("respuestas");
+            
+            let listaRespuesta=[]
+           function AgregarRespuesta(){
+                let resp = document.createElement("li");
+                resp.textContent = txtRespuesta.value;              
+                
+                listTareas.appendChild(resp);
+                listaRespuesta.push(resp); 
+                console.log(listaRespuesta);
+                console.log(resp);
+                
+            }
+
+            /*$(document).ready(function(){
+                let listaRespuesta=[]
+                $('#respuestaboton').on('click', function(){
+                    let resp = document.createElement("li");
+                    resp.textContent = txtTarea.value;
+                    listTareas.appendChild(resp);
+                    listaRespuesta.push(resp);
+
+                    console.log(listaRespuesta)
+                });
+            });*/
+////////////////Aceptar solo enteros positivos como valor/////////////////////////////////////////////////////                
+            function Numeros(string){//Solo numeros
+                var out = '';
+                var filtro = '1234567890';//Caracteres validos
+                
+                //Recorrer el texto y verificar si el caracter se encuentra en la lista de validos 
+                for (var i=0; i<string.length; i++)
+                if (filtro.indexOf(string.charAt(i)) != -1) 
+                        //Se añaden a la salida los caracteres validos
+                    out += string.charAt(i);
+                
+                //Retornar valor filtrado
+                return out;
+            } 
+ //////////////////////Guardar la actividad///////////////////////////////////////////////////////////////////
+            function  EnviarDatos(){
+
+                var hoy = new Date();
+                var inicio = document.getElementById("fechaInicio").value
+                var termina = document.getElementById("fechaTermina").value
+                var mes = (hoy.getMonth()+1).toString();
+                var dia = hoy.getDate().toString();          
+
+                if(mes.length <= 1){
+                    mes = "0" + mes;
+                }
+                if(dia.length <=1){
+                    dia = "0" + dia;
+                }
+
+                var fecha = hoy.getFullYear() + "-" + mes + "-" + dia; 
+
+
+
+                if (document.getElementById("valorActividad").value == "") {
+                    alert("Debes asignar un valor a la actividad.");
+                    return;
+                }
+                if (document.getElementById("selecionaGrupo").value == "") {
+                    alert("Debes seleccionar un grupo.");
+                    return;
+                }
+
+                if(document.getElementById("nombreActividad").value == "") {
+                    alert("Debes asignar un nombre a la actividad.");
+                    return;
+                }
+                if(inicio == "") {
+                    alert("Debes asignar la fecha para iniciar la actividad.");
+                    return;
+                }
+                if(termina == "") {
+                    alert("Debes asignar la fecha en la que finaliza la actividad.");
+                    return;
+                    
+                }
+                if( fecha > inicio){
+                    alert("Debes escoger una fecha valida.");
+                    return;   
+                }
+                if(inicio > termina){
+                    alert("La fecha final no puede ser menor a la de inicio");
+                    return;
+                }
+
+
+                addActividad.submit();
+
+            }
+
+            
+            
+        </script>
+    @endsection
+
+    <style>
+		.animated {
+			-webkit-animation-duration: 1s;
+			animation-duration: 1s;
+			-webkit-animation-fill-mode: both;
+			animation-fill-mode: both;
+		}
+
+		.animated.faster {
+			-webkit-animation-duration: 500ms;
+			animation-duration: 500ms;
+		}
+
+		.fadeIn {
+			-webkit-animation-name: fadeIn;
+			animation-name: fadeIn;
+		}
+
+		.fadeOut {
+			-webkit-animation-name: fadeOut;
+			animation-name: fadeOut;
+		}
+
+		@keyframes fadeIn {
+			from {
+				opacity: 0;
+			}
+
+			to {
+				opacity: 1;
+			}
+		}
+
+		@keyframes fadeOut {
+			from {
+				opacity: 1;
+			}
+
+			to {
+				opacity: 0;
+			}
+		}
+	</style>
+
+    @section('body')
+        <form action="{{route('respuesta.guardarPregunta')}}" method="post" submit="" id="addActividad" name="addActividad">
+            <div class="w-full bg-blue-200 h-screen">
+                <div class="bg-gradient-to-b from-blue-200 to-blue-200 h-96"></div>
+                <div class="max-w-5xl mx-auto px-6 sm:px-6 lg:px-8 mb-12">
+                    <div class="bg-blue-700 w-full shadow rounded p-8 sm:p-12 -mt-72">
+                        <p class="text-3xl font-bold leading-7 text-center text-white">Actividad nueva</p>
+                        @csrf
+                        <div class="md:flex items-center mt-12">
+                            <div class="w-full md:w-1/2 flex flex-col">
+                                <label class="font-semibold leading-none text-gray-300">Inicia</label>
+                                <input type="date" name="fechaInicio" id="fechaInicio" class="w-full border-2 rounded-md mt-2 block text-base py-2 border-b border-gray-500 focus:outline-none focus:border-green-500" />
+                            </div>
+                            <div class="w-full md:w-1/2 flex flex-col md:ml-6 md:mt-0 mt-4">
+                                <label class="font-semibold leading-none text-gray-300">Termina</label>                                    <input type="date" name="fechaTermina" id="fechaTermina" class="w-full border-2 rounded-md mt-2 block text-base py-2 border-b border-gray-500 focus:outline-none focus:border-green-500"/>
+                            </div> 
+                        </div>
+                        <div class="md:flex items-center mt-12">
+                            <div class="w-full flex flex-col">
+                                <label class="font-semibold leading-none text-gray-300">grupo: </label>
+                                <select name="selecionaGrupo" id="selecionaGrupo" class="w-full border-2 rounded-md mt-2 block text-base py-2 border-b border-gray-500 focus:outline-none focus:border-green-500">  
+                                    <option class="bg-white" value="">Grupo</option> 
+                                    @foreach(App\Grupo::get() as $grupo)
+                                        <option class="bg-white" value="{{$grupo->id}}">{{$grupo->nombreGrupo}}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+                            <div class="w-full md:w-1/2 flex flex-col md:ml-6 md:mt-0 mt-4">
+                                <label class="font-semibold leading-none text-gray-300">Valor: </label>
+                                <input type="" onkeyup="this.value=Numeros(this.value)" class="w-full border-2 rounded-md mt-2 block text-base py-2 border-b border-gray-500 focus:outline-none focus:border-green-500" id="valorActividad" name="valorActividad">
+                            </div>        
+                        </div>
+                        <div>
+                            <div class="w-full flex flex-col mt-8">
+                                <label class="font-semibold leading-none text-gray-300">Nombre de la actividad</label>
+                                <input type="" class="w-full py-2 border-2 mt-4 block rounded-md text-base py-2 border-b border-gray-500 focus:outline-none focus:border-green-500" name="nombreActividad" id="nombreActividad">
+                            </div>
+                        </div>
+                        <div class="w-full flex flex-col mt-8">
+                            <div class="row">
+                                <ul id="preguntas" class="text-center font-semibold leading-none text-gray-300 col-span-2 md:col-span-1 text-3xl md:text-2xl">
+                                    <ul class="text-center font-semibold leading-none text-gray-300 col-span-2 md:col-span-1 text-2xl md:text-2xl" id="respuestas"></ul>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="md:flex items-center mt-12">
+                            <div class="flex items-center justify-center w-full ">
+                                <input onclick="openModal('another-modal')" class='border-b text-center bg-green-500 text-gray-100 p-4 rounded-full tracking-wide font-bold py-2 px-8 focus:outline-none focus:shadow-outline hover:bg-green-700 shadow-lg cursor-pointer' value="Agregar pregunta">
+                            </div>
+                            <div class="flex items-center justify-center w-full block">
+                                <input onclick="openModal('main-modal')" value="Agrega respuesta" class='border-b text-center bg-green-500 text-gray-100 p-4 rounded-full tracking-wide font-bold py-2 px-8 focus:outline-none focus:shadow-outline hover:bg-green-700 shadow-lg cursor-pointer'>
+                            </div>
+                        </div>
+                        <div class="w-wull mt-4" align="center">
+                            <input type="button" id="Guardar" name="Guardar" value="Guardar" onclick="EnviarDatos()"class='border-b text-center bg-green-500 text-gray-100 p-4 rounded-full tracking-wide font-bold py-2 px-8 focus:outline-none focus:shadow-outline hover:bg-green-700 shadow-lg cursor-pointer'>
+                        </div>
                     </div>
                 </div>
-            </form>
-        </div>
-    </div>
-
-    <div class="flex flex-wrap -mx-3 p-3 mb-6 text-black">
-        <div class="w-full md:w-1/3 px-3 mb-6 md:mb-0">
-            <div class="nuevo-catalogo">
-                <img src="../image/photo-icon.png" alt="nuevo_catalogo" class="imagen-catalogo">
-                <button id="newCatalog" class="link_crear_catalogo">Nuevo catálogo</button>
             </div>
-        </div>
-
-        @foreach(App\Models\Catalogo::get() as $catalog)
-        @if($catalog->Estado == 1)
-        <div class="w-full max-w-sm md:w-1/3 p-3 mb-6 md:mb-0">
-            <div class="rounded overflow-hidden shadow-lg">
-                <img class="w-full" src="/storage/@if(!empty($catalog->disenos->first())){{$catalog->disenos->first()->Foto}}@endif" alt="Sunset in the mountains">
-                <div class="px-6 py-4">
-                    <div class="font-bold text-xl mb-2">{{$catalog->Nombre}}</div>
-                </div>
-                <div class="px-6 pt-4 pb-2">
-                    <div class="flex flex-wrap -mx-3 mb-6 text-black">
-                        <div class="w-full md:w-1/2 px-3 mb-6 md:mb-0">
-                            
-                            
-                            <a class="bg-blue-600 hover:bg-blue-700 text-white hover:text-black font-semibold py-2 px-4 rounded shadow" href="{{route('catalog.deleteCatalog', $catalog->id)}}">
-                                Eliminar
-                            </a>
-                        
+        @endsection	
+<!---------------------------------------Modal para escribir una respuesta------------------------------------->
+            <div class="main-modal fixed w-full inset-0 z-50 overflow-hidden flex justify-center items-center animated fadeIn faster" style="background: rgba(0,0,0,.7);">
+                <div class="border border-blue-500 shadow-lg modal-container bg-white w-4/12 md:max-w-11/12 mx-auto rounded-xl shadow-lg z-50 overflow-y-auto">
+                    <div class="modal-content py-4 text-left px-6">
+                        <!--Title-->
+                        <div class="flex justify-between items-center pb-3">
+                            <p class="text-2xl font-bold text-gray-500">Agrega una respuesta</p>
+                            <div class="modal-close cursor-pointer z-50" onclick="modalClose('main-modal')">
+                                <svg class="fill-current text-gray-500" xmlns="http://www.w3.org/2000/svg" width="18" height="18"
+                                    viewBox="0 0 18 18">
+                                    <path
+                                        d="M14.53 4.53l-1.06-1.06L9 7.94 4.53 3.47 3.47 4.53 7.94 9l-4.47 4.47 1.06 1.06L9 10.06l4.47 4.47 1.06-1.06L10.06 9z">
+                                    </path>
+                                </svg>
+                            </div>
                         </div>
-                        <div class="w-full md:w-1/2 px-3 mb-6 md:mb-0">
-                            <a class="bg-blue-600 hover:bg-blue-700 text-white hover:text-black font-semibold py-2 px-4 rounded shadow" href="{{route('catalog.edit', $catalog->id)}}">
-                                Editar
-                            </a>
+                        <!--Body-->
+                        <div class="my-5 mr-5 ml-5 flex justify-center">
+                            <form  method="POST" id="add_caretaker_form"  class="w-full">
+                                <div class="">
+                                    <div class="">
+                                        <label for="resp" class="text-md text-gray-600">Respuesta</label>
+                                    </div>
+                                    <div class="">
+                                        <input type="text" id="respuestaEscribe" autocomplete="off" name="respuestaEscribe" class="h-3 p-6 w-full border-2 border-gray-300 mb-5 rounded-md" placeholder="Escribe aquí">
+                                    </div>
+                                    <div>
+                                        <input type="Button" value="Respuesta correcta" class="text-center bg-green-500 text-gray-100 p-4 rounded-full tracking-wide font-bold py-2 px-8 focus:outline-none focus:shadow-outline hover:bg-green-700 shadow-lg cursor-pointer">
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                        <!--Footer-->
+                        <div class="flex justify-end pt-2 space-x-14">
+                            <button
+                                class="px-4 bg-gray-200 p-3 rounded text-black hover:bg-gray-300 font-semibold" onclick="modalClose('main-modal')">Cancel</button>
+                            <button id="respuestaboton"
+                                class="px-4 bg-blue-500 p-3 ml-3 rounded-lg text-white hover:bg-teal-400"  onclick="AgregarRespuesta()">Guardar</button>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
-        @endif
-        @endforeach
-    </div>
+
+        <!---------------------------------------------Modal para escribir una pregunta----------------------------------->
+            <div class="another-modal fixed w-full inset-0 z-50 overflow-hidden flex justify-center items-center animated fadeIn faster" style="background: rgba(0,0,0,.7);">
+                <div class="border border-blue-500 shadow-lg modal-container bg-white w-4/12 md:max-w-11/12 mx-auto rounded-xl shadow-lg z-50 overflow-y-auto">
+                    <div class="modal-content py-4 text-left px-6">
+                        <!--Title-->
+                        <div class="flex justify-between items-center pb-3">
+                            <p class="text-2xl font-bold text-gray-500">Agregar pregunta</p>
+                            <div class="modal-close cursor-pointer z-50" onclick="modalClose('another-modal')">
+                                <svg class="fill-current text-gray-500" xmlns="http://www.w3.org/2000/svg" width="18" height="18"
+                                    viewBox="0 0 18 18">
+                                    <path
+                                        d="M14.53 4.53l-1.06-1.06L9 7.94 4.53 3.47 3.47 4.53 7.94 9l-4.47 4.47 1.06 1.06L9 10.06l4.47 4.47 1.06-1.06L10.06 9z">
+                                    </path>
+                                </svg>
+                            </div>
+                        </div>
+                        <!--Body-->
+                        <div class="my-5 mr-5 ml-5 flex justify-center">
+                            <form  method="POST" id="add_caretaker_form"  class="w-full">
+                                <div class="">
+                                    <div class="">
+                                        <label for="preguntas" class="text-md text-gray-600">Pregunta</label>
+                                    </div>
+                                    <div class="">
+                                        <input type="text" id="PreguntaEscribe" autocomplete="off" name="PreguntaEscribe" class="h-3 p-6 w-full border-2 border-gray-300 mb-5 rounded-md" placeholder="Escribe Aquí">
+                                    </div>
+                                    
+                                </div>
+                            </form>
+                        </div>
+                        <!--Footer-->
+                        <div class="flex justify-end pt-2 space-x-14">
+                            <button
+                                class="px-4 bg-gray-200 p-3 rounded text-black hover:bg-gray-300 font-semibold" onclick="modalClose('another-modal')">Cancel</button>
+                            <button
+                                class="px-4 bg-blue-500 p-3 ml-3 rounded-lg text-white hover:bg-teal-400" id="preguntaN">Guardar</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
     
 
-    <script>
-        
-        @if(Session::has('success'))
-            Swal.fire(
-                {
-                    icon: 'success',
-                    title: '¡Listo!',
-                    text: '{{Session::get("success")}}',
-                    showConfirmButton: false,
-                    timer: 1500
-                }
-            )
-        @endif
-        @if(Session::has('error'))
-            Swal.fire(
-                {
-                    icon: 'error',
-                    title: '¡Error!',
-                    text: '{{ Session::get("error") }}',
-                    showConfirmButton: false,
-                    timer: 1500
-                }
-            )
-        @endif
-    </script>
+	<script>
+        all_modals = ['main-modal', 'another-modal']
+        all_modals.forEach((modal)=>{
+            const modalSelected = document.querySelector('.'+modal);
+            modalSelected.classList.remove('fadeIn');
+            modalSelected.classList.add('fadeOut');
+            modalSelected.style.display = 'none';
+        })
+        const modalClose = (modal) => {
+            const modalToClose = document.querySelector('.'+modal);
+            modalToClose.classList.remove('fadeIn');
+            modalToClose.classList.add('fadeOut');
+            setTimeout(() => {
+                modalToClose.style.display = 'none';
+            }, 500);
+        }
+
+        const openModal = (modal) => {
+            const modalToOpen = document.querySelector('.'+modal);
+            modalToOpen.classList.remove('fadeOut');
+            modalToOpen.classList.add('fadeIn');
+            modalToOpen.style.display = 'flex';
+        }
+    
+	</script>
+

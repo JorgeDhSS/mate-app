@@ -26,18 +26,17 @@
             <div class="px-4 pt-4 w-full">
                 <button id="searchTutor" class="w-full bg-blue-100 rounded-lg font-bold text-blue-700 text-center px-4 py-3 transition duration-300 ease-in-out hover:bg-blue-700 hover:text-blue-100 mr-6"> Buscar </button>
             </div>
-        </div>
-        <div class="flex flex-col w-full md:w-2/3 pt-4 md:pt-0">
-            <div class="text-blue-700 px-4 pt-2 font-bold w-full">
-                Seleccione el tutor deseado
-            </div>
-            <div class="flex flex-wrap px-4 pt-2 w-full" id="tutores">
-                
+
+            <div class="flex flex-col w-full md:w-2/3 pt-4 md:pt-0">
+                <div class="text-blue-700 px-4 pt-2 font-bold w-full">
+                    Seleccione el tutor deseado
+                </div>
+                <div class="flex flex-wrap px-4 pt-2 w-full" id="tutores">
+                    
+                </div>
             </div>
         </div>
     </div>
-    <br>
-    <br>
     <!--DIV DE PRACTICANTE-->
     <div class="flex flex-wrap w-full">
         <div class="flex flex-col w-full md:w-1/3">

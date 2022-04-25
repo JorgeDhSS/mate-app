@@ -6,6 +6,7 @@ use App\Http\Controllers\homeController;
 use App\Http\Controllers\AsesorController;
 use App\Http\Controllers\ActividadesController;
 use App\Http\Controllers\registroTPController;
+Use App\Http\Controllers\PracticanteController;
 
 /*
 |--------------------------------------------------------------------------
@@ -39,10 +40,8 @@ Route::get('director/addAsesor','DirectorController@createAsesorView')->name('di
 
 //Agrupar practicante
 Route::get('asesor/groupPract', 'AsesorController@groupPractView')->name('asesor.groupPract');
-Route::get('asesor/groupPract', 'AsesorController@showTablePract')->name('asesor.groupPract');
+Route::get('asesor/groupPract', 'AsesorController@showTablePract')->name('asesor.showTablePract');
 Route::post('asesor/groupPract/searchNameGroup', 'AsesorController@searchNameGroup')->name('asesor.searchNameGroup');
-Route::post('asesor/groupPract/searchNamePract', 'AsesorController@searchNamePract')->name('asesor.searchNamePract');
-Route::post('asesor/tableSearchPract', 'AsesorController@tableSearchPract')->name('asesor.tableSearchPract');
 Route::post('asesor/groupPract', 'AsesorController@saveGroup')->name('asesor.saveGroup');
 
 //Agregar actividad
@@ -54,6 +53,10 @@ Route::post('asesor/actividadnueva', [ActividadesController::class, 'showGrupo']
 Route::post('asesor/actividadnueva', [ActividadesController::class, 'guardarActividad'])->name('addActividades.agrega');
 //AGREGAR RESPUSTAS 
 Route::get('asesor/addAnswer',[ActividadesController::class, 'addAnswerView'])->name('Answer.index');
+
+//VISTA PARA NAVEGAR POR EL CUADERNILLO
+
+Route::get('practicante/cuadernillo', [PracticanteController::class, 'mostrarCuadernos'])->name('practicante_views.cuadernillo');
 
 //Agregar respuesta 'asesor_views.addRespuestas'
 

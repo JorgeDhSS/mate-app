@@ -6,6 +6,7 @@ use App\Http\Controllers\homeController;
 use App\Http\Controllers\AsesorController;
 use App\Http\Controllers\ActividadesController;
 use App\Http\Controllers\registroTPController;
+Use App\Http\Controllers\PracticanteController;
 
 /*
 |--------------------------------------------------------------------------
@@ -55,6 +56,10 @@ Route::post('asesor/actividadnueva', [ActividadesController::class, 'guardarActi
 //AGREGAR RESPUSTAS 
 Route::get('asesor/addAnswer',[ActividadesController::class, 'addAnswerView'])->name('Answer.index');
 
+//VISTA PARA NAVEGAR POR EL CUADERNILLO
+
+Route::get('practicante/cuadernillo', [PracticanteController::class, 'mostrarCuadernos'])->name('practicante_views.cuadernillo');
+
 //Agregar respuesta 'asesor_views.addRespuestas'
 
 Route::get('/asesor/respuesta',[ActividadesController::class, 'createRespuestas'])->name('asesor_views.respuestas');
@@ -73,3 +78,4 @@ Route::post('asesor/buscarPracticante','AsesorController@buscarPracticante')->na
 //VISTA PARA BUSCAR TUTOR
 Route::post('asesor/buscarTutor', [AsesorController::class, 'buscarTutor'])->name('asesor.buscarTutor');
 Route::post('asesor/tutorList', [AsesorController::class, 'tutorList'])->name('asesor.tutorList');
+

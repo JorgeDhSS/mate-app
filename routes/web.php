@@ -40,10 +40,8 @@ Route::get('director/addAsesor','DirectorController@createAsesorView')->name('di
 
 //Agrupar practicante
 Route::get('asesor/groupPract', 'AsesorController@groupPractView')->name('asesor.groupPract');
-Route::get('asesor/groupPract', 'AsesorController@showTablePract')->name('asesor.groupPract');
+Route::get('asesor/groupPract', 'AsesorController@showTablePract')->name('asesor.showTablePract');
 Route::post('asesor/groupPract/searchNameGroup', 'AsesorController@searchNameGroup')->name('asesor.searchNameGroup');
-Route::post('asesor/groupPract/searchNamePract', 'AsesorController@searchNamePract')->name('asesor.searchNamePract');
-Route::post('asesor/tableSearchPract', 'AsesorController@tableSearchPract')->name('asesor.tableSearchPract');
 Route::post('asesor/groupPract', 'AsesorController@saveGroup')->name('asesor.saveGroup');
 
 //Agregar actividad
@@ -79,3 +77,5 @@ Route::post('asesor/buscarPracticante','AsesorController@buscarPracticante')->na
 Route::post('asesor/buscarTutor', [AsesorController::class, 'buscarTutor'])->name('asesor.buscarTutor');
 Route::post('asesor/tutorList', [AsesorController::class, 'tutorList'])->name('asesor.tutorList');
 
+//ACTIVIDADES-CUADERNILLO 
+Route::get('asesor/actividadToCuadernillo/view', 'AsesorController@actividadToCuadernilloView')->name('asesor.actividadToCuadernillo.view');

@@ -16,11 +16,12 @@ class AsesorController extends Controller{
     }
 
     public function showTablePract(){
-        $resultado = Practicante::join('users', 'users.id', '=', 'practicantes.user_id')
+        $resultados = Practicante::join('users', 'users.id', '=', 'practicantes.user_id')
+            //->where('practicantes.nivelEscolar', '=', $request->nivelEscolar)
             ->select('users.name', 'practicantes.matricula', 'practicantes.nivelEscolar', 'practicantes.id')
             ->paginate(8);
 
-        return view('asesor_views.groupPract', array('resultados'=>$resultado));
+        return view('asesor_views.groupPract', compact('resultados'));
     }
 
     public function searchNameGroup(Request $request){
@@ -31,45 +32,25 @@ class AsesorController extends Controller{
         }
     }
 
-    //Buscar practicante
-    public function searchNamePract(Request $request){
-        try {
-            $buscarPracticante = User::join('practicantes', 'users.id', '=', 'practicantes.user_id')
-                ->select('users.name', 'practicantes.matricula', 'practicantes.nivelEscolar', 'practicantes.id')
-                ->where('users.name', '=', '%'.$request->nombrePrat.'%')
-                ->paginate(8);
-
-            /*$buscarPracticante = User::join('practicantes', 'users.name', 'LIKE', '%{ $request->nombrePrat }%')
-                ->on('users.id', '=', 'practicantes.user_id')
-                ->select('users.name', 'practicantes.matricula', 'practicantes.nivelEscolar', 'practicantes.id')
-                ->paginate(8);*/
-
-            $view = view('asesor_views.tableSearchPract', ['practicantesBuscar' => $buscarPracticante])->render();
-            return (['html' => $view]);
-        } catch (\Throwable $th) {
-            return (['status' => 'fail']);
-        }
-        
-    }
-
     public function saveGroup(Request $request){
         date_default_timezone_set("America/Mexico_City");
+        $json = json_decode($request->jsonPracticantes, true);
 
         try {
             $grupo = new Grupo();
-            $grupo->nombreGrupo = $request->nameGroup;
+            $grupo->nombreGrupo = $request->btnNamegroup;
             $grupo->nivelEscolar = $request->levelSchool;
             $grupo->save();
 
-            foreach($request->practicante as $check){
+            foreach($json as $practicante){
                 $practicanteGrupo = new PracticanteGrupo();
-                $practicanteGrupo->practicante_id = $check;
+                $practicanteGrupo->practicante_id = $practicante['id_practicante']; //Array 
                 $practicanteGrupo->grupo_id = $grupo->id;
                 $practicanteGrupo->fechaActividad = date("Y-m-d");
                 $practicanteGrupo->save();
             }    
 
-            return (['status' => 'ok']);
+            return view('asesor_views.groupPract');
         } catch (\Exception $th) {
             return (['status' => 'fail', 'exception' => $th->__toString()]);
         }
@@ -98,6 +79,11 @@ class AsesorController extends Controller{
             ->get();
 
             return view('asesor_views.tutorList', ['tutores' => $tutores])->render();
+    }
+
+    public function actividadToCuadernilloView(Request $request)
+    {
+        return view('asesor_views.activityToCuadernillo');
     }
 }
 

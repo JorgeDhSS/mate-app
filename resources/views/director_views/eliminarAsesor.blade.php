@@ -52,7 +52,7 @@
                     method: "POST",
                     success: function(response)
                     {
-                        $('#asesores').append(response.html);
+                        $('#asesores').html(response.html);
                     },
                     fail: function(){
                     }

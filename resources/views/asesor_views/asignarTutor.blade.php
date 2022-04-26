@@ -1,4 +1,5 @@
 @extends('mainLayout')
+<title>Asignar tutor</title>
 
 @section('body')
 <header class="interfaz_Principal">
@@ -26,15 +27,16 @@
             <div class="px-4 pt-4 w-full">
                 <button id="searchTutor" class="w-full bg-blue-100 rounded-lg font-bold text-blue-700 text-center px-4 py-3 transition duration-300 ease-in-out hover:bg-blue-700 hover:text-blue-100 mr-6"> Buscar </button>
             </div>
+        </div>
 
-            <div class="flex flex-col w-full md:w-2/3 pt-4 md:pt-0">
-                <div class="text-blue-700 px-4 pt-2 font-bold w-full">
-                    Seleccione el tutor deseado
-                </div>
-                <div class="flex flex-wrap px-4 pt-2 w-full" id="tutores">
-                    
-                </div>
+        <div class="flex flex-col w-full md:w-2/3 pt-4 md:pt-0">
+            <div class="text-blue-700 px-4 pt-2 font-bold w-full">
+                Seleccione el tutor deseado
             </div>
+            <div class="flex flex-wrap px-4 pt-2 w-full" id="tutores">
+                    
+            </div>
+          </div>
         </div>
     </div>
     <!--DIV DE PRACTICANTE-->
@@ -75,7 +77,7 @@
                     method: "POST",
                     success: function(response)
                     {
-                        $('#practicantes').append(response.html);
+                        $('#practicantes').html(response.html);
                     },
                     fail: function(){
                     }
@@ -92,7 +94,7 @@
                     method: "POST",
                     success: function(response)
                     {  
-                        $('#tutores').append(response.html);
+                        $('#tutores').html(response.html);
                     },
                     fail: function(){
                     }

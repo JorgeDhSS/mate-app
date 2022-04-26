@@ -58,6 +58,8 @@ class ActividadesController extends Controller{
     public function guardarPregunta(Request $request){
 
         $actividad = new Actividad();
+        $pregunta = new pregunta();
+        $respuesta = new respuesta();
         
         $actividad->descripcion = "Responde las siguientes pregntas";
         $actividad->titulo = $request->nombreActividad;
@@ -67,6 +69,17 @@ class ActividadesController extends Controller{
         $actividad->idgrupo = $request->selecionaGrupo;
         $actividad->asesor_id= 1;
         $actividad->save();
+        $pregunta->idActividad = $actividad->id;
+        $pregunta->pregunta = $request->PreguntaEscribe;
+        $pregunta->save();
+        $respuesta->idpregunta = $pregunta->id;
+        $respuesta->respuesta = $request->respuestaEscribe;
+        $respuesta->valor = "false";
+        $respuesta->save();
+
+
+
+
         return view('asesor_views.respuestas');
 
     }

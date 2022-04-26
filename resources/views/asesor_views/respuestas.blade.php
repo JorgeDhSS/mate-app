@@ -6,33 +6,62 @@
         <script type="text/javascript">
 
         
-
-            var btnAgregar = document.getElementById("preguntaN");
-            btnAgregar.addEventListener("click", agregar);
+///////////////////777//Mostrar la lista de preguntas/////////////////////////////////////////////////////////
+            /*var btnAgregar = document.getElementById("preguntaN");
+            btnAgregar.addEventListener("click", agregar);*/
 
             var txtTarea = document.getElementById("PreguntaEscribe");
-            var listTareas = document.getElementById("preguntas");
-            var txtRespuesta = document.getElementById("respuesta");
-
-            let botonRespuestas = document.createElement("button");
-            
-            
-            botonRespuestas.innerHTML="agregar respuestas";
-        
-        
-
-
-            function agregar(){
+            var listTareas = document.getElementById("preguntas");   
+            var salto = document.createElement("br");
+            /*function agregar(){
                 let tarea = document.createElement("li");
                 tarea.textContent = txtTarea.value;
-                
-                botonRespuestas.className = 'bg-green-500 text-gray-100 p-4 rounded-full tracking-wide font-bold py-2 px-8 focus:outline-none focus:shadow-outline hover:bg-green-700 shadow-lg cursor-pointer'
-
-                listTareas.appendChild(tarea); 
-                listTareas.appendChild(botonRespuestas); 
+                listTareas.appendChild(tarea);
             
-            }
+            }*/
+
+            $(document).ready(function(){
+                let listaPreguntas=[]
+                $('#preguntaN').on('click', function(){
+                    let preg = document.createElement("li");
+                    preg.textContent = txtTarea.value;
+                    listTareas.appendChild(preg);
+                    listaPreguntas.push(preg);
+
+                    console.log(listaPreguntas)
+                });
+            });
+//////////////////////////Mostrar las respuesta//////////////////////////////
+           /* var btnAgregarRespuestas = document.getElementById("respuestaboton")
+            btnAgregarRespuestas.addEventListener("click", agregaRespuesta);*/
+
+            var txtRespuesta = document.getElementById("respuestaEscribe");
+            var labelRespuestas = document.getElementById("respuestas");
+            
+            let listaRespuesta=[]
+           function AgregarRespuesta(){
+                let resp = document.createElement("li");
+                resp.textContent = txtRespuesta.value;              
                 
+                listTareas.appendChild(resp);
+                listaRespuesta.push(resp); 
+                console.log(listaRespuesta);
+                console.log(resp);
+                
+            }
+
+            /*$(document).ready(function(){
+                let listaRespuesta=[]
+                $('#respuestaboton').on('click', function(){
+                    let resp = document.createElement("li");
+                    resp.textContent = txtTarea.value;
+                    listTareas.appendChild(resp);
+                    listaRespuesta.push(resp);
+
+                    console.log(listaRespuesta)
+                });
+            });*/
+////////////////Aceptar solo enteros positivos como valor/////////////////////////////////////////////////////                
             function Numeros(string){//Solo numeros
                 var out = '';
                 var filtro = '1234567890';//Caracteres validos
@@ -46,8 +75,8 @@
                 //Retornar valor filtrado
                 return out;
             } 
-            
-            function  AgregaAct(){
+ //////////////////////Guardar la actividad///////////////////////////////////////////////////////////////////
+            function  EnviarDatos(){
 
                 var hoy = new Date();
                 var inicio = document.getElementById("fechaInicio").value
@@ -102,90 +131,12 @@
 
             }
 
-
             
-
-
+            
         </script>
     @endsection
 
-@section('body')
-
-        <div class="w-full bg-blue-200 h-screen">
-                <div class="bg-gradient-to-b from-blue-200 to-blue-200 h-96"></div>
-                <div class="max-w-5xl mx-auto px-6 sm:px-6 lg:px-8 mb-12">
-                    <div class="bg-blue-700 w-full shadow rounded p-8 sm:p-12 -mt-72">
-                        <p class="text-3xl font-bold leading-7 text-center text-white">Actividad nueva</p>
-                        <form action="{{route('asesor_views.respuestas')}}" method="post" submit="" id="addActividad" name="addActividad">
-                        @csrf
-                            <div class="md:flex items-center mt-12">
-                                <div class="w-full md:w-1/2 flex flex-col">
-                                    <label class="font-semibold leading-none text-gray-300">Inicia</label>
-                                    <input type="date" name="fechaInicio" id="fechaInicio" class="w-full border-2 rounded-md mt-2 block text-base py-2 border-b border-gray-500 focus:outline-none focus:border-green-500" />
-                                </div>
-                                <div class="w-full md:w-1/2 flex flex-col md:ml-6 md:mt-0 mt-4">
-                                    <label class="font-semibold leading-none text-gray-300">Termina</label>
-                                    <input type="date" name="fechaTermina" id="fechaTermina" class="w-full border-2 rounded-md mt-2 block text-base py-2 border-b border-gray-500 focus:outline-none focus:border-green-500"/>
-                                </div> 
-                            </div>
-
-                            <div class="md:flex items-center mt-12">
-                                <div class="w-full flex flex-col">
-                                    <label class="font-semibold leading-none text-gray-300">grupo: </label>
-                                    <select name="selecionaGrupo" id="selecionaGrupo" class="w-full border-2 rounded-md mt-2 block text-base py-2 border-b border-gray-500 focus:outline-none focus:border-green-500">  
-                                        <option class="bg-white" value="">Grupo</option> 
-                                        @foreach(App\Grupo::get() as $grupo)
-                                            <option class="bg-white" value="{{$grupo->id}}">{{$grupo->nombreGrupo}}</option>
-                                        @endforeach
-                                    </select>
-                                </div>
-                                <div class="w-full md:w-1/2 flex flex-col md:ml-6 md:mt-0 mt-4">
-                                    <label class="font-semibold leading-none text-gray-300">Valor: </label>
-                                    <input type="" onkeyup="this.value=Numeros(this.value)" class="w-full border-2 rounded-md mt-2 block text-base py-2 border-b border-gray-500 focus:outline-none focus:border-green-500" id="valorActividad" name="valorActividad">
-                                </div>
-
-                                
-                            </div>
-                            <div>
-                                <div class="w-full flex flex-col mt-8">
-                                    <label class="font-semibold leading-none text-gray-300">Nombre de la actividad</label>
-                                    <input type="" class="w-full py-2 border-2 mt-4 block rounded-md text-base py-2 border-b border-gray-500 focus:outline-none focus:border-green-500" name="nombreActividad" id="nombreActividad">
-                                </div>
-                            </div>
-                            <div class="w-full flex flex-col mt-8">
-                                <label class="font-semibold leading-none text-gray-300">Crear una pregunta</label>
-                                <input id= "PreguntaEscribe" name="PreguntaEscribe" class="w-full py-2 border-2 mt-4 block rounded-md text-base py-2 border-b border-gray-500 focus:outline-none focus:border-green-500 " type="text" value="">
-                                <label class="pregunta"></label>
-                            </div>
-                            <div class="w-full flex flex-col mt-8">
-                                <div class="row">
-                                    <div class="col-auto">
-                                        <ul id="preguntas" class="font-semibold leading-none text-gray-300">
-                                            <label for="" id="respuesta"  ></label>
-                                            <button onclick="openModal('main-modal')" class='bg-blue-500 text-white p-2 rounded text-2xl font-bold'>Open Modal</button>
-                                        </ul>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="flex items-center justify-center w-full">
-                            <input type="button" id="preguntaN" name="preguntaN" value="Pregunta Nueva" class=" bg-green-500 text-gray-100 p-4 rounded-full tracking-wide font-bold py-2 px-8 focus:outline-none focus:shadow-outline hover:bg-green-700 shadow-lg cursor-pointer ">
-                            
-                            </div>
-                        </form>
-                    </div>
-                </div>
-
-
-    
-
-
-
-    @endsection
-
-
-<!-- component -->
-<!-- component -->
-<style>
+    <style>
 		.animated {
 			-webkit-animation-duration: 1s;
 			animation-duration: 1s;
@@ -229,108 +180,151 @@
 		}
 	</style>
 
-	
+    @section('body')
+        <form action="{{route('respuesta.guardarPregunta')}}" method="post" submit="" id="addActividad" name="addActividad">
+            <div class="w-full bg-blue-200 h-screen">
+                <div class="bg-gradient-to-b from-blue-200 to-blue-200 h-96"></div>
+                <div class="max-w-5xl mx-auto px-6 sm:px-6 lg:px-8 mb-12">
+                    <div class="bg-blue-700 w-full shadow rounded p-8 sm:p-12 -mt-72">
+                        <p class="text-3xl font-bold leading-7 text-center text-white">Actividad nueva</p>
+                        @csrf
+                        <div class="md:flex items-center mt-12">
+                            <div class="w-full md:w-1/2 flex flex-col">
+                                <label class="font-semibold leading-none text-gray-300">Inicia</label>
+                                <input type="date" name="fechaInicio" id="fechaInicio" class="w-full border-2 rounded-md mt-2 block text-base py-2 border-b border-gray-500 focus:outline-none focus:border-green-500" />
+                            </div>
+                            <div class="w-full md:w-1/2 flex flex-col md:ml-6 md:mt-0 mt-4">
+                                <label class="font-semibold leading-none text-gray-300">Termina</label>                                    <input type="date" name="fechaTermina" id="fechaTermina" class="w-full border-2 rounded-md mt-2 block text-base py-2 border-b border-gray-500 focus:outline-none focus:border-green-500"/>
+                            </div> 
+                        </div>
+                        <div class="md:flex items-center mt-12">
+                            <div class="w-full flex flex-col">
+                                <label class="font-semibold leading-none text-gray-300">grupo: </label>
+                                <select name="selecionaGrupo" id="selecionaGrupo" class="w-full border-2 rounded-md mt-2 block text-base py-2 border-b border-gray-500 focus:outline-none focus:border-green-500">  
+                                    <option class="bg-white" value="">Grupo</option> 
+                                    @foreach(App\Grupo::get() as $grupo)
+                                        <option class="bg-white" value="{{$grupo->id}}">{{$grupo->nombreGrupo}}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+                            <div class="w-full md:w-1/2 flex flex-col md:ml-6 md:mt-0 mt-4">
+                                <label class="font-semibold leading-none text-gray-300">Valor: </label>
+                                <input type="" onkeyup="this.value=Numeros(this.value)" class="w-full border-2 rounded-md mt-2 block text-base py-2 border-b border-gray-500 focus:outline-none focus:border-green-500" id="valorActividad" name="valorActividad">
+                            </div>        
+                        </div>
+                        <div>
+                            <div class="w-full flex flex-col mt-8">
+                                <label class="font-semibold leading-none text-gray-300">Nombre de la actividad</label>
+                                <input type="" class="w-full py-2 border-2 mt-4 block rounded-md text-base py-2 border-b border-gray-500 focus:outline-none focus:border-green-500" name="nombreActividad" id="nombreActividad">
+                            </div>
+                        </div>
+                        <div class="w-full flex flex-col mt-8">
+                            <div class="row">
+                                <ul id="preguntas" class="text-center font-semibold leading-none text-gray-300 col-span-2 md:col-span-1 text-3xl md:text-2xl">
+                                    <ul class="text-center font-semibold leading-none text-gray-300 col-span-2 md:col-span-1 text-2xl md:text-2xl" id="respuestas"></ul>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="md:flex items-center mt-12">
+                            <div class="flex items-center justify-center w-full ">
+                                <input onclick="openModal('another-modal')" class='border-b text-center bg-green-500 text-gray-100 p-4 rounded-full tracking-wide font-bold py-2 px-8 focus:outline-none focus:shadow-outline hover:bg-green-700 shadow-lg cursor-pointer' value="Agregar pregunta">
+                            </div>
+                            <div class="flex items-center justify-center w-full block">
+                                <input onclick="openModal('main-modal')" value="Agrega respuesta" class='border-b text-center bg-green-500 text-gray-100 p-4 rounded-full tracking-wide font-bold py-2 px-8 focus:outline-none focus:shadow-outline hover:bg-green-700 shadow-lg cursor-pointer'>
+                            </div>
+                        </div>
+                        <div class="w-wull mt-4" align="center">
+                            <input type="button" id="Guardar" name="Guardar" value="Guardar" onclick="EnviarDatos()"class='border-b text-center bg-green-500 text-gray-100 p-4 rounded-full tracking-wide font-bold py-2 px-8 focus:outline-none focus:shadow-outline hover:bg-green-700 shadow-lg cursor-pointer'>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        @endsection	
+<!---------------------------------------Modal para escribir una respuesta------------------------------------->
+            <div class="main-modal fixed w-full inset-0 z-50 overflow-hidden flex justify-center items-center animated fadeIn faster" style="background: rgba(0,0,0,.7);">
+                <div class="border border-blue-500 shadow-lg modal-container bg-white w-4/12 md:max-w-11/12 mx-auto rounded-xl shadow-lg z-50 overflow-y-auto">
+                    <div class="modal-content py-4 text-left px-6">
+                        <!--Title-->
+                        <div class="flex justify-between items-center pb-3">
+                            <p class="text-2xl font-bold text-gray-500">Agrega una respuesta</p>
+                            <div class="modal-close cursor-pointer z-50" onclick="modalClose('main-modal')">
+                                <svg class="fill-current text-gray-500" xmlns="http://www.w3.org/2000/svg" width="18" height="18"
+                                    viewBox="0 0 18 18">
+                                    <path
+                                        d="M14.53 4.53l-1.06-1.06L9 7.94 4.53 3.47 3.47 4.53 7.94 9l-4.47 4.47 1.06 1.06L9 10.06l4.47 4.47 1.06-1.06L10.06 9z">
+                                    </path>
+                                </svg>
+                            </div>
+                        </div>
+                        <!--Body-->
+                        <div class="my-5 mr-5 ml-5 flex justify-center">
+                            <form  method="POST" id="add_caretaker_form"  class="w-full">
+                                <div class="">
+                                    <div class="">
+                                        <label for="resp" class="text-md text-gray-600">Respuesta</label>
+                                    </div>
+                                    <div class="">
+                                        <input type="text" id="respuestaEscribe" autocomplete="off" name="respuestaEscribe" class="h-3 p-6 w-full border-2 border-gray-300 mb-5 rounded-md" placeholder="Escribe aquí">
+                                    </div>
+                                    <div>
+                                        <input type="Button" value="Respuesta correcta" class="text-center bg-green-500 text-gray-100 p-4 rounded-full tracking-wide font-bold py-2 px-8 focus:outline-none focus:shadow-outline hover:bg-green-700 shadow-lg cursor-pointer">
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                        <!--Footer-->
+                        <div class="flex justify-end pt-2 space-x-14">
+                            <button
+                                class="px-4 bg-gray-200 p-3 rounded text-black hover:bg-gray-300 font-semibold" onclick="modalClose('main-modal')">Cancel</button>
+                            <button id="respuestaboton"
+                                class="px-4 bg-blue-500 p-3 ml-3 rounded-lg text-white hover:bg-teal-400"  onclick="AgregarRespuesta()">Guardar</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
 
-	<div class="main-modal fixed w-full inset-0 z-50 overflow-hidden flex justify-center items-center animated fadeIn faster" style="background: rgba(0,0,0,.7);">
-		<div class="border border-blue-500 shadow-lg modal-container bg-white w-4/12 md:max-w-11/12 mx-auto rounded-xl shadow-lg z-50 overflow-y-auto">
-			<div class="modal-content py-4 text-left px-6">
-				<!--Title-->
-				<div class="flex justify-between items-center pb-3">
-					<p class="text-2xl font-bold text-gray-500">Add Caretaker</p>
-					<div class="modal-close cursor-pointer z-50" onclick="modalClose('main-modal')">
-						<svg class="fill-current text-gray-500" xmlns="http://www.w3.org/2000/svg" width="18" height="18"
-							viewBox="0 0 18 18">
-							<path
-								d="M14.53 4.53l-1.06-1.06L9 7.94 4.53 3.47 3.47 4.53 7.94 9l-4.47 4.47 1.06 1.06L9 10.06l4.47 4.47 1.06-1.06L10.06 9z">
-							</path>
-						</svg>
-					</div>
-				</div>
-				<!--Body-->
-				<div class="my-5 mr-5 ml-5 flex justify-center">
-                    <form  method="POST" id="add_caretaker_form"  class="w-full">
-                        <div class="">
-                            <div class="">
-                                <label for="names" class="text-md text-gray-600">Full Names</label>
-                            </div>
-                            <div class="">
-                                <input type="text" id="names" autocomplete="off" name="names" class="h-3 p-6 w-full border-2 border-gray-300 mb-5 rounded-md" placeholder="Example. John Doe">
-                            </div>
-                            <div class="">
-                                <label for="phone" class="text-md text-gray-600">Phone Number</label>
-                            </div>
-                            <div class="">
-                                <input type="text" id="phone" autocomplete="off" name="phone" class="h-3 p-6 w-full border-2 border-gray-300 mb-5 rounded-md" placeholder="Example. 0729400426">
-                            </div>
-                            <div class="">
-                                <label for="id_number" class="text-md text-gray-600">ID Number</label>
-                            </div>
-                            <div class="">
-                                <input type="number" id="id_number" autocomplete="off" name="id_number" class="h-3 p-6 w-full border-2 border-gray-300 mb-5 rounded-md" placeholder="Caretaker's ID number">
+        <!---------------------------------------------Modal para escribir una pregunta----------------------------------->
+            <div class="another-modal fixed w-full inset-0 z-50 overflow-hidden flex justify-center items-center animated fadeIn faster" style="background: rgba(0,0,0,.7);">
+                <div class="border border-blue-500 shadow-lg modal-container bg-white w-4/12 md:max-w-11/12 mx-auto rounded-xl shadow-lg z-50 overflow-y-auto">
+                    <div class="modal-content py-4 text-left px-6">
+                        <!--Title-->
+                        <div class="flex justify-between items-center pb-3">
+                            <p class="text-2xl font-bold text-gray-500">Agregar pregunta</p>
+                            <div class="modal-close cursor-pointer z-50" onclick="modalClose('another-modal')">
+                                <svg class="fill-current text-gray-500" xmlns="http://www.w3.org/2000/svg" width="18" height="18"
+                                    viewBox="0 0 18 18">
+                                    <path
+                                        d="M14.53 4.53l-1.06-1.06L9 7.94 4.53 3.47 3.47 4.53 7.94 9l-4.47 4.47 1.06 1.06L9 10.06l4.47 4.47 1.06-1.06L10.06 9z">
+                                    </path>
+                                </svg>
                             </div>
                         </div>
-                    </form>
-				</div>
-				<!--Footer-->
-				<div class="flex justify-end pt-2 space-x-14">
-					<button
-						class="px-4 bg-gray-200 p-3 rounded text-black hover:bg-gray-300 font-semibold" onclick="modalClose('main-modal')">Cancel</button>
-					<button
-						class="px-4 bg-blue-500 p-3 ml-3 rounded-lg text-white hover:bg-teal-400" onclick="validate_form(document.getElementById('add_caretaker_form'))">Confirm</button>
-				</div>
-			</div>
-		</div>
-	</div>
-    <div class="another-modal fixed w-full inset-0 z-50 overflow-hidden flex justify-center items-center animated fadeIn faster" style="background: rgba(0,0,0,.7);">
-		<div class="border border-blue-500 shadow-lg modal-container bg-white w-4/12 md:max-w-11/12 mx-auto rounded-xl shadow-lg z-50 overflow-y-auto">
-			<div class="modal-content py-4 text-left px-6">
-				<!--Title-->
-				<div class="flex justify-between items-center pb-3">
-					<p class="text-2xl font-bold text-gray-500">Edit Caretaker</p>
-					<div class="modal-close cursor-pointer z-50" onclick="modalClose('another-modal')">
-						<svg class="fill-current text-gray-500" xmlns="http://www.w3.org/2000/svg" width="18" height="18"
-							viewBox="0 0 18 18">
-							<path
-								d="M14.53 4.53l-1.06-1.06L9 7.94 4.53 3.47 3.47 4.53 7.94 9l-4.47 4.47 1.06 1.06L9 10.06l4.47 4.47 1.06-1.06L10.06 9z">
-							</path>
-						</svg>
-					</div>
-				</div>
-				<!--Body-->
-				<div class="my-5 mr-5 ml-5 flex justify-center">
-                    <form  method="POST" id="add_caretaker_form"  class="w-full">
-                        <div class="">
-                            <div class="">
-                                <label for="names" class="text-md text-gray-600">Full Names</label>
-                            </div>
-                            <div class="">
-                                <input type="text" id="names" autocomplete="off" name="names" class="h-3 p-6 w-full border-2 border-gray-300 mb-5 rounded-md" placeholder="Example. John Doe">
-                            </div>
-                            <div class="">
-                                <label for="phone" class="text-md text-gray-600">Phone Number</label>
-                            </div>
-                            <div class="">
-                                <input type="text" id="phone" autocomplete="off" name="phone" class="h-3 p-6 w-full border-2 border-gray-300 mb-5 rounded-md" placeholder="Example. 0729400426">
-                            </div>
-                            <div class="">
-                                <label for="id_number" class="text-md text-gray-600">ID Number</label>
-                            </div>
-                            <div class="">
-                                <input type="number" id="id_number" autocomplete="off" name="id_number" class="h-3 p-6 w-full border-2 border-gray-300 mb-5 rounded-md" placeholder="Caretaker's ID number">
-                            </div>
+                        <!--Body-->
+                        <div class="my-5 mr-5 ml-5 flex justify-center">
+                            <form  method="POST" id="add_caretaker_form"  class="w-full">
+                                <div class="">
+                                    <div class="">
+                                        <label for="preguntas" class="text-md text-gray-600">Pregunta</label>
+                                    </div>
+                                    <div class="">
+                                        <input type="text" id="PreguntaEscribe" autocomplete="off" name="PreguntaEscribe" class="h-3 p-6 w-full border-2 border-gray-300 mb-5 rounded-md" placeholder="Escribe Aquí">
+                                    </div>
+                                    
+                                </div>
+                            </form>
                         </div>
-                    </form>
-				</div>
-				<!--Footer-->
-				<div class="flex justify-end pt-2 space-x-14">
-					<button
-						class="px-4 bg-gray-200 p-3 rounded text-black hover:bg-gray-300 font-semibold" onclick="modalClose('another-modal')">Cancel</button>
-					<button
-						class="px-4 bg-blue-500 p-3 ml-3 rounded-lg text-white hover:bg-teal-400" onclick="validate_form(document.getElementById('add_caretaker_form'))">Confirm</button>
-				</div>
-			</div>
-		</div>
-	</div>
+                        <!--Footer-->
+                        <div class="flex justify-end pt-2 space-x-14">
+                            <button
+                                class="px-4 bg-gray-200 p-3 rounded text-black hover:bg-gray-300 font-semibold" onclick="modalClose('another-modal')">Cancel</button>
+                            <button
+                                class="px-4 bg-blue-500 p-3 ml-3 rounded-lg text-white hover:bg-teal-400" id="preguntaN">Guardar</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+    
 
 	<script>
         all_modals = ['main-modal', 'another-modal']

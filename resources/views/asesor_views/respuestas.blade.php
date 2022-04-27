@@ -7,60 +7,51 @@
 
         
 ///////////////////777//Mostrar la lista de preguntas/////////////////////////////////////////////////////////
-            /*var btnAgregar = document.getElementById("preguntaN");
-            btnAgregar.addEventListener("click", agregar);*/
 
             var txtTarea = document.getElementById("PreguntaEscribe");
             var listTareas = document.getElementById("preguntas");   
             var salto = document.createElement("br");
-            /*function agregar(){
-                let tarea = document.createElement("li");
-                tarea.textContent = txtTarea.value;
-                listTareas.appendChild(tarea);
-            
-            }*/
 
+            var txtRespuesta = document.getElementById("respuestaEscribe");
+            var labelRespuestas = document.getElementById("respuestas");
+            
+            let listaRespuesta=[]
+
+            var contador = 0;
             $(document).ready(function(){
-                let listaPreguntas=[]
-                $('#preguntaN').on('click', function(){
+                let listaPreguntas=[];                
+                //Añade respuesta a una lista
+                $('#RespuestasAnadir').on('click', function(){
+                    var respuestaInput = document.getElementById("respuestaEscribe").value
+                    listaRespuesta.push(respuestaInput);
+                });
+                //Añade preguntas y respuestas a un json respuestas
+               $('#preguntaN').on('click', function(){
+
+                    let nuevaPregunta = {pregunta : $('#PreguntaEscribe').val(), respuesta : listaRespuesta }
+                        
+                    listaPreguntas.push(nuevaPregunta);
+
+                    var jsonPreguntas = JSON.stringify(listaPreguntas);
+                    $("input[name='jsonPreguntas']").val(jsonPreguntas);
+
                     let preg = document.createElement("li");
                     preg.textContent = txtTarea.value;
                     listTareas.appendChild(preg);
                     listaPreguntas.push(preg);
 
                     console.log(listaPreguntas)
-                });
-            });
-//////////////////////////Mostrar las respuesta//////////////////////////////
-           /* var btnAgregarRespuestas = document.getElementById("respuestaboton")
-            btnAgregarRespuestas.addEventListener("click", agregaRespuesta);*/
-
-            var txtRespuesta = document.getElementById("respuestaEscribe");
-            var labelRespuestas = document.getElementById("respuestas");
-            
-            let listaRespuesta=[]
-           function AgregarRespuesta(){
-                let resp = document.createElement("li");
-                resp.textContent = txtRespuesta.value;              
-                
-                listTareas.appendChild(resp);
-                listaRespuesta.push(resp); 
-                console.log(listaRespuesta);
-                console.log(resp);
-                
-            }
-
-            /*$(document).ready(function(){
-                let listaRespuesta=[]
-                $('#respuestaboton').on('click', function(){
+                    contador += 1;
                     let resp = document.createElement("li");
-                    resp.textContent = txtTarea.value;
-                    listTareas.appendChild(resp);
-                    listaRespuesta.push(resp);
+                                  
+                    
+                    console.log(listaRespuesta);
 
-                    console.log(listaRespuesta)
                 });
-            });*/
+                    
+
+            });
+            
 ////////////////Aceptar solo enteros positivos como valor/////////////////////////////////////////////////////                
             function Numeros(string){//Solo numeros
                 var out = '';
@@ -183,6 +174,7 @@
     @section('body')
         <form action="{{route('respuesta.guardarPregunta')}}" method="post" submit="" id="addActividad" name="addActividad">
             <div class="w-full bg-blue-200 h-screen">
+                <input type="text" name="jsonPreguntas">
                 <div class="bg-gradient-to-b from-blue-200 to-blue-200 h-96"></div>
                 <div class="max-w-5xl mx-auto px-6 sm:px-6 lg:px-8 mb-12">
                     <div class="bg-blue-700 w-full shadow rounded p-8 sm:p-12 -mt-72">
@@ -229,9 +221,6 @@
                             <div class="flex items-center justify-center w-full ">
                                 <input onclick="openModal('another-modal')" class='border-b text-center bg-green-500 text-gray-100 p-4 rounded-full tracking-wide font-bold py-2 px-8 focus:outline-none focus:shadow-outline hover:bg-green-700 shadow-lg cursor-pointer' value="Agregar pregunta">
                             </div>
-                            <div class="flex items-center justify-center w-full block">
-                                <input onclick="openModal('main-modal')" value="Agrega respuesta" class='border-b text-center bg-green-500 text-gray-100 p-4 rounded-full tracking-wide font-bold py-2 px-8 focus:outline-none focus:shadow-outline hover:bg-green-700 shadow-lg cursor-pointer'>
-                            </div>
                         </div>
                         <div class="w-wull mt-4" align="center">
                             <input type="button" id="Guardar" name="Guardar" value="Guardar" onclick="EnviarDatos()"class='border-b text-center bg-green-500 text-gray-100 p-4 rounded-full tracking-wide font-bold py-2 px-8 focus:outline-none focus:shadow-outline hover:bg-green-700 shadow-lg cursor-pointer'>
@@ -240,48 +229,7 @@
                 </div>
             </div>
         @endsection	
-<!---------------------------------------Modal para escribir una respuesta------------------------------------->
-            <div class="main-modal fixed w-full inset-0 z-50 overflow-hidden flex justify-center items-center animated fadeIn faster" style="background: rgba(0,0,0,.7);">
-                <div class="border border-blue-500 shadow-lg modal-container bg-white w-4/12 md:max-w-11/12 mx-auto rounded-xl shadow-lg z-50 overflow-y-auto">
-                    <div class="modal-content py-4 text-left px-6">
-                        <!--Title-->
-                        <div class="flex justify-between items-center pb-3">
-                            <p class="text-2xl font-bold text-gray-500">Agrega una respuesta</p>
-                            <div class="modal-close cursor-pointer z-50" onclick="modalClose('main-modal')">
-                                <svg class="fill-current text-gray-500" xmlns="http://www.w3.org/2000/svg" width="18" height="18"
-                                    viewBox="0 0 18 18">
-                                    <path
-                                        d="M14.53 4.53l-1.06-1.06L9 7.94 4.53 3.47 3.47 4.53 7.94 9l-4.47 4.47 1.06 1.06L9 10.06l4.47 4.47 1.06-1.06L10.06 9z">
-                                    </path>
-                                </svg>
-                            </div>
-                        </div>
-                        <!--Body-->
-                        <div class="my-5 mr-5 ml-5 flex justify-center">
-                            <form  method="POST" id="add_caretaker_form"  class="w-full">
-                                <div class="">
-                                    <div class="">
-                                        <label for="resp" class="text-md text-gray-600">Respuesta</label>
-                                    </div>
-                                    <div class="">
-                                        <input type="text" id="respuestaEscribe" autocomplete="off" name="respuestaEscribe" class="h-3 p-6 w-full border-2 border-gray-300 mb-5 rounded-md" placeholder="Escribe aquí">
-                                    </div>
-                                    <div>
-                                        <input type="Button" value="Respuesta correcta" class="text-center bg-green-500 text-gray-100 p-4 rounded-full tracking-wide font-bold py-2 px-8 focus:outline-none focus:shadow-outline hover:bg-green-700 shadow-lg cursor-pointer">
-                                    </div>
-                                </div>
-                            </form>
-                        </div>
-                        <!--Footer-->
-                        <div class="flex justify-end pt-2 space-x-14">
-                            <button
-                                class="px-4 bg-gray-200 p-3 rounded text-black hover:bg-gray-300 font-semibold" onclick="modalClose('main-modal')">Cancel</button>
-                            <button id="respuestaboton"
-                                class="px-4 bg-blue-500 p-3 ml-3 rounded-lg text-white hover:bg-teal-400"  onclick="AgregarRespuesta()">Guardar</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
+            
 
         <!---------------------------------------------Modal para escribir una pregunta----------------------------------->
             <div class="another-modal fixed w-full inset-0 z-50 overflow-hidden flex justify-center items-center animated fadeIn faster" style="background: rgba(0,0,0,.7);">
@@ -309,6 +257,15 @@
                                     <div class="">
                                         <input type="text" id="PreguntaEscribe" autocomplete="off" name="PreguntaEscribe" class="h-3 p-6 w-full border-2 border-gray-300 mb-5 rounded-md" placeholder="Escribe Aquí">
                                     </div>
+                                    <div class="">
+                                        <label for="preguntas" class="text-md text-gray-600">Respuesta</label>
+                                    </div>
+                                    <div class="">
+                                        <input type="text" id="respuestaEscribe" autocomplete="off" name="respuestaEscribe" class="h-3 p-6 w-full border-2 border-gray-300 mb-5 rounded-md" placeholder="Escribe aquí">
+                                    </div>
+                                    <div>
+                                        <input type="button" id="RespuestasAnadir" value="Añadir respuesta" class="px-4 bg-gray-200 p-3 rounded text-black hover:bg-gray-300 font-semibold">
+                                    </div>
                                     
                                 </div>
                             </form>
@@ -327,7 +284,7 @@
     
 
 	<script>
-        all_modals = ['main-modal', 'another-modal']
+        all_modals = [ 'another-modal']
         all_modals.forEach((modal)=>{
             const modalSelected = document.querySelector('.'+modal);
             modalSelected.classList.remove('fadeIn');

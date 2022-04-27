@@ -61,12 +61,8 @@ class AsesorController extends Controller{
             return (['status' => 'fail', 'exception' => $th->__toString()]);
         }
     }
-    public function asignarTutorView(){
-        // $tutores = Tutor::join('users', 'users.id', '=', 'tutors.user_id')
-        //     ->select('users.name', 'tutors.CURP', 'tutors.numberPhone')
-        //     ->get();
+    public function asignarTutorView(){ 
         return view('asesor_views.asignarTutor');
-        //return view('asesor_views.asignarTutor', array('tutores'=>$tutores));
     }
 
     
@@ -78,13 +74,15 @@ class AsesorController extends Controller{
         $view = view('asesor_views.practicantesLista', ["users" => $practicantes])->render();
         return (["html" => $view]);
     }
-    
+
     public function buscarTutor(Request $request){
         $tutores = Tutor::join('users', 'users.id', '=', 'tutors.user_id')
-            ->select('users.name', 'tutors.CURP', 'tutors.numberPhone')
+            ->select('users.name', 'tutors.curp', 'tutors.numberPhone', 'users.id')
+            ->where('users.name', 'like', '%'.$request->name.'%')
             ->get();
-
-            return view('asesor_views.tutorList', ['tutores' => $tutores])->render();
+        
+        $view = view('asesor_views.tutorList', ["tutors" => $tutores])->render();
+        return (["html" => $view]);
     }
 
     public function actividadToCuadernilloView(Request $request)

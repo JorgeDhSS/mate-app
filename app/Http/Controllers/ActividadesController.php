@@ -87,6 +87,32 @@ class ActividadesController extends Controller{
         return $actividades;
 
     }
+    //Mostrar preguntas
+    public function mostrarPreguntas($id){
+
+        $preguntas = collect();
+        foreach(Actividad::where('id', $id)->get() as $actividad){
+
+            $preguntas = $preguntas->concat(pregunta::where('idActividad', $id)->get());
+        }
+        return $preguntas;
+
+    }
+    public function guardarRespuesta(Request $request){
+        date_default_timezone_set("America/Mexico_City");
+        $json = json_decode($request->jsonRespuestas, true);
+
+        foreach($json as $respuestas){
+            $respuesta = new respuesta();
+            $respuesta->idpregunta = $request->SeleccionaPregunta;
+            $respuesta->respuesta = $respuestas['respuesta'];
+            $respuesta->valor = $respuestas['valorRes'];
+            $respuesta->save();
+
+        }
+        return view('asesor_views.respuestas');
+
+    }
 
  
 

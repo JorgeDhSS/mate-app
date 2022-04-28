@@ -57,12 +57,14 @@ class ActividadesController extends Controller{
     }
     public function guardarPregunta(Request $request){
 
+
         date_default_timezone_set("America/Mexico_City");
         $json = json_decode($request->jsonPreguntas, true);
+        try {
 
             $actividad = new Actividad();
               
-            $actividad->descripcion = "Responde las siguientes pregntas";
+            $actividad->descripcion = $request->descripcionActividad;
             $actividad->titulo = $request->nombreActividad;
             $actividad->fechaInicio = $request->fechaInicio;
             $actividad->fechaCierre = $request->fechaTermina;
@@ -73,18 +75,17 @@ class ActividadesController extends Controller{
             if($json != null){
                 foreach($json as $preguntas){
                     $pregunta = new pregunta();
-                    $respuesta = new respuesta();
                     $pregunta->idActividad = $actividad->id;
                     $pregunta->pregunta = $preguntas['pregunta'];
                     $pregunta->save();
-                    /*$respuesta->idpregunta = $pregunta->id;
-                    $respuesta->respuesta = $request->respuestaEscribe;
-                    $respuesta->valor = "false";
-                    $respuesta->save();*/
+
                 }
+                
             }
-            
-            
+
+        } catch (\Exception $th) {
+            return (['status' => 'fail', 'exception' => $th->__toString()]);
+        }
             return view('asesor_views.respuestas');
 
     }

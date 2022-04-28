@@ -12,40 +12,24 @@
             var listTareas = document.getElementById("preguntas");   
             var salto = document.createElement("br");
 
-            var txtRespuesta = document.getElementById("respuestaEscribe");
-            var labelRespuestas = document.getElementById("respuestas");
-            
-            let listaRespuesta=[]
 
-            var contador = 0;
+
             $(document).ready(function(){
                 let listaPreguntas=[];                
-                //Añade respuesta a una lista
-                $('#RespuestasAnadir').on('click', function(){
-                    var respuestaInput = document.getElementById("respuestaEscribe").value
-                    listaRespuesta.push(respuestaInput);
-                });
                 //Añade preguntas y respuestas a un json respuestas
                $('#preguntaN').on('click', function(){
 
-                    let nuevaPregunta = {pregunta : $('#PreguntaEscribe').val(), respuesta : listaRespuesta }
-                        
-                    listaPreguntas.push(nuevaPregunta);
+                    let nuevoPregunta = {pregunta : $('#PreguntaEscribe').val()};
+                    listaPreguntas.push(nuevoPregunta);
 
-                    var jsonPreguntas = JSON.stringify(listaPreguntas);
+                    var jsonPreguntas= JSON.stringify(listaPreguntas);
                     $("input[name='jsonPreguntas']").val(jsonPreguntas);
-
+                    
                     let preg = document.createElement("li");
                     preg.textContent = txtTarea.value;
                     listTareas.appendChild(preg);
-                    listaPreguntas.push(preg);
-
-                    console.log(listaPreguntas)
-                    contador += 1;
-                    let resp = document.createElement("li");
-                                  
                     
-                    console.log(listaRespuesta);
+
 
                 });
                     
@@ -107,6 +91,10 @@
                     alert("Debes asignar la fecha en la que finaliza la actividad.");
                     return;
                     
+                }
+                if (document.getElementById("descripcionActividad").value == "") {
+                alert("Debes describir la actividad.");
+                return;
                 }
                 if( fecha > inicio){
                     alert("Debes escoger una fecha valida.");
@@ -174,7 +162,7 @@
     @section('body')
         <form action="{{route('respuesta.guardarPregunta')}}" method="post" submit="" id="addActividad" name="addActividad">
             <div class="w-full bg-blue-200 h-screen">
-                <input type="text" name="jsonPreguntas">
+                <input type="hidden" name="jsonPreguntas">
                 <div class="bg-gradient-to-b from-blue-200 to-blue-200 h-96"></div>
                 <div class="max-w-5xl mx-auto px-6 sm:px-6 lg:px-8 mb-12">
                     <div class="bg-blue-700 w-full shadow rounded p-8 sm:p-12 -mt-72">
@@ -208,6 +196,12 @@
                             <div class="w-full flex flex-col mt-8">
                                 <label class="font-semibold leading-none text-gray-300">Nombre de la actividad</label>
                                 <input type="" class="w-full py-2 border-2 mt-4 block rounded-md text-base py-2 border-b border-gray-500 focus:outline-none focus:border-green-500" name="nombreActividad" id="nombreActividad">
+                            </div>
+                        </div>
+                        <div>
+                            <div class="w-full flex flex-col mt-8">
+                                <label class="font-semibold leading-none text-gray-300">Descripción de la actividad </label>
+                                <textarea name="descripcionActividad" id="descripcionActividad" class="w-full h-32 border-2 mt-4 block rounded-md text-base py-2 border-b border-gray-500 focus:outline-none focus:border-green-500" style=""></textarea>
                             </div>
                         </div>
                         <div class="w-full flex flex-col mt-8">
@@ -256,26 +250,18 @@
                                     </div>
                                     <div class="">
                                         <input type="text" id="PreguntaEscribe" autocomplete="off" name="PreguntaEscribe" class="h-3 p-6 w-full border-2 border-gray-300 mb-5 rounded-md" placeholder="Escribe Aquí">
-                                    </div>
-                                    <div class="">
-                                        <label for="preguntas" class="text-md text-gray-600">Respuesta</label>
-                                    </div>
-                                    <div class="">
-                                        <input type="text" id="respuestaEscribe" autocomplete="off" name="respuestaEscribe" class="h-3 p-6 w-full border-2 border-gray-300 mb-5 rounded-md" placeholder="Escribe aquí">
-                                    </div>
-                                    <div>
-                                        <input type="button" id="RespuestasAnadir" value="Añadir respuesta" class="px-4 bg-gray-200 p-3 rounded text-black hover:bg-gray-300 font-semibold">
-                                    </div>
-                                    
+                                    </div>                                    
                                 </div>
                             </form>
                         </div>
                         <!--Footer-->
                         <div class="flex justify-end pt-2 space-x-14">
                             <button
-                                class="px-4 bg-gray-200 p-3 rounded text-black hover:bg-gray-300 font-semibold" onclick="modalClose('another-modal')">Cancel</button>
+                                class="px-4 bg-gray-200 p-3 rounded text-black hover:bg-gray-300 font-semibold" onclick="modalClose('another-modal')">Cancelar</button>
                             <button
                                 class="px-4 bg-blue-500 p-3 ml-3 rounded-lg text-white hover:bg-teal-400" id="preguntaN">Guardar</button>
+                            <button
+                                class="px-4 bg-red-500 p-3 ml-3 rounded-lg text-white hover:bg-teal-400 hover:bg-red-300"  onclick="modalClose('another-modal')">Finalizar</button>
                         </div>
                     </div>
                 </div>
@@ -308,4 +294,3 @@
         }
     
 	</script>
-

@@ -66,7 +66,7 @@ class ActividadesController extends Controller{
         } catch (\Exception $th) {
             return (['status' => 'fail', 'exception' => $th->__toString()]);
         }
-            return view('asesor_views.respuestas');
+            return view('asesor_views.addActividades');
 
     }
 

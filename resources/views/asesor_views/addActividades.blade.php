@@ -183,7 +183,8 @@
                                 <input type="date" name="fechaInicio" id="fechaInicio" class="w-full border-2 rounded-md mt-2 block text-base py-2 border-b border-gray-500 focus:outline-none focus:border-green-500" />
                             </div>
                             <div class="w-full md:w-1/2 flex flex-col md:ml-6 md:mt-0 mt-4">
-                                <label class="font-semibold leading-none text-gray-300">Termina</label>                                    <input type="date" name="fechaTermina" id="fechaTermina" class="w-full border-2 rounded-md mt-2 block text-base py-2 border-b border-gray-500 focus:outline-none focus:border-green-500"/>
+                                <label class="font-semibold leading-none text-gray-300">Termina</label>                                    
+                                <input type="date" name="fechaTermina" id="fechaTermina" class="w-full border-2 rounded-md mt-2 block text-base py-2 border-b border-gray-500 focus:outline-none focus:border-green-500"/>
                             </div> 
                         </div>
                         <div class="md:flex items-center mt-12">

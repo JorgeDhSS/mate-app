@@ -57,19 +57,40 @@ class ActividadesController extends Controller{
     }
     public function guardarPregunta(Request $request){
 
-        $actividad = new Actividad();
+        date_default_timezone_set("America/Mexico_City");
+        $json = json_decode($request->jsonPreguntas, true);
         
-        $actividad->descripcion = "Responde las siguientes pregntas";
-        $actividad->titulo = $request->nombreActividad;
-        $actividad->fechaInicio = $request->fechaInicio;
-        $actividad->fechaCierre = $request->fechaTermina;
-        $actividad->valor = $request->valorActividad;
-        $actividad->idgrupo = $request->selecionaGrupo;
-        $actividad->asesor_id= 1;
-        $actividad->save();
-        return view('asesor_views.respuestas');
+            $actividad = new Actividad();
+              
+            $actividad->descripcion = "Responde las siguientes pregntas";
+            $actividad->titulo = $request->nombreActividad;
+            $actividad->fechaInicio = $request->fechaInicio;
+            $actividad->fechaCierre = $request->fechaTermina;
+            $actividad->valor = $request->valorActividad;
+            $actividad->idgrupo = $request->selecionaGrupo;
+            $actividad->asesor_id= 1;
+            $actividad->save();
+            if($json != null){
+                foreach($json as $preguntas){
+                    $pregunta = new pregunta();
+                    $pregunta->idActividad = $actividad->id;
+                    $pregunta->pregunta = $preguntas['pregunta'];
+                    $pregunta->save();
+                    /*foreach($json['respuesta'] as $respuestas){
+                        $respuesta = new respuesta();
+                        $respuesta->idpregunta = $pregunta->id;
+                        $respuesta->respuesta = $$respuestas['respuesta'];
+                        $respuesta->valor = "false";
+                        $respuesta->save();
+                    }*/
+                }
+            }
+            
+            
+            return view('asesor_views.respuestas');
 
     }
+
 
     public function mostrarActividades($id){
         $actividades = collect();

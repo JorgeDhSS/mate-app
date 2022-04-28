@@ -51,7 +51,7 @@ Route::get('asesor/actividadnueva',[ActividadesController::class, 'create'])->na
 
 Route::post('asesor/actividadnueva', [ActividadesController::class, 'showGrupo'])->name('addActividades.agrega');
 
-Route::post('asesor/actividadnueva', [ActividadesController::class, 'guardarActividad'])->name('addActividades.agrega');
+Route::post('asesor/actividadnueva', [ActividadesController::class, 'guardarPregunta'])->name('addActividades.agrega');
 //AGREGAR RESPUSTAS 
 Route::get('asesor/addAnswer',[ActividadesController::class, 'addAnswerView'])->name('Answer.index');
 

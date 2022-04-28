@@ -30,31 +30,11 @@ class ActividadesController extends Controller{
         }
         return $grupos;
         //return response(json_encode($disenos),200)->header('Content-type','text/plain');
-    }
-    
-
-    //Agrega la actividad nueva a la base de datos
-    public function guardarActividad(Request $request){
-
-        
-        $actividad = new Actividad();
-        
-        $actividad->descripcion = $request->descripcionActividad;
-        $actividad->titulo = $request->nombreActividad;
-        $actividad->fechaInicio = $request->fechaInicio;
-        $actividad->fechaCierre = $request->fechaTermina;
-        $actividad->valor = $request->valorActividad;
-        $actividad->idgrupo = $request->selecionaGrupo;
-        $actividad->asesor_id= 1;
-        $actividad->save();
-        return view('asesor_views.addActividades');
-    }
+    }   
      
 
-    public function createRespuestas()
-    {
-        return view('asesor_views.respuestas');
-    }
+
+    ////Agrega la actividad nueva a la base de datos con preguntas
     public function guardarPregunta(Request $request){
 
 
@@ -90,7 +70,14 @@ class ActividadesController extends Controller{
 
     }
 
+    //Mostrar páginas para agregar respuestas.
 
+    public function createRespuestas()
+    {
+        return view('asesor_views.respuestas');
+    }
+
+    //Mostrar Actividades
     public function mostrarActividades($id){
         $actividades = collect();
         foreach(Grupo::where('id', $id)->get() as $grupo){

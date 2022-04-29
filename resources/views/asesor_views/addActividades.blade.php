@@ -1,3 +1,4 @@
+@extends('mainLayout')
 <header class="interfaz_Principal">
         <div class="titulo_cata">
         <div class="bg-blue-700">
@@ -11,6 +12,8 @@
         <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
         <script type="text/javascript"></script> 
     </header>
+    @section('scripts')
+
 
         <script type="text/javascript">
 

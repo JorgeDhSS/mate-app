@@ -62,7 +62,7 @@ class ActividadesController extends Controller{
         
             $actividad = new Actividad();
               
-            $actividad->descripcion = "Responde las siguientes pregntas";
+            $actividad->descripcion = $request->descripcionActividad;
             $actividad->titulo = $request->nombreActividad;
             $actividad->fechaInicio = $request->fechaInicio;
             $actividad->fechaCierre = $request->fechaTermina;
@@ -76,18 +76,12 @@ class ActividadesController extends Controller{
                     $pregunta->idActividad = $actividad->id;
                     $pregunta->pregunta = $preguntas['pregunta'];
                     $pregunta->save();
-                    /*foreach($json['respuesta'] as $respuestas){
-                        $respuesta = new respuesta();
-                        $respuesta->idpregunta = $pregunta->id;
-                        $respuesta->respuesta = $$respuestas['respuesta'];
-                        $respuesta->valor = "false";
-                        $respuesta->save();
-                    }*/
+
                 }
             }
             
             
-            return view('asesor_views.respuestas');
+            return view('asesor_views.addActividades');
 
     }
 

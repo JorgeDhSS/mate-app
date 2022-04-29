@@ -24,8 +24,8 @@
                 <input type="text" name="respuestaEscribe" id="respuestaEscribe" class="w-full py-2 border-2 mt-4 block rounded-md text-base py-2 border-b border-gray-500 focus:outline-none focus:border-green-500" >
                 <select name="valorRespuesta" id="valorRespuesta">
                     <option value="">Escoge el valor de la respuesta</option>
-                    <option value="true">Respuesta correcta</option>
-                    <option value="false">Respuesta incorrecta</option>
+                    <option value="1">Respuesta correcta</option>
+                    <option value="0">Respuesta incorrecta</option>
                 </select>
                 <input type="button" id="addRespuesta" name="addRespuesta" value="Añadir respuesta">
                 <div class="row">

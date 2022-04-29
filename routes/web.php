@@ -53,7 +53,7 @@ Route::get('
 Route::post('asesor/actividadnueva', [ActividadesController::class, 'showGrupo'])->name('addActividades.agrega');
 
 Route::post('asesor/actividadnueva', [ActividadesController::class, 'guardarPregunta'])->name('addActividades.agrega');
-Route::post('/actividadnueva/guardarPregunta/', [ActividadesController::class, 'guardarPregunta'])->name('respuesta.guardarPregunta');
+
 //AGREGAR RESPUSTAS 
 Route::get('asesor/addAnswer',[ActividadesController::class, 'addAnswerView'])->name('Answer.index');
 
@@ -62,7 +62,7 @@ Route::get('asesor/addAnswer',[ActividadesController::class, 'addAnswerView'])->
 Route::get('/asesor/respuesta',[ActividadesController::class, 'createRespuestas'])->name('asesor_views.respuestas');
 Route::get('/addActividades/mostrarActividades/{id}', [ActividadesController::class, 'mostrarActividades'])->name('respuestas.mostrarActividades');
 Route::get('/addActividades/mostrarPreguntas/{id}', [ActividadesController::class, 'mostrarPreguntas'])->name('respuestas.mostrarPreguntas');
-
+Route::post('/actividadnueva/guardarPregunta/', [ActividadesController::class, 'guardarPregunta'])->name('respuesta.guardarPregunta');
 Route::post('/actividadnueva/guardarRespuesta/', [ActividadesController::class, 'guardarRespuesta'])->name('respuesta.guardarRespuesta');
 
 

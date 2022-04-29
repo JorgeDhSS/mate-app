@@ -8,6 +8,7 @@
                 <h1 style="font-size: 32px;" class="font-extrabold; text-white pl-16 "> Asignar actividad a cuadernillo </h1>
             </div>
         </div>
+        @csrf
         <div class="col-span-4 md:col-span-2 grid grid-cols-2  pl-4">
             <div class="col-span-2">
                 <h1 class="font-extrabold text-lg text-blue-700"> Seleccione las actividades a asignar </h1>
@@ -39,8 +40,8 @@
                 <input type="text" name="tema" id="tema" class="w-full content-center text-base py-2 border-b border-gray-500 focus:outline-none focus:border-green-500">
             </div>
         </div>
-        <div class="col-span-4">
-            <button type="submit"></button>
+        <div class="col-span-4 text-center">
+            <button type="submit" class="bg-blue-500 rounded-lg font-bold text-white text-center px-4 py-3 transition duration-300 ease-in-out hover:bg-blue-700 mr-6"> Guardar actividad en el cuadernillo</button>
         </div>
     </div>
 </form>

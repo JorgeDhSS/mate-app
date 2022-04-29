@@ -3,13 +3,16 @@
 namespace App\Http\Controllers;
 
 use App\Actividad;
+use App\ActividadCuadernillo;
 use App\Asesor;
+use App\Cuadernillo;
 use App\Practicante;
 use App\User;
 use Illuminate\Http\Request;
 use App\Grupo;
 use App\PracticanteGrupo;
 use App\Tutor;
+use Illuminate\Routing\Route;
 use Illuminate\Support\Facades\Auth;
 
 class AsesorController extends Controller{
@@ -88,6 +91,24 @@ class AsesorController extends Controller{
         //$activities = Actividad::where('asesor_id', $asesor->id)->get();
         $activities = Actividad::where('asesor_id', 1)->get();
         return view('asesor_views.activityToCuadernillo', ['activities' => $activities]);
+    }
+
+    public function actividadToCuadernilloStore(Request $request)
+    {
+        $cuadernillo = new Cuadernillo();
+        $cuadernillo->nombre = $request->nombre;
+        $cuadernillo->tema = $request->tema;
+        $cuadernillo->asesor_id = 1;
+        $cuadernillo->save();
+
+        foreach($request->activities as $activity)
+        {
+            $activityCuadernillo = new ActividadCuadernillo();
+            $activityCuadernillo->actividad_id = $activity;
+            $activityCuadernillo->cuadernillo_id = $cuadernillo->id;
+            $activityCuadernillo->save();
+        }
+        return back();
     }
 }
 

@@ -78,3 +78,12 @@ Route::post('asesor/buscarPracticante','AsesorController@buscarPracticante')->na
 //VISTA PARA BUSCAR TUTOR
 Route::post('asesor/buscarTutor', [AsesorController::class, 'buscarTutor'])->name('asesor.buscarTutor');
 Route::post('asesor/tutorList', [AsesorController::class, 'tutorList'])->name('asesor.tutorList');
+
+//ACTIVIDADES-CUADERNILLO 
+Route::get('asesor/actividadToCuadernillo/view', 'AsesorController@actividadToCuadernilloView')->name('asesor.actividadToCuadernillo.view');
+//Mostrar actividad
+Route::get('practicante/showActivity/{id}', 'PracticanteController@showActivity')->name('practicante.showActivity');
+
+//Modificar información
+Route::get('data/modifyData', 'DatosController@modifyDataView')->name('data.modifyData');
+Route::post('asesor/actividadToCuadernillo/store', 'AsesorController@actividadToCuadernilloStore')->name('asesor.actividadToCuadernillo.store');

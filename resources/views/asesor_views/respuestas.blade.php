@@ -42,10 +42,8 @@
 
                             <div class="mb-8">
                                 <label for="respuesta">Escribe aquí tu respuesta: <span class="text-red-500">*</span></label></br>
-                                
-                                <textarea type="text" name="respuestaEscribe" id="respuestaEscribe" class="border-2 border-gray-500">
-                                    
-                                </textarea>
+                                <input type="text" name="respuestaEscribe" id="respuestaEscribe" class="w-full py-2 border-2 mt-4 block rounded-md text-base py-2 border-b border-gray-500 focus:outline-none focus:border-green-500" >
+                               
                             </div>
 
                             <div class="flex p-1">
@@ -58,7 +56,7 @@
                            
                             <input class='border-b text-center bg-green-500 text-gray-100 p-4 rounded-full tracking-wide font-bold py-2 px-8 focus:outline-none focus:shadow-outline hover:bg-green-700 shadow-lg cursor-pointer' id="addRespuesta" name="addRespuesta" value="Añadir respuesta">
                                 <div class="row">
-                                    <ul id="respuestas" class="text-center font-semibold leading-none text-gray-300 col-span-2 md:col-span-1 text-3xl md:text-2xl">
+                                    <ul id="respuestas" class="text-center font-semibold leading-none text-gray-900 col-span-2 md:col-span-1 text-3xl md:text-2xl">
                                         <ul class="text-center font-semibold leading-none text-gray-300 col-span-2 md:col-span-1 text-2xl md:text-2xl" id="respuestas"></ul>
                                     </ul>
                                 </div>
@@ -124,7 +122,7 @@
     <script src="https://cdn.ckeditor.com/4.16.0/standard/ckeditor.js"></script>
 
     <script>
-        CKEDITOR.replace( 'respuestaEscribe' );
+        CKEDITOR.replace( 'respuestaEscribes' );
     </script>
 
 

@@ -87,7 +87,7 @@ Route::post('asesor/tutorList', [AsesorController::class, 'tutorList'])->name('a
 //ACTIVIDADES-CUADERNILLO 
 Route::get('asesor/actividadToCuadernillo/view', 'AsesorController@actividadToCuadernilloView')->name('asesor.actividadToCuadernillo.view');
 //Mostrar actividad
-Route::get('practicante/showActivity', 'PracticanteController@showActivity')->name('practicante.showActivity');
+Route::get('practicante/showActivity/{id}', 'PracticanteController@showActivity')->name('practicante.showActivity');
 
 //Modificar información
 Route::get('data/modifyData', 'DatosController@modifyDataView')->name('data.modifyData');

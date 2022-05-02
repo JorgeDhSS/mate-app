@@ -59,10 +59,10 @@ class ActividadesController extends Controller{
 
         date_default_timezone_set("America/Mexico_City");
         $json = json_decode($request->jsonPreguntas, true);
-
+        
             $actividad = new Actividad();
               
-            $actividad->descripcion = "Responde las siguientes pregntas";
+            $actividad->descripcion = $request->descripcionActividad;
             $actividad->titulo = $request->nombreActividad;
             $actividad->fechaInicio = $request->fechaInicio;
             $actividad->fechaCierre = $request->fechaTermina;
@@ -73,19 +73,15 @@ class ActividadesController extends Controller{
             if($json != null){
                 foreach($json as $preguntas){
                     $pregunta = new pregunta();
-                    $respuesta = new respuesta();
                     $pregunta->idActividad = $actividad->id;
                     $pregunta->pregunta = $preguntas['pregunta'];
                     $pregunta->save();
-                    /*$respuesta->idpregunta = $pregunta->id;
-                    $respuesta->respuesta = $request->respuestaEscribe;
-                    $respuesta->valor = "false";
-                    $respuesta->save();*/
+
                 }
             }
             
             
-            return view('asesor_views.respuestas');
+            return view('asesor_views.addActividades');
 
     }
 
@@ -97,6 +93,32 @@ class ActividadesController extends Controller{
             $actividades = $actividades->concat(Actividad::where('idgrupo', $id)->get());
         }
         return $actividades;
+
+    }
+    //Mostrar preguntas
+    public function mostrarPreguntas($id){
+
+        $preguntas = collect();
+        foreach(Actividad::where('id', $id)->get() as $actividad){
+
+            $preguntas = $preguntas->concat(pregunta::where('idActividad', $id)->get());
+        }
+        return $preguntas;
+
+    }
+    public function guardarRespuesta(Request $request){
+        date_default_timezone_set("America/Mexico_City");
+        $json = json_decode($request->jsonRespuestas, true);
+
+        foreach($json as $respuestas){
+            $respuesta = new respuesta();
+            $respuesta->idpregunta = $request->SeleccionaPregunta;
+            $respuesta->respuesta = $respuestas['respuesta'];
+            $respuesta->valor = $respuestas['valorRes'];
+            $respuesta->save();
+
+        }
+        return view('asesor_views.respuestas');
 
     }
 

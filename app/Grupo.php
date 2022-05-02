@@ -12,7 +12,7 @@ class Grupo extends Model
      * @var array
      */
     protected $fillable = [
-        'nombreGrupo', 'nivelEscolar', 'idCuadernillo'
+        'nombreGrupo', 'nivelEscolar'
     ];
 
     public function verActividad(){

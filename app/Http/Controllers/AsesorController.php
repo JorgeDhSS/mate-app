@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Actividad;
 use App\ActividadCuadernillo;
-use App\Asesor;
 use App\Cuadernillo;
 use App\Practicante;
 use App\User;
@@ -25,12 +24,11 @@ class AsesorController extends Controller{
     }
 
     public function showTablePract(){
-        $resultados = Practicante::join('users', 'users.id', '=', 'practicantes.user_id')
-            //->where('practicantes.nivelEscolar', '=', $request->nivelEscolar)
+        $resultado = Practicante::join('users', 'users.id', '=', 'practicantes.user_id')
             ->select('users.name', 'practicantes.matricula', 'practicantes.nivelEscolar', 'practicantes.id')
             ->paginate(8);
 
-        return view('asesor_views.groupPract', compact('resultados'));
+        return view('asesor_views.groupPract', array('resultados'=>$resultado));
     }
 
     public function searchNameGroup(Request $request){
@@ -41,31 +39,55 @@ class AsesorController extends Controller{
         }
     }
 
+    //Buscar practicante
+    public function searchNamePract(Request $request){
+        try {
+            $buscarPracticante = User::join('practicantes', 'users.id', '=', 'practicantes.user_id')
+                ->select('users.name', 'practicantes.matricula', 'practicantes.nivelEscolar', 'practicantes.id')
+                ->where('users.name', '=', '%'.$request->nombrePrat.'%')
+                ->paginate(8);
+
+            /*$buscarPracticante = User::join('practicantes', 'users.name', 'LIKE', '%{ $request->nombrePrat }%')
+                ->on('users.id', '=', 'practicantes.user_id')
+                ->select('users.name', 'practicantes.matricula', 'practicantes.nivelEscolar', 'practicantes.id')
+                ->paginate(8);*/
+
+            $view = view('asesor_views.tableSearchPract', ['practicantesBuscar' => $buscarPracticante])->render();
+            return (['html' => $view]);
+        } catch (\Throwable $th) {
+            return (['status' => 'fail']);
+        }
+        
+    }
+
     public function saveGroup(Request $request){
         date_default_timezone_set("America/Mexico_City");
-        $json = json_decode($request->jsonPracticantes, true);
 
         try {
             $grupo = new Grupo();
-            $grupo->nombreGrupo = $request->btnNamegroup;
+            $grupo->nombreGrupo = $request->nameGroup;
             $grupo->nivelEscolar = $request->levelSchool;
             $grupo->save();
 
-            foreach($json as $practicante){
+            foreach($request->practicante as $check){
                 $practicanteGrupo = new PracticanteGrupo();
-                $practicanteGrupo->practicante_id = $practicante['id_practicante']; //Array 
+                $practicanteGrupo->practicante_id = $check;
                 $practicanteGrupo->grupo_id = $grupo->id;
                 $practicanteGrupo->fechaActividad = date("Y-m-d");
                 $practicanteGrupo->save();
             }    
 
-            return view('asesor_views.groupPract');
+            return (['status' => 'ok']);
         } catch (\Exception $th) {
             return (['status' => 'fail', 'exception' => $th->__toString()]);
         }
     }
-    public function asignarTutorView(){ 
+    public function asignarTutorView(){
+        // $tutores = Tutor::join('users', 'users.id', '=', 'tutors.user_id')
+        //     ->select('users.name', 'tutors.CURP', 'tutors.numberPhone')
+        //     ->get();
         return view('asesor_views.asignarTutor');
+        //return view('asesor_views.asignarTutor', array('tutores'=>$tutores));
     }
 
     
@@ -77,15 +99,12 @@ class AsesorController extends Controller{
         $view = view('asesor_views.practicantesLista', ["users" => $practicantes])->render();
         return (["html" => $view]);
     }
-
+    
     public function buscarTutor(Request $request){
         $tutores = Tutor::join('users', 'users.id', '=', 'tutors.user_id')
-            ->select('users.name', 'tutors.curp', 'tutors.numberPhone', 'users.id')
-            ->where('users.name', 'like', '%'.$request->name.'%')
+            ->select('users.name', 'tutors.CURP', 'tutors.numberPhone')
             ->get();
-        
-        $view = view('asesor_views.tutorList', ["tutors" => $tutores])->render();
-        return (["html" => $view]);
+            return view('asesor_views.tutorList', ['tutores' => $tutores])->render();
     }
 
     public function actividadToCuadernilloView(Request $request)
@@ -155,6 +174,7 @@ class AsesorController extends Controller{
             $actividad = Actividad::find($request->id_activity);
             $actividad->leccion_id = $request->id_leccion;
             $actividad->save();
+            return back();
             
     }
 }

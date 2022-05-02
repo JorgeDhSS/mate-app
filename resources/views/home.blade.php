@@ -149,7 +149,7 @@
                                 <div class="w-full flex items-center justify-between px-6 pt-1">
                                     <div class="flex items-center">
                                         <img alt="display avatar" role="img" src="https://tuk-cdn.s3.amazonaws.com/assets/components/boxed_layout/bl_1.png" class="w-8 h-8 rounded-md" />
-                                        <p class="text-gray-800 text-base leading-4 ml-2">Jane Doe</p>
+                                        
                                     </div>
                                     <ul class="flex">
                                         <li class="cursor-pointer text-white pt-5 pb-3">
@@ -226,7 +226,9 @@
                                 <div aria-haspopup="true" class="cursor-pointer w-full flex items-center justify-end relative" onclick="dropdownHandler(this)">
                                     <button aria-haspopup="true" onclick="dropdownHandler(this)" class="focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-800 rounded flex items-center" >
                                         <img class="rounded-full h-10 w-10 object-cover" src="https://tuk-cdn.s3.amazonaws.com/assets/components/sidebar_layout/sl_1.png" alt="avatar" />
-                                        <p class="text-gray-800 text-sm ml-2">Jane Doe</p>
+                                        @if (auth()->check())
+                                            <p class="text-gray-800 text-base leading-4 ml-2">{{auth()->user()->name}}</p>
+                                        @endif
                                     </button>
                                     <ul class="p-2 w-40 border-r bg-white absolute rounded z-40 left-0 shadow mt-64 hidden">
                                         <li class="cursor-pointer text-gray-600 text-sm leading-3 tracking-normal py-2 hover:text-indigo-700 focus:text-indigo-700 focus:outline-none">

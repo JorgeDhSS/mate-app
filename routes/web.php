@@ -92,3 +92,7 @@ Route::get('data/modifyData', 'UsersController@modifyDataView')->name('data.modi
 Route::post('data/modifyData', 'UsersController@guardarCambios')->name('data.guardarCambios');
 
 Route::post('asesor/actividadToCuadernillo/store', 'AsesorController@actividadToCuadernilloStore')->name('asesor.actividadToCuadernillo.store');
+
+//Modificar información
+Route::get('asesor/actividadLeccion', 'AsesorController@listaActividadesLeccion')->name('asesor.actividadesLeccion.index');
+Route::post('asesor/actividadLeccion/PUT', 'AsesorController@leccionAtividadPut')->name('asesor.actividadesLeccion.put');

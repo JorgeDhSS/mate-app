@@ -2,12 +2,20 @@
     
 namespace App\Http\Controllers;
 
+use App\Actividad;
+use App\ActividadCuadernillo;
+use App\Cuadernillo;
 use App\Practicante;
 use App\User;
 use Illuminate\Http\Request;
 use App\Grupo;
+use App\Leccion;
 use App\PracticanteGrupo;
 use App\Tutor;
+use Exception;
+use Illuminate\Routing\Route;
+use Illuminate\Support\Facades\Auth;
+use Throwable;
 
 class AsesorController extends Controller{
     
@@ -96,8 +104,78 @@ class AsesorController extends Controller{
         $tutores = Tutor::join('users', 'users.id', '=', 'tutors.user_id')
             ->select('users.name', 'tutors.CURP', 'tutors.numberPhone')
             ->get();
-
             return view('asesor_views.tutorList', ['tutores' => $tutores])->render();
+    }
+
+    public function actividadToCuadernilloView(Request $request)
+    {
+        //$asesor = Asesor::where('user_id', Auth::id())->first();
+        //$activities = Actividad::where('asesor_id', $asesor->id)->get();
+        $activities = Actividad::where('asesor_id', 1)->get();
+        return view('asesor_views.activityToCuadernillo', ['activities' => $activities]);
+    }
+
+    public function actividadToCuadernilloStore(Request $request)
+    {
+        try{
+            $cuadernillo = new Cuadernillo();
+            $cuadernillo->nombre = $request->nombre;
+            $cuadernillo->tema = $request->tema;
+            $cuadernillo->asesor_id = 1;
+            $cuadernillo->save();
+            if(count($request->activities))
+            {
+                foreach($request->activities as $activity)
+                {
+                    $activityCuadernillo = new ActividadCuadernillo();
+                    $activityCuadernillo->actividad_id = $activity;
+                    $activityCuadernillo->cuadernillo_id = $cuadernillo->id;
+                    $activityCuadernillo->save();
+                }
+            }
+            else{
+                return back()->with(['alert' => "Swal.fire(
+                    'Error!',
+                    'Debe seleccionar al menos una actividad',
+                    'error',
+                    showCancelButton: false, // There won't be any cancel button
+                    showConfirmButton: false
+                )"]);
+            }
+            return back()->with(['alert' => "Swal.fire(
+                'Éxito!',
+                'Se agregaron las actividades',
+                'success',
+                showCancelButton: false, // There won't be any cancel button
+                showConfirmButton: false
+            )"]);
+        } catch (Throwable $e) {
+            return back()->with(['alert' => "Swal.fire(
+                'Error!',
+                'Algo salio mal, intente de nuevo',
+                'error',
+                showCancelButton: false, // There won't be any cancel button
+                showConfirmButton: false
+            )"]);
+        }
+    }
+
+    public function listaActividadesLeccion(Request $request)
+    {
+        $actividades = Actividad::doesntHave('leccion')->get();
+        $lecciones = Leccion::get();
+        return view('asesor_views.listActitiesLections', ['activities' => $actividades, 'leccions' => $lecciones]);
+        //echo json_encode($actividades);
+    }
+
+    public function leccionAtividadPut(Request $request)
+    {
+        
+            $actividad = Actividad::find($request->id_activity);
+            $actividad->leccion_id = $request->id_leccion;
+            $actividad->save();
+            return back();
+            
     }
 }
 

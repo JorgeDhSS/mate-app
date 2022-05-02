@@ -29,7 +29,6 @@ Route::get('sesion','sesionController@LoginView')->name('sesion.index');
 Route::post('sesion','sesionController@authenticate')->name('sesion.authenticate');
 Route::get('home','homeController@HomeView')->name('home.index');
 
-Route::get('director/addAsesor','DirectorController@createAsesorView')->name('director.addAsesorView');
 Route::post('director/createUser','DirectorController@createUser')->name('director.createUser');
 Route::post('director/saveAsesor','DirectorController@saveAsesor')->name('director.saveAsesor');
 
@@ -85,14 +84,14 @@ Route::post('asesor/tutorList', [AsesorController::class, 'tutorList'])->name('a
 
 //ACTIVIDADES-CUADERNILLO 
 Route::get('asesor/actividadToCuadernillo/view', 'AsesorController@actividadToCuadernilloView')->name('asesor.actividadToCuadernillo.view');
+Route::post('asesor/actividadToCuadernillo/store', 'AsesorController@actividadToCuadernilloStore')->name('asesor.actividadToCuadernillo.store');
+
 //Mostrar actividad
 Route::get('practicante/showActivity/{id}', 'PracticanteController@showActivity')->name('practicante.showActivity');
 
 //Modificar información
 Route::get('data/modifyData', 'UsersController@modifyDataView')->name('data.modifyData');
 Route::post('data/modifyData', 'UsersController@guardarCambios')->name('data.guardarCambios');
-
-Route::post('asesor/actividadToCuadernillo/store', 'AsesorController@actividadToCuadernilloStore')->name('asesor.actividadToCuadernillo.store');
 
 //Modificar información
 Route::get('asesor/actividadLeccion', 'AsesorController@listaActividadesLeccion')->name('asesor.actividadesLeccion.index');

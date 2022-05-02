@@ -49,8 +49,7 @@ Route::post('asesor/groupPract', 'AsesorController@saveGroup')->name('asesor.sav
 
 //Agregar actividad
 
-Route::get('
-',[ActividadesController::class, 'create'])->name('asesor_views.addActividades');
+Route::get('asesor/actividadnueva',[ActividadesController::class, 'create'])->name('asesor_views.addActividades');
 
 Route::post('asesor/actividadnueva', [ActividadesController::class, 'showGrupo'])->name('addActividades.agrega');
 

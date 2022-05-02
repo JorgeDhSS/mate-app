@@ -1,5 +1,5 @@
 @extends('mainLayout')
- 
+<title>Eliminar Asesor</title>
 @section('body')
 <header class="interfaz_Principal">
     <div class="titulo_cata">
@@ -36,12 +36,14 @@
             </div>
         </div>
     </div>
+</div>
 @endsection
 
 @section('scripts')
     <script>
         $(document).ready(function(){
             $('#searchAsesor').on('click', function(){
+                
                 $.ajax({
                     url: "{{ route('director.buscarAsesor')}}",
                     data: {

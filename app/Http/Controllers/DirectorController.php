@@ -9,6 +9,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Hash;
 use App\Mail\SendWelcomeEmail;
+use App\Practicante;
 use Illuminate\Support\Facades\Mail;
 
 class DirectorController extends Controller
@@ -75,4 +76,14 @@ class DirectorController extends Controller
         $asesor->delete();   
         return back();
     }
+
+    public function enviarAsignacion(Request $request){
+        $practicante = Practicante::find($request->idPracticante);
+        $practicante->tutor_id = $request->idTutor;
+        $practicante->save();
+        
+        return view('asesor_views.asignarTutor');
+    }
+
+    
 }

@@ -36,7 +36,6 @@ Route::post('director/saveAsesor','DirectorController@saveAsesor')->name('direct
 
 //RUTA PARA MOSTRAR LA VISTA DE REGISTRO DE TUTOR Y PRACTICANTE 
 Route::get('asesor/addUsuario','registroTPController@createRegistroView')->name('asesor.addUsuario');
-
 Route::get('director/addAsesor','DirectorController@createAsesorView')->name('director.addAsesor');
 
 //Agrupar practicante
@@ -72,6 +71,8 @@ Route::post('asesor/enviarUsuario', [registroTPController::class, 'enviarUsuario
 //VISTA PARA MOSTRAR ASIGNAR TUTOR
 Route::get('asesor/asignarTutor','AsesorController@asignarTutorView')->name('asesor.asignarTutor');
 Route::post('asesor/buscarPracticante','AsesorController@buscarPracticante')->name('asesor.buscarPracticante');
+Route::post('director/enviarAsignacion', [DirectorController::class, 'enviarAsignacion'])->name('director.enviarAsignacion');
+
 
 
 //VISTA PARA BUSCAR TUTOR
@@ -87,3 +88,4 @@ Route::post('asesor/tutorList', [AsesorController::class, 'tutorList'])->name('a
 //ACTIVIDADES-CUADERNILLO 
 Route::get('asesor/actividadToCuadernillo/view', 'AsesorController@actividadToCuadernilloView')->name('asesor.actividadToCuadernillo.view');
 Route::post('asesor/actividadToCuadernillo/store', 'AsesorController@actividadToCuadernilloStore')->name('asesor.actividadToCuadernillo.store');
+

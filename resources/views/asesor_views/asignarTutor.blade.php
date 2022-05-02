@@ -14,53 +14,67 @@
 </header>
 
 <br>
-<div class="px-8">
-    <!-- DIV DE TUTOR-->
-    <div class="flex flex-wrap w-full">
-        <div class="flex flex-col w-full md:w-1/3">
-            <div class="text-blue-700 px-4 pt-2 font-bold w-full">
-                Ingrese el nombre del tutor
-            </div>
-            <div class="px-4 w-full">
-                <input type="text" id="nameTutor" class="w-full content-center text-base py-2 border-b border-gray-500 focus:outline-none focus:border-green-500" id="tutor">
-            </div>
-            <div class="px-4 pt-4 w-full">
-                <button id="searchTutor" class="w-full bg-blue-100 rounded-lg font-bold text-blue-700 text-center px-4 py-3 transition duration-300 ease-in-out hover:bg-blue-700 hover:text-blue-100 mr-6"> Buscar </button>
-            </div>
-        </div>
+<div class="px-8" >
+    <form method="POST" action="{{route('director.enviarAsignacion')}}">
+        @csrf 
+        <div>
+            <!-- DIV DE TUTOR-->
+            <div class="flex flex-wrap w-full">
+                <div class="flex flex-col w-full md:w-1/3">
+                    <div class="text-blue-700 px-4 pt-2 font-bold w-full">
+                        Ingrese el nombre del tutor
+                    </div>
+                    <div class="px-4 w-full">
+                        <input type="text" id="nameTutor" class="w-full content-center text-base py-2 border-b border-gray-500 focus:outline-none focus:border-green-500" id="tutor">
+                    </div>
+                    <div class="px-4 pt-4 w-full">
+                        <a type="button" id="searchTutor" class="w-full bg-blue-100 rounded-lg font-bold text-blue-700 text-center px-4 py-3 transition duration-300 ease-in-out hover:bg-blue-700 hover:text-blue-100 mr-6"> Buscar </a>
+                    </div>
+                </div>
 
-        <div class="flex flex-col w-full md:w-2/3 pt-4 md:pt-0">
-            <div class="text-blue-700 px-4 pt-2 font-bold w-full">
-                Seleccione el tutor deseado
+                <div class="flex flex-col w-full md:w-2/3 pt-4 md:pt-0">
+                    <div class="text-blue-700 px-4 pt-2 font-bold w-full">
+                        Seleccione el tutor deseado
+                    </div>
+                    <div class="flex flex-wrap px-4 pt-2 w-full" id="tutores">
+                            
+                    </div>
+                </div>
+                </div>
             </div>
-            <div class="flex flex-wrap px-4 pt-2 w-full" id="tutores">
-                    
+
+            <!--DIV DE PRACTICANTE-->
+            <div class="flex flex-wrap w-full">
+                <div class="flex flex-col w-full md:w-1/3">
+                    <div class="text-blue-700 px-4 pt-2 font-bold w-full">
+                        Ingrese el nombre del practicante
+                    </div>
+                    <div class="px-4 w-full">
+                        <input type="text" id="namePracticante" class="w-full content-center text-base py-2 border-b border-gray-500 focus:outline-none focus:border-green-500" id="practicante">
+                    </div>
+                    <div class="px-4 pt-4 w-full">
+                        <a type="button" id="searchPracticante" class="w-full bg-blue-100 rounded-lg font-bold text-blue-700 text-center px-4 py-3 transition duration-300 ease-in-out hover:bg-blue-700 hover:text-blue-100 mr-6"> Buscar </a>
+                    </div>
+                </div>
+                <div class="flex flex-col w-full md:w-2/3 pt-4 md:pt-0">
+                    <div class="text-blue-700 px-4 pt-2 font-bold w-full">
+                        Seleccione el practicante deseado
+                    </div>
+                    <div class="flex flex-wrap px-4 pt-2 w-full" id="practicantes">
+                        
+                    </div>
+                </div>
+                </div>
             </div>
-          </div>
+
+            <!--DIV DEL BOTON-->
+            <div class="w-full p-2 text-center">
+                <button type="submit" class="bg-green-400  hover:bg-green-500 text-white font-bold py-3 px-6 rounded-full">
+                    Realizar aignación 
+                </button>
+            </div>
         </div>
-    </div>
-    <!--DIV DE PRACTICANTE-->
-    <div class="flex flex-wrap w-full">
-        <div class="flex flex-col w-full md:w-1/3">
-            <div class="text-blue-700 px-4 pt-2 font-bold w-full">
-                Ingrese el nombre del practicante
-            </div>
-            <div class="px-4 w-full">
-                <input type="text" id="namePracticante" class="w-full content-center text-base py-2 border-b border-gray-500 focus:outline-none focus:border-green-500" id="practicante">
-            </div>
-            <div class="px-4 pt-4 w-full">
-                <button id="searchPracticante" class="w-full bg-blue-100 rounded-lg font-bold text-blue-700 text-center px-4 py-3 transition duration-300 ease-in-out hover:bg-blue-700 hover:text-blue-100 mr-6"> Buscar </button>
-            </div>
-        </div>
-        <div class="flex flex-col w-full md:w-2/3 pt-4 md:pt-0">
-            <div class="text-blue-700 px-4 pt-2 font-bold w-full">
-                Seleccione el practicante deseado
-            </div>
-            <div class="flex flex-wrap px-4 pt-2 w-full" id="practicantes">
-                
-            </div>
-        </div>
-    </div>
+    </form>
 </div>
 @endsection
 @section('scripts')

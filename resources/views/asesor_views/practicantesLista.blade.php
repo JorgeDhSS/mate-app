@@ -24,7 +24,8 @@
             {{$u->practicante->nivelEscolar}}
         </div>
         <div class="w-1/4 text-center border-2 text-sm font-bold text-gray-700 tracking-wide">
-            <input type="checkbox" name="btncheckbox[]" id="{{$u->practicante->id}}" value="{{$u->practicante->id}}">
+            <input type="checkbox" name="idPracticante" id="idPracticante" value="{{$u->practicante->id}}">
+            {{$u->practicante->id}}
         </div>
     </div>
 @endforeach

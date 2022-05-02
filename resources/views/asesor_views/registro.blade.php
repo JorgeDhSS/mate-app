@@ -1,5 +1,6 @@
 @extends('mainLayout')
 
+<title>Resgistro Tutor o Practicante</title>
 @section('body')
 
     <header class="interfaz_Principal">

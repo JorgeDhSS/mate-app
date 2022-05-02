@@ -92,3 +92,7 @@ Route::get('practicante/showActivity', 'PracticanteController@showActivity')->na
 //Modificar información
 Route::get('data/modifyData', 'DatosController@modifyDataView')->name('data.modifyData');
 Route::post('asesor/actividadToCuadernillo/store', 'AsesorController@actividadToCuadernilloStore')->name('asesor.actividadToCuadernillo.store');
+
+//Modificar información
+Route::get('asesor/actividadLeccion', 'AsesorController@listaActividadesLeccion')->name('asesor.actividadesLeccion.index');
+Route::post('asesor/actividadLeccion/PUT', 'AsesorController@leccionAtividadPut')->name('asesor.actividadesLeccion.put');

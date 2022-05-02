@@ -26,10 +26,11 @@ class AddValorActividad extends Migration
      */
     public function down()
     {
-        Schema::table('pedidos', function (Blueprint $table) {
+        Schema::dropIfExists('actividads');
+        /*Schema::table('pedidos', function (Blueprint $table) {
             $table->dropColumn('valor');
             $table->dropColumn('idgrupo');
-        });
+        });*/
     }
 }
 

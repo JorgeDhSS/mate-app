@@ -27,7 +27,7 @@
 			<span class="text-gray-500 font-normal">Bienvenido a mate-app</span>
 			<span class="h-px w-16 bg-gray-300"></span>
 		</div>
-		<form class="mt-8 space-y-6" action="" method="POST">
+		<form class="mt-8 space-y-6" action="{{route('sesion.authenticate')}}" method="POST">
 			@csrf
 			<input type="hidden" name="remember" value="true">
             <div class="mt-8 content-center">

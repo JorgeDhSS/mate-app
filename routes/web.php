@@ -8,6 +8,7 @@ use App\Http\Controllers\ActividadesController;
 use App\Http\Controllers\registroTPController;
 use App\Http\Controllers\DirectorController;
 Use App\Http\Controllers\PracticanteController;
+use App\Http\Controllers\UsersController;
 
 /*
 |--------------------------------------------------------------------------
@@ -95,5 +96,7 @@ Route::get('asesor/actividadToCuadernillo/view', 'AsesorController@actividadToCu
 Route::get('practicante/showActivity/{id}', 'PracticanteController@showActivity')->name('practicante.showActivity');
 
 //Modificar información
-Route::get('data/modifyData', 'DatosController@modifyDataView')->name('data.modifyData');
+Route::get('data/modifyData', 'UsersController@modifyDataView')->name('data.modifyData');
+Route::post('data/modifyData', 'UsersController@guardarCambios')->name('data.guardarCambios');
+
 Route::post('asesor/actividadToCuadernillo/store', 'AsesorController@actividadToCuadernilloStore')->name('asesor.actividadToCuadernillo.store');

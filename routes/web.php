@@ -42,31 +42,30 @@ Route::get('director/addAsesor','DirectorController@createAsesorView')->name('di
 
 //Agrupar practicante
 Route::get('asesor/groupPract', 'AsesorController@groupPractView')->name('asesor.groupPract');
-Route::get('asesor/groupPract', 'AsesorController@showTablePract')->name('asesor.showTablePract');
+Route::get('asesor/groupPract', 'AsesorController@showTablePract')->name('asesor.groupPract');
 Route::post('asesor/groupPract/searchNameGroup', 'AsesorController@searchNameGroup')->name('asesor.searchNameGroup');
+Route::post('asesor/groupPract/searchNamePract', 'AsesorController@searchNamePract')->name('asesor.searchNamePract');
+Route::post('asesor/tableSearchPract', 'AsesorController@tableSearchPract')->name('asesor.tableSearchPract');
 Route::post('asesor/groupPract', 'AsesorController@saveGroup')->name('asesor.saveGroup');
 
 //Agregar actividad
 
-Route::get('asesor/actividadnueva',[ActividadesController::class, 'create'])->name('asesor_views.addActividades');
+Route::get('
+',[ActividadesController::class, 'create'])->name('asesor_views.addActividades');
 
 Route::post('asesor/actividadnueva', [ActividadesController::class, 'showGrupo'])->name('addActividades.agrega');
 
 Route::post('asesor/actividadnueva', [ActividadesController::class, 'guardarPregunta'])->name('addActividades.agrega');
-Route::post('/actividadnueva/guardarPregunta/', [ActividadesController::class, 'guardarPregunta'])->name('respuesta.guardarPregunta');
+
 //AGREGAR RESPUSTAS 
 Route::get('asesor/addAnswer',[ActividadesController::class, 'addAnswerView'])->name('Answer.index');
-
-//VISTA PARA NAVEGAR POR EL CUADERNILLO
-
-Route::get('practicante/cuadernillo', [PracticanteController::class, 'mostrarCuadernos'])->name('practicante_views.cuadernillo');
 
 //Agregar respuesta 'asesor_views.addRespuestas'
 
 Route::get('/asesor/respuesta',[ActividadesController::class, 'createRespuestas'])->name('asesor_views.respuestas');
 Route::get('/addActividades/mostrarActividades/{id}', [ActividadesController::class, 'mostrarActividades'])->name('respuestas.mostrarActividades');
 Route::get('/addActividades/mostrarPreguntas/{id}', [ActividadesController::class, 'mostrarPreguntas'])->name('respuestas.mostrarPreguntas');
-
+Route::post('/actividadnueva/guardarPregunta/', [ActividadesController::class, 'guardarPregunta'])->name('respuesta.guardarPregunta');
 Route::post('/actividadnueva/guardarRespuesta/', [ActividadesController::class, 'guardarRespuesta'])->name('respuesta.guardarRespuesta');
 
 
@@ -81,13 +80,7 @@ Route::post('asesor/buscarPracticante','AsesorController@buscarPracticante')->na
 
 
 //VISTA PARA BUSCAR TUTOR
-Route::post('asesor/buscarTutor', 'AsesorController@buscarTutor')->name('asesor.buscarTutor');
-
-
-//VISTA PARA MOSTRAR ELIMINAR ASESOR
-Route::get('director/deleteAsesor','DirectorController@createDeleteView')->name('director.deleteUsuario');
-Route::post('director/buscarAsesor','DirectorController@buscarAsesor')->name('director.buscarAsesor');
-Route::get('director/eliminarAsesor/{id}/{id2}','DirectorController@eliminarAsesor')->name('director.eliminarAsesor');
+Route::post('asesor/buscarTutor', [AsesorController::class, 'buscarTutor'])->name('asesor.buscarTutor');
 Route::post('asesor/tutorList', [AsesorController::class, 'tutorList'])->name('asesor.tutorList');
 
 //ACTIVIDADES-CUADERNILLO 

@@ -30,18 +30,36 @@ class ActividadesController extends Controller{
         }
         return $grupos;
         //return response(json_encode($disenos),200)->header('Content-type','text/plain');
-    }   
+    }
+    
+
+    //Agrega la actividad nueva a la base de datos
+    public function guardarActividad(Request $request){
+
+        
+        $actividad = new Actividad();
+        
+        $actividad->descripcion = $request->descripcionActividad;
+        $actividad->titulo = $request->nombreActividad;
+        $actividad->fechaInicio = $request->fechaInicio;
+        $actividad->fechaCierre = $request->fechaTermina;
+        $actividad->valor = $request->valorActividad;
+        $actividad->idgrupo = $request->selecionaGrupo;
+        $actividad->asesor_id= 1;
+        $actividad->save();
+        return view('asesor_views.addActividades');
+    }
      
 
-
-    ////Agrega la actividad nueva a la base de datos con preguntas
+    public function createRespuestas()
+    {
+        return view('asesor_views.respuestas');
+    }
     public function guardarPregunta(Request $request){
-
 
         date_default_timezone_set("America/Mexico_City");
         $json = json_decode($request->jsonPreguntas, true);
-        try {
-
+        
             $actividad = new Actividad();
               
             $actividad->descripcion = $request->descripcionActividad;
@@ -60,24 +78,14 @@ class ActividadesController extends Controller{
                     $pregunta->save();
 
                 }
-                
             }
-
-        } catch (\Exception $th) {
-            return (['status' => 'fail', 'exception' => $th->__toString()]);
-        }
+            
+            
             return view('asesor_views.addActividades');
 
     }
 
-    //Mostrar páginas para agregar respuestas.
 
-    public function createRespuestas()
-    {
-        return view('asesor_views.respuestas');
-    }
-
-    //Mostrar Actividades
     public function mostrarActividades($id){
         $actividades = collect();
         foreach(Grupo::where('id', $id)->get() as $grupo){

@@ -25,7 +25,7 @@ class DirectorController extends Controller
             $user           = new User();
             $user->name     = $request->name;
             $user->email    = $request->email;
-            $password       = Str::random(8);
+            $password       = "Hi";
             $user->password = Hash::make($password);
             $user->save();
 

@@ -40,8 +40,4 @@ class User extends Authenticatable
     {
         return $this->hasOne(Practicante::class);
     }
-    public function asesor()
-    {
-        return $this->hasOne(Asesor::class);
-    }
 }

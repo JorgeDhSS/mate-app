@@ -1,5 +1,4 @@
 @extends('mainLayout')
-<title>Asignar tutor</title>
 
 @section('body')
 <header class="interfaz_Principal">
@@ -91,7 +90,7 @@
                     method: "POST",
                     success: function(response)
                     {
-                        $('#practicantes').html(response.html);
+                        $('#practicantes').append(response.html);
                     },
                     fail: function(){
                     }
@@ -101,16 +100,19 @@
                 $.ajax({
                     url: "{{route('asesor.buscarTutor')}}",
                     data: {
-                        'name'  : $('#nameTutor').val(), 
+                        'name'  : $('#tutor').val(), 
                         "_token": "{{csrf_token()}}"
                     },
                     dataType:"json",
                     method: "POST",
                     success: function(response)
                     {  
-                        $('#tutores').html(response.html);
+                        console.log('hi')
+                        console.log(response);
+                        $('#tutores').html(response);
                     },
                     fail: function(){
+                        console.log('HOLA')
                     }
                 });
             });

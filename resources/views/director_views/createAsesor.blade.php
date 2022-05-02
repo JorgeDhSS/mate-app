@@ -17,18 +17,18 @@
             </div>
             <div class="col-span-2 md:col-span-1">
                 <label for="">Nombre</label>
-                <input class="w-full content-center text-base py-2 border-b border-gray-500 focus:outline-none focus:border-green-500" type="text" name="name" id="name">
+                <input class="px-4 py-2 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-gray-200 w-full" type="text" name="name" id="name">
             </div>
             <div class="col-span-2 md:col-span-1">
                 <label for="">Correo</label>
-                <input class="w-full content-center text-base py-2 border-b border-gray-500 focus:outline-none focus:border-green-500" type="email" name="mail" id="mail">
+                <input class="px-4 py-2 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-gray-200 w-full" type="email" name="mail" id="mail">
             </div>
             <div class="col-span-2 md:col-span-1 flex items-center">
                 <button id="passwordGenerate" class="bg-blue-100 rounded-lg font-bold text-blue-700 text-center px-4 py-3 transition duration-300 ease-in-out hover:bg-blue-700 hover:text-blue-100 mr-6">Generar contraseña</button>
             </div>
             <div class="col-span-2 md:col-span-1">
                 <label for="">Contraseña</label>
-                <input class="w-full content-center text-base py-2 border-b border-gray-500 focus:outline-none focus:border-green-500" disabled type="password" name="password" id="password">
+                <input class="px-4 py-2 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-gray-200 w-full" disabled type="password" name="password" id="password">
             </div>
         </div>
         <form action="{{route('director.saveAsesor')}}" method="post">
@@ -37,17 +37,17 @@
                     @csrf
                     <input class="hidden" type="text" id="userId" name="userId">
                     <label for="">Cédula profesional</label>
-                    <input class="w-full content-center text-base py-2 border-b border-gray-500 focus:outline-none focus:border-green-500" type="number" name="cedProf" id="cedProf">
+                    <input class="px-4 py-2 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-gray-200 w-full" type="number" name="cedProf" id="cedProf">
                 </div>
                 <div class="col-span-2 md:col-span-1 hidden hiddenElements">
                     <label for="">Nivel escolar</label>
-                    <select class="w-full content-center text-base py-2 border-b border-gray-500 focus:outline-none focus:border-green-500" name="nivelEscolar" id="nivelEscolar">
-                        <option class="w-full content-center text-base py-2 border-b border-gray-500 focus:outline-none focus:border-green-500" value="1">Primer nivel</option>
-                        <option class="w-full content-center text-base py-2 border-b border-gray-500 focus:outline-none focus:border-green-500" value="2">Segundo nivel</option>
-                        <option class="w-full content-center text-base py-2 border-b border-gray-500 focus:outline-none focus:border-green-500" value="3">Tercer nivel</option>
-                        <option class="w-full content-center text-base py-2 border-b border-gray-500 focus:outline-none focus:border-green-500" value="4">Cuarto nivel</option>
-                        <option class="w-full content-center text-base py-2 border-b border-gray-500 focus:outline-none focus:border-green-500" value="5">Quinto nivel</option>
-                        <option class="w-full content-center text-base py-2 border-b border-gray-500 focus:outline-none focus:border-green-500" value="6">Sexto nivel</option>
+                    <select class="px-4 py-2 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-gray-200 w-full" name="nivelEscolar" id="nivelEscolar">
+                        <option class="px-4 py-2 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-gray-200 w-full" value="1">Primer nivel</option>
+                        <option class="px-4 py-2 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-gray-200 w-full" value="2">Segundo nivel</option>
+                        <option class="px-4 py-2 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-gray-200 w-full" value="3">Tercer nivel</option>
+                        <option class="px-4 py-2 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-gray-200 w-full" value="4">Cuarto nivel</option>
+                        <option class="px-4 py-2 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-gray-200 w-full" value="5">Quinto nivel</option>
+                        <option class="px-4 py-2 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-gray-200 w-full" value="6">Sexto nivel</option>
                     </select>
                 </div>
                 <div class="col-span-2">
@@ -60,6 +60,7 @@
 <script type="text/javascript" src="jquery.numeric.min.js"></script>
     <script type="text/javascript">
         $(document).ready(function() {
+            $('#name').numeric();
             $('#passwordGenerate').on('click', function(){
                 if(document.getElementById('name').value != "" && document.getElementById('mail').value != "")
                 {

@@ -74,7 +74,8 @@ class DirectorController extends Controller
 
         $asesor = Asesor::where('id', $id2);
         $asesor->delete();   
-        return back();
+        //return back();
+        return back()->withErrors(['asesor'=>'Asesor Eliminado correctamente'])->withInput([request('asesor')]);
     }
 
     public function enviarAsignacion(Request $request){

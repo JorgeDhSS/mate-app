@@ -12,6 +12,13 @@
     <link href="https://unpkg.com/tailwindcss@^1.0/dist/tailwind.min.css" rel="stylesheet">
 </header>
 
+    @error('asesor')
+        <div class="bg-blue-100 border-t border-b border-blue-500 text-blue-700 px-4 py-3" role="alert">
+        <p class="font-bold">Eliminación exitosa</p>
+        <p class="text-sm">El asesor eliminado correctamente</p>
+        </div>
+    @enderror
+
 
 <br>
 <div class="px-8">

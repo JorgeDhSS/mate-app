@@ -72,15 +72,16 @@ Route::post('asesor/enviarUsuario', [registroTPController::class, 'enviarUsuario
 
 
 //VISTA PARA MOSTRAR ASIGNAR TUTOR
+Route::post('asesor/buscarTutor', [AsesorController::class, 'buscarTutor'])->name('asesor.buscarTutor');
 Route::get('asesor/asignarTutor','AsesorController@asignarTutorView')->name('asesor.asignarTutor');
 Route::post('asesor/buscarPracticante','AsesorController@buscarPracticante')->name('asesor.buscarPracticante');
-Route::post('director/enviarAsignacion', [DirectorController::class, 'enviarAsignacion'])->name('director.enviarAsignacion');
+Route::post('asesor/enviarAsignacion', 'AsesorController@enviarAsignacion')->name('asesor.enviarAsignacion');
 
 
-
-//VISTA PARA BUSCAR TUTOR
-Route::post('asesor/buscarTutor', [AsesorController::class, 'buscarTutor'])->name('asesor.buscarTutor');
-Route::post('asesor/tutorList', [AsesorController::class, 'tutorList'])->name('asesor.tutorList');
+//RUTAS PARA ELIMINAR ASESOR
+Route::get('director/deleteAsesor', [DirectorController::class, 'createDeleteView'])->name('director.deleteAsesor');
+Route::post('director/buscarAsesor', [DirectorController::class, 'buscarAsesor'])->name('director.buscarAsesor');
+Route::get('director/eliminarAsesor/{id}/{id2}', [DirectorController::class, 'eliminarAsesor'])->name('director.eliminarAsesor');
 
 //ACTIVIDADES-CUADERNILLO 
 Route::get('asesor/actividadToCuadernillo/view', 'AsesorController@actividadToCuadernilloView')->name('asesor.actividadToCuadernillo.view');

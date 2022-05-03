@@ -14,7 +14,7 @@
 
 <br>
 <div class="px-8" >
-    <form method="POST" action="{{route('director.enviarAsignacion')}}">
+    <form method="POST" action="{{route('asesor.enviarAsignacion')}}">
         @csrf 
         <div>
             <!-- DIV DE TUTOR-->
@@ -90,7 +90,7 @@
                     method: "POST",
                     success: function(response)
                     {
-                        $('#practicantes').append(response.html);
+                        $('#practicantes').html(response.html);
                     },
                     fail: function(){
                     }
@@ -98,21 +98,18 @@
             });
             $('#searchTutor').on('click', function(){
                 $.ajax({
-                    url: "{{route('asesor.buscarTutor')}}",
+                    url: "{{ route('asesor.buscarTutor')}}",
                     data: {
-                        'name'  : $('#tutor').val(), 
+                        'name'  : $('#nameTutor').val(), 
                         "_token": "{{csrf_token()}}"
                     },
                     dataType:"json",
                     method: "POST",
                     success: function(response)
                     {  
-                        console.log('hi')
-                        console.log(response);
-                        $('#tutores').html(response);
+                        $('#tutores').html(response.html);
                     },
                     fail: function(){
-                        console.log('HOLA')
                     }
                 });
             });

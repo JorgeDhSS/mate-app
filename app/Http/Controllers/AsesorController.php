@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Actividad;
 use App\ActividadCuadernillo;
+use App\Asesor;
 use App\Cuadernillo;
 use App\Practicante;
 use App\User;
@@ -109,9 +110,11 @@ class AsesorController extends Controller{
 
     public function actividadToCuadernilloView(Request $request)
     {
-        //$asesor = Asesor::where('user_id', Auth::id())->first();
-        //$activities = Actividad::where('asesor_id', $asesor->id)->get();
-        $activities = Actividad::where('asesor_id', 1)->get();
+        $asesor = Asesor::where('user_id', Auth::id())->first();
+        //echo json_encode($asesor->id);
+        $activities = Actividad::where('asesor_id', $asesor->id)->get();
+        //echo json_encode($activities);
+        //$activities = Actividad::where('asesor_id', 1)->get();
         return view('asesor_views.activityToCuadernillo', ['activities' => $activities]);
     }
 
@@ -132,31 +135,34 @@ class AsesorController extends Controller{
                     $activityCuadernillo->cuadernillo_id = $cuadernillo->id;
                     $activityCuadernillo->save();
                 }
+                $alert = "Swal({
+                    title: 'Éxito!',
+                    html: 'Se agregaron las actividades',
+                    icon: 'success',
+                    showCancelButton: 'false', 
+                    showConfirmButton: 'false'
+                });";
+                $asesor = Asesor::where('user_id', Auth::id())->first();
+                $activities = Actividad::where('asesor_id', $asesor->id)->get();
+                return view('asesor_views.activityToCuadernillo')->with(['alert' => $alert, 'activities' => $activities]);
             }
             else{
-                return back()->with(['alert' => "Swal.fire(
-                    'Error!',
-                    'Debe seleccionar al menos una actividad',
-                    'error',
-                    showCancelButton: false, // There won't be any cancel button
-                    showConfirmButton: false
-                )"]);
+                return back()->with('alert', "Swal({
+                    title: 'Error!',
+                    html: 'Debe seleccionar al menos una actividad',
+                    icon: 'error',
+                    showCancelButton: 'false', 
+                    showConfirmButton: 'false'
+                });");
             }
-            return back()->with(['alert' => "Swal.fire(
-                'Éxito!',
-                'Se agregaron las actividades',
-                'success',
-                showCancelButton: false, // There won't be any cancel button
-                showConfirmButton: false
-            )"]);
         } catch (Throwable $e) {
-            return back()->with(['alert' => "Swal.fire(
-                'Error!',
-                'Algo salio mal, intente de nuevo',
-                'error',
-                showCancelButton: false, // There won't be any cancel button
-                showConfirmButton: false
-            )"]);
+            return back()->with('alert', "Swal({
+                title: 'Error!',
+                html: 'Algo salio mal, intente de nuevo',
+                icon: 'error',
+                showCancelButton: 'false', 
+                showConfirmButton: 'false'
+            });");
         }
     }
 

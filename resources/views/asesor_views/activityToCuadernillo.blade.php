@@ -75,13 +75,14 @@
 </form>
 @endsection
 @section('scripts')
-<script type="text/javascript" src="jquery.numeric.min.js"></script>
     <script type="text/javascript">
+        @isset($alert)
+                {!!$alert!!}
+            @endisset
         $(document).ready(function() {
             @isset($alert)
-                {{$alert}}
+                {!!$alert!!}
             @endisset
-            $('#name').numeric();
             $('.activityContainer').on('click', function(){
                 if($(this).find('input[name="activities[]"]').is(':checked'))
                 {

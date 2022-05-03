@@ -84,14 +84,8 @@ class AsesorController extends Controller{
         }
     }
     public function asignarTutorView(){
-        // $tutores = Tutor::join('users', 'users.id', '=', 'tutors.user_id')
-        //     ->select('users.name', 'tutors.CURP', 'tutors.numberPhone')
-        //     ->get();
         return view('asesor_views.asignarTutor');
-        //return view('asesor_views.asignarTutor', array('tutores'=>$tutores));
     }
-
-    
     
     public function buscarPracticante(Request $request){
         $practicantes = User::whereHas('practicante', function ($query) use($request){
@@ -103,9 +97,20 @@ class AsesorController extends Controller{
     
     public function buscarTutor(Request $request){
         $tutores = Tutor::join('users', 'users.id', '=', 'tutors.user_id')
-            ->select('users.name', 'tutors.CURP', 'tutors.numberPhone')
+            ->select('users.name', 'tutors.curp', 'tutors.numberPhone', 'tutors.user_id as id')
+            ->where('users.name', 'like', '%'.$request->name.'%')
             ->get();
-            return view('asesor_views.tutorList', ['tutores' => $tutores])->render();
+            
+            $view = view('asesor_views.tutorList', ["tutors" => $tutores])->render();
+            return (["html" => $view]);
+    }
+
+    public function enviarAsignacion(Request $request){
+        $practicante = Practicante::find($request->idPracticante);
+        $practicante->tutor_id = $request->idTutor;
+        $practicante->save();
+        
+        return view('asesor_views.asignarTutor');
     }
 
     public function actividadToCuadernilloView(Request $request)

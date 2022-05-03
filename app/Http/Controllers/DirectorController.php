@@ -9,6 +9,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Hash;
 use App\Mail\SendWelcomeEmail;
+use App\Practicante;
 use Illuminate\Support\Facades\Mail;
 use Throwable;
 
@@ -76,4 +77,38 @@ class DirectorController extends Controller
             });");
         }
     }
+
+    public function createDeleteView(){
+        return view('director_views.eliminarAsesor');
+    }
+
+    public function buscarAsesor(Request $request){
+        $asesores = Asesor::join('users', 'users.id', '=', 'asesors.user_id')
+            ->select('users.name', 'asesors.cedProfesional', 'users.email', 'users.id as user_id', 'asesors.id as asesor_id')
+            ->where('users.name', 'like', '%'.$request->name.'%')
+            ->get();
+        
+        $view = view('director_views.asesoresList', ["asesors" => $asesores])->render();
+        return (["html" => $view]);
+    }
+
+    public function eliminarAsesor($id, $id2){
+        $usuario = User::where('id', $id);
+        $usuario->delete();   
+
+        $asesor = Asesor::where('id', $id2);
+        $asesor->delete();   
+        //return back();
+        return back()->withErrors(['asesor'=>'Asesor Eliminado correctamente'])->withInput([request('asesor')]);
+    }
+
+    public function enviarAsignacion(Request $request){
+        $practicante = Practicante::find($request->idPracticante);
+        $practicante->tutor_id = $request->idTutor;
+        $practicante->save();
+        
+        return view('asesor_views.asignarTutor');
+    }
+
+    
 }

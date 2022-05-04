@@ -29,7 +29,7 @@ class AsesorController extends Controller{
     }
 
     public function searchNameGroup(Request $request){
-        if ($consulta = Grupo::where('nombreGrupo', $request->nombreGrupo)->exists()) {
+        if ($consulta = Grupo::where('nombreGrupo', '=', $request->nombreGrupo)->exists()) {
             return (['status' => 'ok']);
         }else {
             return (['status' => 'fail']);
@@ -37,10 +37,10 @@ class AsesorController extends Controller{
     }
 
     public function saveGroup(Request $request){
-        date_default_timezone_set("America/Mexico_City");
-        $json = json_decode($request->jsonPracticantes, true);
-
         try {
+            date_default_timezone_set("America/Mexico_City");
+            $json = json_decode($request->jsonPracticantes, true);
+
             $grupo = new Grupo();
             $grupo->nombreGrupo = $request->btnNamegroup;
             $grupo->nivelEscolar = $request->levelSchool;
@@ -57,7 +57,7 @@ class AsesorController extends Controller{
 
             return redirect()->back()->with('success', 'IT WORKS!');
         } catch (\Exception $th) {
-            return (['status' => 'fail', 'exception' => $th->__toString()]);
+            return back()->withErrors(['Error'=>'Contraseña no valida']);
         }
     }
 

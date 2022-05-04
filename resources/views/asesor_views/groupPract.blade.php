@@ -20,18 +20,10 @@
             <div class="w-full my-4 ml-4 col-span-2 md:col-span-1">
                 <label class="mb-2 ml-4 text-base font-bold text-blue-700 tracking-wide" for="">Nombre del grupo: </label>
                 <input class="px-4 py-2 ml-2 content-center text-base border-b border-gray-500 focus:outline-none focus:border-green-500 w-2/5" name="btnNamegroup" id="btnNamegroup" type="text" onchange="">
-                <button id="btnSearchNameGroup" class="bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold py-2 px-4 rounded inline-flex items-center" disabled=true>
-                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
-                        <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/>
-                    </svg>
-                </button>
             </div>
             <div class="w-full my-4 ml-4 col-span-2 md:col-span-1">
                 <label class="mb-2 ml-4 text-base font-bold text-blue-700 tracking-wide" for="">Seleccionar practicante: </label>
                 <input class="ml-2 px-4 py-2 content-center text-base border-b border-gray-500 focus:outline-none focus:border-green-500 w-2/5" name="btnSearchPract" id="btnSearchPract" type="text">
-                <button class="bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold py-2 px-4 rounded inline-flex items-center" disabled=true>
-                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16"><path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/></svg>
-                </button>
             </div>
             <div class="w-full my-4 ml-4 col-span-2 md:col-span-1">
                 <label class="mb-2 ml-4 text-base font-bold text-blue-700 tracking-wide" for="">Seleccionar nivel escolar: </label>
@@ -63,12 +55,16 @@
         <input type="hidden" id="existo">
         {{--<h1>{{ session('success') }}</h1>--}}
     @endif
+    @error('error')
+        <input type="hidden" id="error">
+    @enderror
 @endsection
 @section('scripts')
     {{--<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>--}}
     <script type="text/javascript">
         var cambioSelect;
         var seleccion = new Array();
+        var band = 0;
 
         $(document).ready(function(){
             let practicantes = [];
@@ -84,7 +80,7 @@
                 }).then((willDelete) => {
                     if (willDelete) {
                         $.ajax({
-                            url: "{{ route('asesor.buscarPracticante')}}",
+                            url: "{{ route('asesor.searchNameGroup')}}",
                             data: {
                                 'nombreGrupo' : nombreGrupo,
                                 "_token": "{{csrf_token()}}"
@@ -95,9 +91,12 @@
                                 if (response.status == 'ok'){
                                     $('#alertContainer').addClass('bg-red-600').removeClass('bg-green-500');
                                     $('#alertText').html('Error, nombre del grupo en uso');
-                                }else{
+                                    band = 1;
+                                    $('#btnNamegroup').val("");
+                                }else {
                                     $('#alertContainer').removeClass('bg-red-600').addClass('bg-green-500');
                                     $('#alertText').html('Todo bien hasta el momento');
+                                    band = 0;
                                 }
                             },fail: function(){
                             }
@@ -159,6 +158,15 @@
             });
 
             $('#btnEnviar').on('click', function(){
+                if (band == 1){
+                    Swal({
+                        icon: "error",
+                        title:"Oops...",
+                        text: 'No se pueden repetir los nombres de grupo',
+                    });
+                    return;
+                }
+
                 if ($('#btnNamegroup').val() == '' || $('#inpJson').val() == '' || $('#levelSchool').val() == '') {
                     Swal({
                         icon: "error",
@@ -173,9 +181,16 @@
             if (document.getElementById("existo")) {
                 Swal({
                     icon: 'success',
-                    title: 'Your work has been saved',
+                    title: 'El grupo se ha guardado',
                     showConfirmButton: false,
                     timer: 3500
+                });
+            }
+            if (document.getElementById("error")) {
+                Swal({
+                    icon: "error",
+                    title:"Oops...",
+                    text: 'Error al guardar datos',
                 });
             }
         });

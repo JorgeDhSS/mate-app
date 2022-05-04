@@ -1,17 +1,23 @@
 @extends('mainLayout')
  
  @section('body')
-    <header class="interfaz_Principal">
-        <div class="titulo_cata">
-        <div class="bg-blue-700">
-            <div class="max-w-7xl mx-auto py-3 px-3 sm:px-6 lg:px-8 ">                
-                <h1 style="font-size: 32px;" class="font-extrabold; text-white pl-16 justify-center"> Actividad nueva</h1>
-            </div>
-            </div>
+    
 
-        </div>
-       
-    </header>
+	@if(Session::has('Datos_incorrectos'))
+	<div role="alert">
+		<div class="bg-red-500 text-white font-bold rounded-t px-4 py-2">
+		Error al intentar accerder a Mate-app
+		</div>
+		<div class="border border-t-0 border-red-400 rounded-b bg-red-100 px-4 py-3 text-red-700">
+			<p>{{session('Datos_incorrectos')}}</p>
+		</div>
+	</div>
+
+
+		
+	@endif
+
+	
  <div class="relative min-h-screen flex items-center justify-center bg-purple-500 py-12 px-4 sm:px-6 lg:px-8 bg-purple-500 bg-no-repeat bg-cover relative items-center">
 
 	<div class="absolute bg-blue-200 opacity-60 inset-0 z-0"></div>

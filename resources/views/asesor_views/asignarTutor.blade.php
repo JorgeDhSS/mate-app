@@ -14,7 +14,7 @@
 
 <br>
 <div class="px-8" >
-    <form method="POST" action="{{route('director.enviarAsignacion')}}">
+    <form method="POST" action="{{route('asesor.enviarAsignacion')}}">
         @csrf 
         <div>
             <!-- DIV DE TUTOR-->
@@ -68,7 +68,7 @@
 
             <!--DIV DEL BOTON-->
             <div class="w-full p-2 text-center">
-                <button type="submit" class="bg-green-400  hover:bg-green-500 text-white font-bold py-3 px-6 rounded-full">
+                <button type="submit" class="bg-green-400  hover:bg-green-500 text-white font-bold py-3 px-6 rounded-full submit">
                     Realizar aignación 
                 </button>
             </div>
@@ -79,6 +79,9 @@
 @section('scripts')
     <script>
         $(document).ready(function(){
+            @isset($alert)
+                {!!$alert!!}
+            @endisset
             $('#searchPracticante').on('click', function(){
                 $.ajax({
                     url: "{{ route('asesor.buscarPracticante')}}",
@@ -90,7 +93,7 @@
                     method: "POST",
                     success: function(response)
                     {
-                        $('#practicantes').append(response.html);
+                        $('#practicantes').html(response.html);
                     },
                     fail: function(){
                     }
@@ -98,21 +101,18 @@
             });
             $('#searchTutor').on('click', function(){
                 $.ajax({
-                    url: "{{route('asesor.buscarTutor')}}",
+                    url: "{{ route('asesor.buscarTutor')}}",
                     data: {
-                        'name'  : $('#tutor').val(), 
+                        'name'  : $('#nameTutor').val(), 
                         "_token": "{{csrf_token()}}"
                     },
                     dataType:"json",
                     method: "POST",
                     success: function(response)
                     {  
-                        console.log('hi')
-                        console.log(response);
-                        $('#tutores').html(response);
+                        $('#tutores').html(response.html);
                     },
                     fail: function(){
-                        console.log('HOLA')
                     }
                 });
             });

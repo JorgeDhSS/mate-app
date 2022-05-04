@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Session;
 use App\models\User;
 #use Illuminate\Validation\ValidationException;
 
@@ -25,15 +26,27 @@ class sesionController extends Controller{
             'email' => ['required', 'string'],
             'password'=> ['required'],
         ]);
+        
+
 
        # $remember =request()->filled('remember_me');
+      
 
         if(Auth::attempt($credentials)){
             $request->session()->regenerate();
+            $request->session()->flash('principal', '¡Que alegria verte de vuelta!');
+          
             return redirect()->intended('home');
 
+        }else{
+            $request->session()->flash('Datos_incorrectos', 'Asegurate de escribir correctamente tus credenciales');
+            return redirect('sesion');
+
         }
-        return redirect('sesion');
+
+        
+        
+
            
         
     }

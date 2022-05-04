@@ -53,20 +53,34 @@ class DirectorController extends Controller
     public function saveAsesor(Request $request)
     {
         try{
-            $asesor                 = new Asesor();
-            $asesor->user_id        = $request->userId;
-            $asesor->cedProfesional = $request->cedProf;
-            $asesor->nivelEscolar   = $request->nivelEscolar;
-            $asesor->noGrupos       = 0;
-            $asesor->noAsesorados   =  0;
-            $asesor->save();
-            return view('director_views.createAsesor')->with(['alert' => "Swal({
-                title: 'Éxito!',
-                text: 'Ha agregado un asesor',
-                icon: 'success',
-                showCancelButton: 'false', 
-                showConfirmButton: 'false'
-            });"]);
+            if(Asesor::where('cedProfesional', $request->cedProf)->count() == 0)
+            {
+                $asesor                 = new Asesor();
+                $asesor->user_id        = $request->userId;
+                $asesor->cedProfesional = $request->cedProf;
+                $asesor->nivelEscolar   = $request->nivelEscolar;
+                $asesor->noGrupos       = 0;
+                $asesor->noAsesorados   =  0;
+                $asesor->save();
+
+                return view('director_views.createAsesor')->with(['alert' => "Swal({
+                    title: 'Éxito!',
+                    text: 'Ha agregado un asesor',
+                    icon: 'success',
+                    showCancelButton: 'false', 
+                    showConfirmButton: 'false'
+                });"]);
+            }
+            else
+            {
+                return view('director_views.createAsesor')->with(['alert' => "Swal({
+                    title: 'Error!',
+                    text: 'Cédula duplicada',
+                    icon: 'error',
+                    showCancelButton: 'false', 
+                    showConfirmButton: 'false'
+                });"]);
+            }
         }catch (Throwable $e) {
             return view('director_views.createAsesor')->with(['alert' => "Swal({
                 title: 'Error!',

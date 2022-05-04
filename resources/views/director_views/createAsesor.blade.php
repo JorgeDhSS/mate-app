@@ -61,7 +61,7 @@
     <script type="text/javascript">
         $(document).ready(function() {
             @isset($alert)
-                {{$alert}}
+                {!!$alert!!}
             @endisset
             $('#passwordGenerate').on('click', function(){
                 if(document.getElementById('name').value != "" && document.getElementById('mail').value != "")

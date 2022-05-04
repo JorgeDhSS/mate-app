@@ -60,21 +60,21 @@ class DirectorController extends Controller
             $asesor->noGrupos       = 0;
             $asesor->noAsesorados   =  0;
             $asesor->save();
-            return redirect("director/addAsesor")->with('alert', "Swal({
+            return view('director_views.createAsesor')->with(['alert' => "Swal({
                 title: 'Éxito!',
-                html: 'Ha agregado un asesor',
+                text: 'Ha agregado un asesor',
                 icon: 'success',
                 showCancelButton: 'false', 
                 showConfirmButton: 'false'
-            });");
+            });"]);
         }catch (Throwable $e) {
-            return redirect("director/addAsesor")->with('alert', "Swal({
-                title: 'Éxito!',
-                html: 'Ha agregado un asesor',
-                icon: 'success',
+            return view('director_views.createAsesor')->with(['alert' => "Swal({
+                title: 'Error!',
+                text: 'Ocurrió un error, vuelva a intentarlo',
+                icon: 'error',
                 showCancelButton: 'false', 
                 showConfirmButton: 'false'
-            });");
+            });"]);
         }
     }
 

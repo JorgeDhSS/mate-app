@@ -68,7 +68,7 @@
 
             <!--DIV DEL BOTON-->
             <div class="w-full p-2 text-center">
-                <button type="submit" class="bg-green-400  hover:bg-green-500 text-white font-bold py-3 px-6 rounded-full">
+                <button type="submit" class="bg-green-400  hover:bg-green-500 text-white font-bold py-3 px-6 rounded-full submit">
                     Realizar aignación 
                 </button>
             </div>
@@ -79,6 +79,9 @@
 @section('scripts')
     <script>
         $(document).ready(function(){
+            @isset($alert)
+                {!!$alert!!}
+            @endisset
             $('#searchPracticante').on('click', function(){
                 $.ajax({
                     url: "{{ route('asesor.buscarPracticante')}}",

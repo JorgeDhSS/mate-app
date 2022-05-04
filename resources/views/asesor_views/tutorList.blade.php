@@ -24,7 +24,7 @@
             {{$t->numberPhone}}
         </div>
         <div class="w-1/4 text-center border-2 text-sm font-bold text-gray-700 tracking-wide">
-            <input type="checkbox" name="idTutor" id="idTutor" value="{{$t->id}}">
+            <input type="radio" name="idTutor" id="idTutor" value="{{$t->id}}" required>
             {{$t->id}}
         </div>
     </div>

@@ -106,11 +106,35 @@ class AsesorController extends Controller{
     }
 
     public function enviarAsignacion(Request $request){
-        $practicante = Practicante::find($request->idPracticante);
-        $practicante->tutor_id = $request->idTutor;
-        $practicante->save();
-        
-        return view('asesor_views.asignarTutor');
+        if(isset($request->idPracticante) && isset($request->idTutor))
+        {
+            foreach($request->idPracticante as $idPract)
+            {
+                $practicante = Practicante::find($idPract);
+                $practicante->tutor_id = $request->idTutor;
+                $practicante->save();
+            }
+            return view('asesor_views.asignarTutor')->with(['alert' => "Swal({
+                title: 'Éxito!',
+                text: 'Se asignó el tutor',
+                icon: 'success',
+                showCancelButton: 'false', 
+                showConfirmButton: 'false'
+            });"]);
+            $asesor = Asesor::where('user_id', Auth::id())->first();
+            $activities = Actividad::where('asesor_id', $asesor->id)->get();
+            return view('asesor_views.activityToCuadernillo')->with(['alert' => $alert, 'activities' => $activities]);
+        } 
+        else
+        {
+            return view('asesor_views.asignarTutor')->with(["alert" => "Swal({
+                title: 'Error!',
+                text: 'Debe seleccionar al menos un tutor y un practicante',
+                icon: 'error',
+                showCancelButton: 'false', 
+                showConfirmButton: 'false'
+            });"]);
+        }
     }
 
     public function actividadToCuadernilloView(Request $request)
@@ -142,7 +166,7 @@ class AsesorController extends Controller{
                 }
                 $alert = "Swal({
                     title: 'Éxito!',
-                    html: 'Se agregaron las actividades',
+                    text: 'Se agregaron las actividades',
                     icon: 'success',
                     showCancelButton: 'false', 
                     showConfirmButton: 'false'
@@ -154,7 +178,7 @@ class AsesorController extends Controller{
             else{
                 return back()->with('alert', "Swal({
                     title: 'Error!',
-                    html: 'Debe seleccionar al menos una actividad',
+                    text: 'Debe seleccionar al menos una actividad',
                     icon: 'error',
                     showCancelButton: 'false', 
                     showConfirmButton: 'false'
@@ -163,7 +187,7 @@ class AsesorController extends Controller{
         } catch (Throwable $e) {
             return back()->with('alert', "Swal({
                 title: 'Error!',
-                html: 'Algo salio mal, intente de nuevo',
+                text: 'Algo salio mal, intente de nuevo',
                 icon: 'error',
                 showCancelButton: 'false', 
                 showConfirmButton: 'false'
@@ -186,7 +210,6 @@ class AsesorController extends Controller{
             $actividad->leccion_id = $request->id_leccion;
             $actividad->save();
             return back();
-            
     }
 }
 

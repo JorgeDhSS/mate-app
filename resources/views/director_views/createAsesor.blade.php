@@ -1,6 +1,7 @@
 @extends('mainLayout')
  
 @section('body')
+
         <div class="grid grid-cols-2 gap-4 px-8 py-2 md:px-20 md:py-4">    
             <div class="col-span-2 text-3xl md:text-4xl bg-blue-700">
                 <div class="max-w-7xl mx-auto py-3 px-3 sm:px-6 lg:px-8">                
@@ -32,14 +33,14 @@
             </div>
         </div>
         <form action="{{route('director.saveAsesor')}}" method="post">
-            <div class="grid grid-cols-2 gap-4 px-8 py-2 md:px-20 md:py-4">
-                <div class="col-span-2 md:col-span-1 hidden hiddenElements">
+            <div class="grid grid-cols-2 gap-4 px-8 py-2 md:px-20 md:py-4 hidden hiddenElements">
+                <div class="col-span-2 md:col-span-1">
                     @csrf
                     <input class="hidden" type="text" id="userId" name="userId">
                     <label for="">Cédula profesional</label>
                     <input class="px-4 py-2 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-gray-200 w-full" type="number" name="cedProf" id="cedProf">
                 </div>
-                <div class="col-span-2 md:col-span-1 hidden hiddenElements">
+                <div class="col-span-2 md:col-span-1">
                     <label for="">Nivel escolar</label>
                     <select class="px-4 py-2 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-gray-200 w-full" name="nivelEscolar" id="nivelEscolar">
                         <option class="px-4 py-2 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-gray-200 w-full" value="1">Primer nivel</option>
@@ -57,10 +58,11 @@
         </form>
 @endsection
 @section('scripts')
-<script type="text/javascript" src="jquery.numeric.min.js"></script>
     <script type="text/javascript">
         $(document).ready(function() {
-            $('#name').numeric();
+            @isset($alert)
+                {!!$alert!!}
+            @endisset
             $('#passwordGenerate').on('click', function(){
                 if(document.getElementById('name').value != "" && document.getElementById('mail').value != "")
                 {
@@ -92,17 +94,19 @@
                                         {
                                             $('#password').val(response.hashedPassword);
                                             $('#userId').val(response.userId);
-                                            $('.hiddenElements').each(function (){
-                                                $(this).removeClass('hidden').addClass('block')
-                                            });
+                                            $('.hiddenElements').removeClass('hidden').addClass('block');
                                             $('#alertContainer').removeClass('bg-red-600').addClass('bg-green-500');
                                             $('#alertText').html('Todo bien hasta el momento');
                                         }
+                                        else if(response.status == 'mailRepeat')
+                                        {
+                                            $('#alertContainer').addClass('bg-red-600').removeClass('bg-green-500');
+                                            $('#alertText').html('Correo repetido, intenta con uno diferente');
+                                        }
                                         else
                                         {
-                                            alert(response.status)
                                             $('#alertContainer').addClass('bg-red-600').removeClass('bg-green-500');
-                                            $('#alertText').html('Error, recarga la página y vuelve a intentarlo');
+                                            $('#alertText').html('Error interno, recarga la página y vuelve a intentarlo');
                                         }
                                     },
                                     fail: function(){

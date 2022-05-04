@@ -3,29 +3,26 @@
         Nombre
     </div>
     <div class="w-1/4 font-bold text-center border-2 text-sm font-bold text-gray-700 tracking-wide">
-        Matricula
+        Cedula Profesional
     </div>
     <div class="w-1/4 font-bold text-center border-2 text-sm font-bold text-gray-700 tracking-wide">
-        Nivel Escolar
-    </div>
-    <div class="w-1/4 font-bold text-center border-2 text-sm font-bold text-gray-700 tracking-wide">
-        Selección
+        Email
     </div>
 </div>
-@foreach($users as $u)
+@foreach($asesors as $a)
     <div class="flex flex-wrap w-full">
+        <br>
         <div class="w-1/4 text-center border-2 text-sm font-bold text-gray-700 tracking-wide">
-            {{$u->name}}
+            {{$a->name}}
         </div>
         <div class="w-1/4 text-center border-2 text-sm font-bold text-gray-700 tracking-wide">
-            {{$u->practicante->matricula}}
+            {{$a->cedProfesional}}
         </div>
         <div class="w-1/4 text-center border-2 text-sm font-bold text-gray-700 tracking-wide">
-            {{$u->practicante->nivelEscolar}}
+            {{$a->email}}
         </div>
-        <div class="w-1/4 text-center border-2 text-sm font-bold text-gray-700 tracking-wide">
-            <input type="checkbox" name="idPracticante[]" id="idPracticante" value="{{$u->practicante->id}}" required>
-            {{$u->practicante->id}}
+        <div class="w-1/4 text-center  text-sm font-bold  tracking-wide">
+            <a name="deleteAsesor" id="deleteAsesor" href="{{route('director.eliminarAsesor', ['id' => $a->user_id, 'id2' => $a->asesor_id])}}" class="w-full bg-green-100 rounded-lg font-bold text-green-700 text-center px-2 py-2 transition duration-300 ease-in-out hover:bg-green-700 hover:text-green-100 mr-6">Eliminar</a>
         </div>
     </div>
 @endforeach

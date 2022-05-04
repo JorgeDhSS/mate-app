@@ -4,7 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Grupo extends Model
+class ActividadCuadernillo extends Model
 {
     /**
      * The attributes that are mass assignable.
@@ -12,10 +12,6 @@ class Grupo extends Model
      * @var array
      */
     protected $fillable = [
-        'nombreGrupo', 'nivelEscolar'
+        'actividad_id', 'cuadernillo_id'
     ];
-
-    public function verActividad(){
-        return $this->hasMany(Actividad::class);
-    }
 }

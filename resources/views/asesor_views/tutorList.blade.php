@@ -1,20 +1,31 @@
-<table class="table col-12">
-    <thead>
-        <tr>
-            <td>Nombre</td>
-            <td>CURP</td>
-            <td>Numero de telefono</td>
-        </tr>
-    </thead>
-    <tbody>
-        <tr> 
-            @foreach($tutores as $tutor)
-            @if( $tutor->name == 'Pietro')
-                <td class="border px-4 py-2">{{$tutor->name}}</td>
-                <td class="border px-4 py-2">{{$tutor->CURP}}</td>
-                <td class="border px-4 py-2">{{$tutor->numberPhone}}</td>
-            @endif
-            @endforeach
-        </tr>
-    </tbody>
-</table>
+<div class="flex flex-wrap w-full">
+    <div class="w-1/4 font-bold text-center border-2 text-sm font-bold text-gray-700 tracking-wide">
+        Nombre
+    </div>
+    <div class="w-1/4 font-bold text-center border-2 text-sm font-bold text-gray-700 tracking-wide">
+        CURP
+    </div>
+    <div class="w-1/4 font-bold text-center border-2 text-sm font-bold text-gray-700 tracking-wide">
+        Numero de telefono 
+    </div>
+    <div class="w-1/4 font-bold text-center border-2 text-sm font-bold text-gray-700 tracking-wide">
+        Selección
+    </div>
+</div>
+@foreach($tutors as $t)
+    <div class="flex flex-wrap w-full">
+        <div class="w-1/4 text-center border-2 text-sm font-bold text-gray-700 tracking-wide">
+            {{$t->name}}
+        </div>
+        <div class="w-1/4 text-center border-2 text-sm font-bold text-gray-700 tracking-wide">
+            {{$t->curp}}
+        </div>
+        <div class="w-1/4 text-center border-2 text-sm font-bold text-gray-700 tracking-wide">
+            {{$t->numberPhone}}
+        </div>
+        <div class="w-1/4 text-center border-2 text-sm font-bold text-gray-700 tracking-wide">
+            <input type="radio" name="idTutor" id="idTutor" value="{{$t->id}}" required>
+            {{$t->id}}
+        </div>
+    </div>
+@endforeach

@@ -121,9 +121,6 @@ class AsesorController extends Controller{
                 showCancelButton: 'false', 
                 showConfirmButton: 'false'
             });"]);
-            $asesor = Asesor::where('user_id', Auth::id())->first();
-            $activities = Actividad::where('asesor_id', $asesor->id)->get();
-            return view('asesor_views.activityToCuadernillo')->with(['alert' => $alert, 'activities' => $activities]);
         } 
         else
         {

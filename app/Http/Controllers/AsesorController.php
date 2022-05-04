@@ -133,12 +133,28 @@ class AsesorController extends Controller{
     public function actividadToCuadernilloStore(Request $request)
     {
         try{
-            $cuadernillo = new Cuadernillo();
-            $cuadernillo->nombre = $request->nombre;
-            $cuadernillo->tema = $request->tema;
-            $cuadernillo->asesor_id = 1;
-            $cuadernillo->save();
-            if(count($request->activities))
+            if(isset($request->nombre) && isset($request->tema))
+            {
+                $cuadernillo = new Cuadernillo();
+                $cuadernillo->nombre = $request->nombre;
+                $cuadernillo->tema = $request->tema;
+                $cuadernillo->asesor_id = 1;
+                $cuadernillo->save();
+            }
+            else
+            {
+                $asesor = Asesor::where('user_id', Auth::id())->first();
+                $activities = Actividad::where('asesor_id', $asesor->id)->get();
+                return view('asesor_views.activityToCuadernillo')->with(['activities' => $activities, 'alert' => "Swal({
+                    title: 'Error!',
+                    text: 'Ingrese todos los datos del cuadernillo',
+                    icon: 'error',
+                    showCancelButton: 'false', 
+                    showConfirmButton: 'false'
+                });"]);
+            }
+            
+            if(count($request->activities) > 0)
             {
                 foreach($request->activities as $activity)
                 {
@@ -158,23 +174,28 @@ class AsesorController extends Controller{
                 $activities = Actividad::where('asesor_id', $asesor->id)->get();
                 return view('asesor_views.activityToCuadernillo')->with(['alert' => $alert, 'activities' => $activities]);
             }
-            else{
-                return back()->with('alert', "Swal({
+            else
+            {
+                $asesor = Asesor::where('user_id', Auth::id())->first();
+                $activities = Actividad::where('asesor_id', $asesor->id)->get();
+                return view('asesor_views.activityToCuadernillo')->with(['activities' => $activities, 'alert' => "Swal({
                     title: 'Error!',
                     text: 'Debe seleccionar al menos una actividad',
                     icon: 'error',
                     showCancelButton: 'false', 
                     showConfirmButton: 'false'
-                });");
+                });"]);
             }
         } catch (Throwable $e) {
-            return back()->with('alert', "Swal({
+            $asesor = Asesor::where('user_id', Auth::id())->first();
+            $activities = Actividad::where('asesor_id', $asesor->id)->get();
+            return view('asesor_views.activityToCuadernillo')->with(['activities' => $activities, 'alert' => "Swal({
                 title: 'Error!',
                 text: 'Algo salio mal, intente de nuevo',
                 icon: 'error',
                 showCancelButton: 'false', 
                 showConfirmButton: 'false'
-            });");
+            });"]);
         }
     }
 

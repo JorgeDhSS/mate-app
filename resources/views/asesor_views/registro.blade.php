@@ -74,7 +74,6 @@
             <div>
               <!--FORMULARIO DEL TUTOR-->
             <div class="registro1" id="registro1" style="visibility:hidden;" >
-                @csrf
                   <div class="flex mb-4">
                     <div class="w-1/2 p-2 text-center">
                         <div class="flex flex-wrap -mx-3 mb-6">
@@ -124,7 +123,6 @@
 
             <!--FORMULARO DEL PRACTICANTE-->
             <div class="registro2" id="registro2" style="visibility:hidden;" >
-              @csrf
                   <div class="flex mb-4">
                     <div class="w-1/2 p-2  text-center">
                         <div class="flex flex-wrap -mx-3 mb-6">
@@ -249,9 +247,10 @@
           }  
         });
 
-      
-
-
-        
+        $(document).ready(function() {
+            @isset($alert)
+                {!!$alert!!}
+            @endisset
+        });
     </script>
 @endsection

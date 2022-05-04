@@ -1,6 +1,18 @@
 @extends('mainLayout')
  
  @section('body')
+
+
+
+ @if(Session::has('principal'))
+	</div>
+    <div class="bg-blue-100 border-t border-b border-blue-500 text-blue-700 px-4 py-3" role="alert">
+    <p class="font-bold">Bienvenido</p>
+    <p class="text-sm">{{session('principal')}}</p>
+    </div>
+
+		
+	@endif
  <!-- component -->
 <div class="h-full w-full absolute">
             <!-- Navigation starts -->

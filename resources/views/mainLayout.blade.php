@@ -12,91 +12,66 @@
 
     </head>
     <header>
-        <div
-            class="grid rounded-2xl justify-evenly bg-gray-50 dark:bg-gray-300 m-3 mt-10 grid-cols-6">
-            <div class="col-span-1 bg-red-50 p-3">
-                <div class="flex  flex-col items-center ">
-                    <a href=""> <button class="tr-300">
-                            <svg xmlns="http://www.w3.org/2000/svg"
-                                class="h-14 w-14 text-gray-500" fill="none"
-                                viewBox="0 0 24 24" stroke="currentColor"
-                                stroke-width="2">
-                                <path stroke-linecap="round" stroke-linejoin="round"
-                                    d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1" />
-                            </svg>
-                            <span class="text-lg font-medium">Salir</span>
-                        </button></a>
-                </div>
-            </div>
-            <div class="col-span-1 bg-red-50 p-3">
-                <div class="flex  flex-col items-center ">
-                    <a href=""> <button class="tr-300">
-                            <svg xmlns="http://www.w3.org/2000/svg"
-                                class="h-14 w-14 text-gray-500" fill="none"
-                                viewBox="0 0 24 24" stroke="currentColor"
-                                stroke-width="2">
-                                <path stroke-linecap="round" stroke-linejoin="round"
-                                    d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1" />
-                            </svg>
-                            <span class="text-lg font-medium">Salir</span>
-                        </button></a>
-                </div>
-            </div>
-            <div class="col-span-1 bg-red-50 p-3">
-                <div class="flex  flex-col items-center ">
-                    <a href=""> <button class="tr-300">
-                            <svg xmlns="http://www.w3.org/2000/svg"
-                                class="h-14 w-14 text-gray-500" fill="none"
-                                viewBox="0 0 24 24" stroke="currentColor"
-                                stroke-width="2">
-                                <path stroke-linecap="round" stroke-linejoin="round"
-                                    d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1" />
-                            </svg>
-                            <span class="text-lg font-medium">Salir</span>
-                        </button></a>
-                </div>
-            </div>
-            <div class="col-span-1 bg-red-50 p-3">
-                <div class="flex  flex-col items-center ">
-                    <a href=""> <button class="tr-300">
-                            <svg xmlns="http://www.w3.org/2000/svg"
-                                class="h-14 w-14 text-gray-500" fill="none"
-                                viewBox="0 0 24 24" stroke="currentColor"
-                                stroke-width="2">
-                                <path stroke-linecap="round" stroke-linejoin="round"
-                                    d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1" />
-                            </svg>
-                            <span class="text-lg font-medium">Salir</span>
-                        </button></a>
-                </div>
-            </div>
-            <div class="col-span-1 bg-red-50 p-3">
-                <div class="flex  flex-col items-center ">
-                    <a href=""> <button class="tr-300">
-                            <svg xmlns="http://www.w3.org/2000/svg"
-                                class="h-14 w-14 text-gray-500" fill="none"
-                                viewBox="0 0 24 24" stroke="currentColor"
-                                stroke-width="2">
-                                <path stroke-linecap="round" stroke-linejoin="round"
-                                    d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1" />
-                            </svg>
-                            <span class="text-lg font-medium">Salir</span>
-                        </button></a>
-                </div>
-            </div>
-            <div class="col-span-1 bg-red-50 p-3">
-                <div class="flex  flex-col items-center ">
-                    <a href=""> <button class="tr-300">
-                            <svg xmlns="http://www.w3.org/2000/svg"
-                                class="h-14 w-14 text-gray-500" fill="none"
-                                viewBox="0 0 24 24" stroke="currentColor"
-                                stroke-width="2">
-                                <path stroke-linecap="round" stroke-linejoin="round"
-                                    d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1" />
-                            </svg>
-                            <span class="text-lg font-medium">Salir</span>
-                        </button></a>
-                </div>
+        <div class="flex flex-wrap py-2">
+            <div class="w-full px-4">
+                <nav class="relative flex flex-wrap items-center justify-between px-2 py-3 bg-blue-500 rounded">
+                    <div class="container px-4 mx-auto flex flex-wrap items-center justify-between">
+                        <div class="w-full relative flex justify-between lg:w-auto px-4 lg:static lg:block lg:justify-start">
+                            <a class="text-sm font-bold leading-relaxed inline-block mr-4 py-2 whitespace-nowrap uppercase text-white" href="#pablo">
+                                pink Menu
+                            </a>
+                            <button class="cursor-pointer text-xl leading-none px-3 py-1 border border-solid border-transparent rounded bg-transparent block lg:hidden outline-none focus:outline-none" type="button">
+                                <span class="block relative w-6 h-px rounded-sm bg-white"></span>
+                                <span class="block relative w-6 h-px rounded-sm bg-white mt-1"></span>
+                                <span class="block relative w-6 h-px rounded-sm bg-white mt-1"></span>
+                            </button>
+                        </div>
+                        <div class="flex lg:flex-grow items-center" id="example-navbar-info">
+                            <ul class="flex flex-col lg:flex-row list-none ml-auto">
+                                <li class="nav-item">
+                                    <a class="px-3 py-2 flex items-center text-xs uppercase font-bold leading-snug text-white hover:opacity-75 a-menu">
+                                        Director
+                                    </a>
+                                    <div class="absolute div-hidden hidden">
+                                        kdklgmm
+                                        mmfsrkg
+                                        gnklhkrt
+                                    </div>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="px-3 py-2 flex items-center text-xs uppercase font-bold leading-snug text-white hover:opacity-75 a-menu">
+                                        Asesor
+                                    </a>
+                                    <div class="absolute div-hidden hidden">
+                                        kdklgmm
+                                        mmfsrkg
+                                        gnklhkrt
+                                    </div>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="px-3 py-2 flex items-center text-xs uppercase font-bold leading-snug text-white hover:opacity-75 a-menu">
+                                        Tutor
+                                    </a>
+                                    <div class="absolute div-hidden hidden">
+                                        kdklgmm
+                                        mmfsrkg
+                                        gnklhkrt
+                                    </div>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="px-3 py-2 flex items-center text-xs uppercase font-bold leading-snug text-white hover:opacity-75 a-menu">
+                                        Practicante
+                                    </a>
+                                    <div class="absolute div-hidden hidden">
+                                        kdklgmm
+                                        mmfsrkg
+                                        gnklhkrt
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </nav>
             </div>
         </div>
         {{---<div class="flex-center position-ref full-height">
@@ -136,5 +111,17 @@
         @yield('body')
     </body>
     <script src="{{ asset('js/app.js') }}"></script>
+    <script>
+        $('.a-menu').on('click', function(){
+            if($(this).parent().find('.div-hidden').hasClass("hidden"))
+            {
+                $(this).parent().find('.div-hidden').removeClass("hidden").addClass("block");
+            }
+            else
+            {
+                $(this).parent().find('.div-hidden').addClass("hidden");
+            }
+        });
+    </script>
     @yield('scripts')
 </html>

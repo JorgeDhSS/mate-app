@@ -14,13 +14,41 @@
                 <h1 class="font-extrabold text-lg text-blue-700"> Seleccione las actividades a asignar </h1>
             </div>
             @foreach($activities as $activity)
-                <div class="col-span-2 p-4 flex flex-wrap border border-2 border-green-500 bg-green-700 text-gray-300 hover:bg-green-500 activityContainer">
+            <div class="col-span-2 p-4 flex flex-wrap border border-2 border-green-500 bg-green-700 text-gray-300 hover:bg-green-500 activityContainer">
                     <div class="w-1/5"><input type="checkbox" name="activities[]" value="{{$activity->id}}" class="border border-gray-600"></div>
-                    <div class="w-2/5"> <label class="font-bold">Título: </label> {{$activity->titulo}}</div>
-                    <div class="w-2/5"> <label class="font-bold">Descripción: </label> {{$activity->descripcion}}</div>
+                    <div class="w-2/5 pb-4 pl-4"> 
+                        <div class="w-full text-left">
+                            <label class="font-bold">Título: </label>
+                        </div>
+                        <div class="w-full text-center">
+                            <label class="pl-4">{{$activity->titulo}}</label>
+                        </div>
+                    </div>
+                    <div class="w-2/5 pb-4 pl-4"> 
+                        <div class="w-full text-left">
+                            <label class="font-bold">Descripción: </label> 
+                        </div>
+                        <div class="w-full text-center">
+                            <label class="pl-4">{{$activity->descripcion}}</label>
+                        </div>
+                    </div>
                     <div class="w-1/5"></div>
-                    <div class="w-2/5"> <label class="font-bold">Fecha de inicio: </label> {{$activity->fechaInicio}}</div>
-                    <div class="w-2/5"> <label class="font-bold">Fecha de cierre: </label> {{$activity->fechaCierre}}</div>
+                    <div class="w-2/5 pb-4 pl-4"> 
+                        <div class="w-full text-left">
+                            <label class="font-bold">Fecha de inicio: </label> 
+                        </div>
+                        <div class="w-full text-center">
+                            <label class="pl-4">{{$activity->fechaInicio}}</label>
+                        </div>
+                    </div>
+                    <div class="w-2/5 pb-4 pl-4"> 
+                        <div class="w-full text-left">
+                            <label class="font-bold">Fecha de cierre: </label> 
+                        </div>
+                        <div class="w-full text-center">
+                            <label class="pl-4">{{$activity->fechaCierre}}</label>
+                        </div>
+                    </div>
                 </div>
                 <br>
             @endforeach
@@ -47,11 +75,14 @@
 </form>
 @endsection
 @section('scripts')
-<script type="text/javascript" src="jquery.numeric.min.js"></script>
     <script type="text/javascript">
+        @isset($alert)
+                {!!$alert!!}
+            @endisset
         $(document).ready(function() {
-            
-            $('#name').numeric();
+            @isset($alert)
+                {!!$alert!!}
+            @endisset
             $('.activityContainer').on('click', function(){
                 if($(this).find('input[name="activities[]"]').is(':checked'))
                 {

@@ -11,13 +11,13 @@ class PracticanteController extends Controller{
     public function showActivity($idActividad){
         $actividad = Actividad::select('descripcion', 'titulo', 'fechaInicio', 'fechaCierre')
             ->where('id', '=', $idActividad)
-            ->get();
+            ->first();
 
-        $preguntaActiv = pregunta::where('idActividad', '=', $idActividad)
-            ->select('pregunta')
+        $preguntaActiv = pregunta::select('pregunta')
+            ->where('idActividad', '=', $idActividad)
             ->get();
         
-        return view('practicante_views.showActivity', $idActividad)->with([
+        return view('practicante_views.showActivity')->with([
             'actividad' => $actividad,
             'preguntaActiv' => $preguntaActiv
         ]);

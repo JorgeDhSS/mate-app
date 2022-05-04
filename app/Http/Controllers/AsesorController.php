@@ -159,22 +159,22 @@ class AsesorController extends Controller{
                 return view('asesor_views.activityToCuadernillo')->with(['alert' => $alert, 'activities' => $activities]);
             }
             else{
-                return back()->with('alert', "Swal({
+                return view('asesor_views.activityToCuadernillo')->with(['alert' => "Swal({
                     title: 'Error!',
                     text: 'Debe seleccionar al menos una actividad',
                     icon: 'error',
                     showCancelButton: 'false', 
                     showConfirmButton: 'false'
-                });");
+                });"]);
             }
         } catch (Throwable $e) {
-            return back()->with('alert', "Swal({
+            return view('asesor_views.activityToCuadernillo')->with(['alert' => "Swal({
                 title: 'Error!',
                 text: 'Algo salio mal, intente de nuevo',
                 icon: 'error',
                 showCancelButton: 'false', 
                 showConfirmButton: 'false'
-            });");
+            });"]);
         }
     }
 

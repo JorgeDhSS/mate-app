@@ -33,9 +33,28 @@
                                         Director
                                     </a>
                                     <div class="absolute div-hidden hidden">
-                                        kdklgmm
-                                        mmfsrkg
-                                        gnklhkrt
+                                        <ul class="flex flex-col list-none ml-auto bg-green-500">
+                                            <li class="nav-item">
+                                                <a class="px-3 py-2 flex items-center text-xs uppercase font-bold leading-snug text-white hover:opacity-75" href="/sesion">
+                                                    Inicio de sesión
+                                                </a> 
+                                            </li>
+                                            <li class="nav-item">
+                                                <a class="px-3 py-2 flex items-center text-xs uppercase font-bold leading-snug text-white hover:opacity-75" href="/data/modifyData">
+                                                    Modificar datos personales
+                                                </a> 
+                                            </li>
+                                            <li class="nav-item">
+                                                <a class="px-3 py-2 flex items-center text-xs uppercase font-bold leading-snug text-white hover:opacity-75" href="/director/addAsesor">
+                                                    Agregar asesores 
+                                                </a> 
+                                            </li>
+                                            <li class="nav-item">
+                                                <a class="px-3 py-2 flex items-center text-xs uppercase font-bold leading-snug text-white hover:opacity-75" href="/director/deleteAsesor">
+                                                    Eliminar Asesores
+                                                </a> 
+                                            </li>
+                                        </ul>
                                     </div>
                                 </li>
                                 <li class="nav-item">
@@ -43,9 +62,43 @@
                                         Asesor
                                     </a>
                                     <div class="absolute div-hidden hidden">
-                                        kdklgmm
-                                        mmfsrkg
-                                        gnklhkrt
+                                        <ul class="flex flex-col list-none ml-auto bg-green-500">
+                                            <li class="nav-item">
+                                                <a class="px-3 py-2 flex items-center text-xs uppercase font-bold leading-snug text-white hover:opacity-75" href="/asesor/addUsuario">
+                                                    Registrar Tutor o Practicante 
+                                                </a> 
+                                            </li>
+                                            <li class="nav-item">
+                                                <a class="px-3 py-2 flex items-center text-xs uppercase font-bold leading-snug text-white hover:opacity-75" href="/asesor/asignarTutor">
+                                                    Asignar tutor 
+                                                </a> 
+                                            </li>
+                                            <li class="nav-item">
+                                                <a class="px-3 py-2 flex items-center text-xs uppercase font-bold leading-snug text-white hover:opacity-75" href="/asesor/groupPract">
+                                                    Agrupar practicante  
+                                                </a> 
+                                            </li>
+                                            <li class="nav-item">
+                                                <a class="px-3 py-2 flex items-center text-xs uppercase font-bold leading-snug text-white hover:opacity-75" href="/asesor/actividadnueva">
+                                                    Crear actividades 
+                                                </a> 
+                                            </li>
+                                            <li class="nav-item">
+                                                <a class="px-3 py-2 flex items-center text-xs uppercase font-bold leading-snug text-white hover:opacity-75" href="/asesor/respuesta">
+                                                    Crear respuestas 
+                                                </a> 
+                                            </li>
+                                            <li class="nav-item">
+                                                <a class="px-3 py-2 flex items-center text-xs uppercase font-bold leading-snug text-white hover:opacity-75" href="/asesor/actividadToCuadernillo/view">
+                                                    Agregar actividades a cuadernillo 
+                                                </a> 
+                                            </li>
+                                            <li class="nav-item">
+                                                <a class="px-3 py-2 flex items-center text-xs uppercase font-bold leading-snug text-white hover:opacity-75" href="/asesor/actividadLeccion">
+                                                    Asignar lecciones a actividades
+                                                </a> 
+                                            </li>
+                                        </ul>
                                     </div>
                                 </li>
                                 <li class="nav-item">
@@ -53,9 +106,14 @@
                                         Tutor
                                     </a>
                                     <div class="absolute div-hidden hidden">
-                                        kdklgmm
-                                        mmfsrkg
-                                        gnklhkrt
+                                        <ul class="flex flex-col list-none ml-auto bg-green-500">
+                                            <li class="nav-item">
+                                            </li>
+                                            <li class="nav-item">
+                                            </li>
+                                            <li class="nav-item">
+                                            </li>
+                                        </ul>
                                     </div>
                                 </li>
                                 <li class="nav-item">
@@ -63,9 +121,23 @@
                                         Practicante
                                     </a>
                                     <div class="absolute div-hidden hidden">
-                                        kdklgmm
-                                        mmfsrkg
-                                        gnklhkrt
+                                        <ul class="flex flex-col list-none ml-auto bg-green-500">
+                                            <li class="nav-item">
+                                                <a class="px-3 py-2 flex items-center text-xs uppercase font-bold leading-snug text-white hover:opacity-75" href="/practicante/showActivity/1">
+                                                    Mostrar actividad
+                                                </a> 
+                                            </li>
+                                            <li class="nav-item">
+                                                <a class="px-3 py-2 flex items-center text-xs uppercase font-bold leading-snug text-white hover:opacity-75" href="#">
+                                                    Responder actividades
+                                                </a> 
+                                            </li>
+                                            <li class="nav-item">
+                                                <a class="px-3 py-2 flex items-center text-xs uppercase font-bold leading-snug text-white hover:opacity-75" href="#">
+                                                    Navegar en el cuadernillo
+                                                </a> 
+                                            </li>
+                                        </ul>
                                     </div>
                                 </li>
                             </ul>
@@ -113,6 +185,7 @@
     <script src="{{ asset('js/app.js') }}"></script>
     <script>
         $('.a-menu').on('click', function(){
+            $('.absolute').addClass('hidden').removeClass('block');
             if($(this).parent().find('.div-hidden').hasClass("hidden"))
             {
                 $(this).parent().find('.div-hidden').removeClass("hidden").addClass("block");

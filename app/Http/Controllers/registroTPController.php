@@ -18,9 +18,11 @@ class registroTPController extends Controller
 
     //Agrega un usuario a la BD
     public function enviarUsuario(Request $request){
-        $count = User::where('email',$request->email)->count();
         try{
-            if ($count == 0) {
+            $countE = User::where('email',$request->email)->count();
+            $countC = Tutor::where('curp',$request->curp)->count();
+
+            if ($countE == 0 && $countC == 0) {
                 $user = new User();
                 $user->name = $request->nombre;
                 $user->email = $request->email;

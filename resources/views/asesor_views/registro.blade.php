@@ -22,7 +22,7 @@
               ¡Advertencia!
             </div>
             <div class="border border-t-0 border-red-400 rounded-b bg-red-100 px-4 py-3 text-red-700">
-              <p>El email que intenta ingresar ya fue registrado anteriormente</p>
+              <p>El Email o CURP que intenta ingresar ya fue registrado anteriormente</p>
             </div>
           </div>
         </div>
@@ -193,10 +193,58 @@
           if(event.target.value == "tutor"){
               document.getElementById('registro2').remove();
               document.getElementById('registro1').style.visibility = 'visible';
+
+              const telefono = document.getElementById("numT");
+              const form = document.getElementById("registro");
+
+              form.addEventListener("submit", e=>{
+                e.preventDefault()
+
+                if (isNaN(parseInt(telefono.value))){
+                  alert("El número de telefono debe ser de tipo numerico");
+                  return;
+                }
+
+                form.submit();
+
+              });
           } else if(event.target.value == "practicante"){
               document.getElementById('registro1').remove();
               document.getElementById('registro2').style.visibility = 'visible';
-        }  
+
+              const form = document.getElementById("registro");
+              const nivEsc = document.getElementById("nivelEsc");
+              const HorasSem = document.getElementById("horasSem");
+              const calificacion = document.getElementById("calificacion");
+              const NoMaterias = document.getElementById("noMaterias");
+
+              form.addEventListener("submit", e=>{
+                e.preventDefault()
+
+                if (isNaN(parseInt(nivEsc.value))){
+                  alert("El Nivel Escolar debe ser de tipo numerico");
+                  return;
+                }
+
+                if (isNaN(parseInt(HorasSem.value))){
+                  alert("Las horas semanales deben ser de tipo numerico");
+                  return;
+                }
+
+                if (isNaN(parseInt(calificacion.value))){
+                  alert("La calificación deben ser de tipo numerico");
+                  return;
+                }
+
+                if (isNaN(parseInt(NoMaterias.value))){
+                  alert("El número de materias debe ser de tipo numerico");
+                  return;
+                }
+
+                form.submit();
+
+              });
+          }  
         });
 
         $(document).ready(function() {

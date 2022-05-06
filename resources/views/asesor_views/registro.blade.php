@@ -1,5 +1,6 @@
 @extends('mainLayout')
 
+<title>Resgistro Tutor o Practicante</title>
 @section('body')
 
     <header class="interfaz_Principal">
@@ -14,6 +15,18 @@
     </header>
         
         <!-- INPUTS PRINCIPALES-->
+        @error('email')
+        <div class="error">
+          <div role="alert">
+            <div class="bg-red-500 text-white font-bold rounded-t px-4 py-2">
+              ¡Advertencia!
+            </div>
+            <div class="border border-t-0 border-red-400 rounded-b bg-red-100 px-4 py-3 text-red-700">
+              <p>El Email o CURP que intenta ingresar ya fue registrado anteriormente</p>
+            </div>
+          </div>
+        </div>
+        @enderror
         <br>
         <div class="px-8">
           <form  id="registro" name="registro" class="w-full max-w-full" method="POST" action="{{route('asesor.enviarUsuario')}}">
@@ -61,7 +74,6 @@
             <div>
               <!--FORMULARIO DEL TUTOR-->
             <div class="registro1" id="registro1" style="visibility:hidden;" >
-                @csrf
                   <div class="flex mb-4">
                     <div class="w-1/2 p-2 text-center">
                         <div class="flex flex-wrap -mx-3 mb-6">
@@ -111,7 +123,6 @@
 
             <!--FORMULARO DEL PRACTICANTE-->
             <div class="registro2" id="registro2" style="visibility:hidden;" >
-              @csrf
                   <div class="flex mb-4">
                     <div class="w-1/2 p-2  text-center">
                         <div class="flex flex-wrap -mx-3 mb-6">
@@ -182,10 +193,64 @@
           if(event.target.value == "tutor"){
               document.getElementById('registro2').remove();
               document.getElementById('registro1').style.visibility = 'visible';
+
+              const telefono = document.getElementById("numT");
+              const form = document.getElementById("registro");
+
+              form.addEventListener("submit", e=>{
+                e.preventDefault()
+
+                if (isNaN(parseInt(telefono.value))){
+                  alert("El número de telefono debe ser de tipo numerico");
+                  return;
+                }
+
+                form.submit();
+
+              });
           } else if(event.target.value == "practicante"){
               document.getElementById('registro1').remove();
               document.getElementById('registro2').style.visibility = 'visible';
-        }  
+
+              const form = document.getElementById("registro");
+              const nivEsc = document.getElementById("nivelEsc");
+              const HorasSem = document.getElementById("horasSem");
+              const calificacion = document.getElementById("calificacion");
+              const NoMaterias = document.getElementById("noMaterias");
+
+              form.addEventListener("submit", e=>{
+                e.preventDefault()
+
+                if (isNaN(parseInt(nivEsc.value))){
+                  alert("El Nivel Escolar debe ser de tipo numerico");
+                  return;
+                }
+
+                if (isNaN(parseInt(HorasSem.value))){
+                  alert("Las horas semanales deben ser de tipo numerico");
+                  return;
+                }
+
+                if (isNaN(parseInt(calificacion.value))){
+                  alert("La calificación deben ser de tipo numerico");
+                  return;
+                }
+
+                if (isNaN(parseInt(NoMaterias.value))){
+                  alert("El número de materias debe ser de tipo numerico");
+                  return;
+                }
+
+                form.submit();
+
+              });
+          }  
+        });
+
+        $(document).ready(function() {
+            @isset($alert)
+                {!!$alert!!}
+            @endisset
         });
     </script>
 @endsection

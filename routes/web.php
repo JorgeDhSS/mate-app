@@ -29,7 +29,6 @@ Route::get('sesion','sesionController@LoginView')->name('sesion.index');
 Route::post('sesion','sesionController@authenticate')->name('sesion.authenticate');
 Route::get('home','homeController@HomeView')->name('home.index');
 
-Route::get('director/addAsesor','DirectorController@createAsesorView')->name('director.addAsesorView');
 Route::post('director/createUser','DirectorController@createUser')->name('director.createUser');
 Route::post('director/saveAsesor','DirectorController@saveAsesor')->name('director.saveAsesor');
 
@@ -37,15 +36,12 @@ Route::post('director/saveAsesor','DirectorController@saveAsesor')->name('direct
 
 //RUTA PARA MOSTRAR LA VISTA DE REGISTRO DE TUTOR Y PRACTICANTE 
 Route::get('asesor/addUsuario','registroTPController@createRegistroView')->name('asesor.addUsuario');
-
 Route::get('director/addAsesor','DirectorController@createAsesorView')->name('director.addAsesor');
 
 //Agrupar practicante
 Route::get('asesor/groupPract', 'AsesorController@groupPractView')->name('asesor.groupPract');
-Route::get('asesor/groupPract', 'AsesorController@showTablePract')->name('asesor.groupPract');
 Route::post('asesor/groupPract/searchNameGroup', 'AsesorController@searchNameGroup')->name('asesor.searchNameGroup');
-Route::post('asesor/groupPract/searchNamePract', 'AsesorController@searchNamePract')->name('asesor.searchNamePract');
-Route::post('asesor/tableSearchPract', 'AsesorController@tableSearchPract')->name('asesor.tableSearchPract');
+Route::post('asesor/showPract','AsesorController@searchPract')->name('asesor.searchPract');
 Route::post('asesor/groupPract', 'AsesorController@saveGroup')->name('asesor.saveGroup');
 
 //Agregar actividad
@@ -74,16 +70,20 @@ Route::post('asesor/enviarUsuario', [registroTPController::class, 'enviarUsuario
 
 
 //VISTA PARA MOSTRAR ASIGNAR TUTOR
+Route::post('asesor/buscarTutor', [AsesorController::class, 'buscarTutor'])->name('asesor.buscarTutor');
 Route::get('asesor/asignarTutor','AsesorController@asignarTutorView')->name('asesor.asignarTutor');
 Route::post('asesor/buscarPracticante','AsesorController@buscarPracticante')->name('asesor.buscarPracticante');
+Route::post('asesor/enviarAsignacion', 'AsesorController@enviarAsignacion')->name('asesor.enviarAsignacion');
 
 
-//VISTA PARA BUSCAR TUTOR
-Route::post('asesor/buscarTutor', [AsesorController::class, 'buscarTutor'])->name('asesor.buscarTutor');
-Route::post('asesor/tutorList', [AsesorController::class, 'tutorList'])->name('asesor.tutorList');
+//RUTAS PARA ELIMINAR ASESOR
+Route::get('director/deleteAsesor', [DirectorController::class, 'createDeleteView'])->name('director.deleteAsesor');
+Route::post('director/buscarAsesor', [DirectorController::class, 'buscarAsesor'])->name('director.buscarAsesor');
+Route::get('director/eliminarAsesor/{id}/{id2}', [DirectorController::class, 'eliminarAsesor'])->name('director.eliminarAsesor');
 
 //ACTIVIDADES-CUADERNILLO 
 Route::get('asesor/actividadToCuadernillo/view', 'AsesorController@actividadToCuadernilloView')->name('asesor.actividadToCuadernillo.view');
+Route::post('asesor/actividadToCuadernillo/store', 'AsesorController@actividadToCuadernilloStore')->name('asesor.actividadToCuadernillo.store');
 
 //Mostrar actividad
 Route::get('practicante/showActivity/{id}', 'PracticanteController@showActivity')->name('practicante.showActivity');
@@ -91,8 +91,6 @@ Route::get('practicante/showActivity/{id}', 'PracticanteController@showActivity'
 //Modificar información
 Route::get('data/modifyData', 'UsersController@modifyDataView')->name('data.modifyData');
 Route::post('data/modifyData', 'UsersController@guardarCambios')->name('data.guardarCambios');
-
-Route::post('asesor/actividadToCuadernillo/store', 'AsesorController@actividadToCuadernilloStore')->name('asesor.actividadToCuadernillo.store');
 
 //Modificar información
 Route::get('asesor/actividadLeccion', 'AsesorController@listaActividadesLeccion')->name('asesor.actividadesLeccion.index');

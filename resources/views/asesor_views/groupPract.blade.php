@@ -2,9 +2,9 @@
     <title>Agrupar practicantes</title>
  
 @section('body')
-    @csrf
-    <form action="">
-        
+    <form action="{{route('asesor.saveGroup')}}" method="POST" id="frmSaveGroup">
+        @csrf
+        <input type="hidden" name="jsonPracticantes" id="inpJson" value="">
         <div class="grid grid-cols-2 w-full gap-4 px-8 py-2 md:px-20 md:py-10">
             <div class="w-full col-span-2 md:col-span-1 bg-blue-700 md:rounded-lg">
                 <h1 class="ml-4 col-span-2 text-3xl md:text-4xl text-white pl-auto">Agrupar practicante</h1>
@@ -20,18 +20,10 @@
             <div class="w-full my-4 ml-4 col-span-2 md:col-span-1">
                 <label class="mb-2 ml-4 text-base font-bold text-blue-700 tracking-wide" for="">Nombre del grupo: </label>
                 <input class="px-4 py-2 ml-2 content-center text-base border-b border-gray-500 focus:outline-none focus:border-green-500 w-2/5" name="btnNamegroup" id="btnNamegroup" type="text" onchange="">
-                <button id="btnSearchNameGroup" class="bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold py-2 px-4 rounded inline-flex items-center" disabled=true>
-                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
-                        <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/>
-                    </svg>
-                </button>
             </div>
             <div class="w-full my-4 ml-4 col-span-2 md:col-span-1">
-                <label class="mb-2 ml-4 text-base font-bold text-blue-700 tracking-wide" for="">Buscar practicante: </label>
+                <label class="mb-2 ml-4 text-base font-bold text-blue-700 tracking-wide" for="">Seleccionar practicante: </label>
                 <input class="ml-2 px-4 py-2 content-center text-base border-b border-gray-500 focus:outline-none focus:border-green-500 w-2/5" name="btnSearchPract" id="btnSearchPract" type="text">
-                <button class="bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold py-2 px-4 rounded inline-flex items-center" disabled=true>
-                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16"><path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/></svg>
-                </button>
             </div>
             <div class="w-full my-4 ml-4 col-span-2 md:col-span-1">
                 <label class="mb-2 ml-4 text-base font-bold text-blue-700 tracking-wide" for="">Seleccionar nivel escolar: </label>
@@ -45,25 +37,11 @@
                     <option value=6>Sexto</option>
                 </select>
             </div>
-            <div class="my-2 ml-4 col-span-2 md:col-span-1" name="table" id="table">
-                <table class="table-auto">
-                    <thead class="bg-gray-100">
-                        <th class="border-2 px-4 py-2 text-base font-bold text-gray-700 tracking-wide">Nombre</th>
-                        <th class="border-2 px-4 py-2 text-base font-bold text-gray-700 tracking-wide">Matrícula</th>
-                        <th class="border-2 px-4 py-2 text-base font-bold text-gray-700 tracking-wide">Nivel escolar</th>
-                        <th class="border-2 px-4 py-2 text-base font-bold text-gray-700 tracking-wide">Acción</th>
-                    </thead>
-                    <tbody id="tableBody">
-                        @foreach($resultados as $resultado)
-                            <tr>
-                                <td class="text-center border-2 px-4 py-2 text-sm font-bold text-gray-700 tracking-wide">{{ $resultado->name }}</td>
-                                <td class="text-center border-2 px-4 py-2 text-sm font-bold text-gray-700 tracking-wide">{{ $resultado->matricula }}</td>
-                                <td class="text-center border-2 px-4 py-2 text-sm font-bold text-gray-700 tracking-wide">{{ $resultado->nivelEscolar }}</td>
-                                <td class="text-center border-2 px-4 py-2 text-sm font-bold text-gray-700 tracking-wide"><input type="checkbox" name="btncheckbox[]" value="{{ $resultado->id }}"></td>
-                            </tr>
-                        @endforeach
-                    </tbody>
-                </table>
+            <div class="my-2 ml-4 col-span-2 md:col-span-1" name="divTable" id="divTable">
+                @php
+                    $practicantes = App\User::has('practicante')->get();
+                @endphp
+                @include('asesor_views.showPract', ["users" => $practicantes])
             </div>
             <div class="w-full my-4 ml-4 col-span-2 md:col-span-1">
                 <button class="bg-blue-100 rounded-lg font-bold text-blue-700 text-center px-4 py-3 transition duration-300 ease-in-out hover:bg-blue-700 hover:text-blue-100 mr-6">Nuevo practicante</button>
@@ -73,21 +51,29 @@
             </div>
         </div>
     </form>
-        
+    @if (session()->has('success'))
+        <input type="hidden" id="existo">
+        {{--<h1>{{ session('success') }}</h1>--}}
+    @endif
+    @error('error')
+        <input type="hidden" id="error">
+    @enderror
 @endsection
 @section('scripts')
+    {{--<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>--}}
     <script type="text/javascript">
         var cambioSelect;
         var seleccion = new Array();
+        var band = 0;
 
         $(document).ready(function(){
+            let practicantes = [];
 
             //Ajax buscar nombre del grupo existente
             $('#btnNamegroup').on('change', function(){
                 var nombreGrupo = document.getElementById('btnNamegroup').value;
                 Swal({
                     title:"Buscando el nombre del grupo...",
-                    //text: "Estás por crear un usuario ¿Confirmas que los datos son correctos?",
                     icon: "warning",
                     buttons: true,
                     dangerMode: true,
@@ -105,9 +91,12 @@
                                 if (response.status == 'ok'){
                                     $('#alertContainer').addClass('bg-red-600').removeClass('bg-green-500');
                                     $('#alertText').html('Error, nombre del grupo en uso');
-                                }else{
+                                    band = 1;
+                                    $('#btnNamegroup').val("");
+                                }else {
                                     $('#alertContainer').removeClass('bg-red-600').addClass('bg-green-500');
                                     $('#alertText').html('Todo bien hasta el momento');
+                                    band = 0;
                                 }
                             },fail: function(){
                             }
@@ -121,59 +110,20 @@
                 cambioSelect = document.getElementById('levelSchool').value;
             });
 
-            $('input:checkbox').on('change', function(){
+            /*$('input:checkbox').on('change', function(){
                 seleccion.push($(this).val());
-            });
+            });*/
 
-            //Enviar los datos para crear un nuevo grupo
-            $('#btnEnviar').on('click', function(){
-                
-                if ('input:checkbox:checked') {
-                    var nameGroup = document.getElementById('btnNamegroup').value;
-                    if (nameGroup == "") {
-                        $('#alertContainer').addClass('bg-red-600').removeClass('bg-green-500');
-                        $('#alertText').html('Error, nombre del grupo vacío');
-                    }else{
-                        Swal({
-                            title:"Creando un nuevo grupo",
-                            text: "Espere un momento...",
-                            icon: "warning",
-                            buttons: true,
-                            dangerMode: true,
-                        }).then((willDelete) => {
-                            if (willDelete) {
-                                $.ajax({
-                                    url: "{{ route('asesor.saveGroup')}}",
-                                    data: {
-                                        'nameGroup' : nameGroup,
-                                        'levelSchool' : cambioSelect,
-                                        //'practicante[]' : JSON.stringify($('[name="btncheckbox[]"]').serializeArray()),
-                                        'practicante' : seleccion,
-                                        "_token": "{{csrf_token()}}"
-                                    },
-                                    dataType:"json",
-                                    method: "POST",
-                                    success: function(response){
-                                        if (response.status == 'ok'){
-                                            $('#alertContainer').removeClass('bg-red-600').addClass('bg-green-500');
-                                            $('#alertText').html('El grupo se ha creado');
-                                        }else{
-                                            //alert(response.status)
-                                            $('#alertContainer').addClass('bg-red-600').removeClass('bg-green-500');
-                                            $('#alertText').html('Error, el proceso de envio fallo');
-                                        }
-                                    },fail: function(){
-                                    }
-                                });
-                                $('#alertText').html('Todo bien hasta el momento');
-                            }
-                        });
-                    }
+            $("input[name='idPracticante[]']").on('click', function(){
+                if($(this).is(':checked')){
+                    let nuevoPracticante = {id_practicante : $(this).val()};
+                    practicantes.push(nuevoPracticante);
                 }else{
-                    $('#alertContainer').addClass('bg-red-600').removeClass('bg-green-500');
-                    $('#alertText').html('Error, debe seleccionar al menos un practicante');
-                    //return;
+                    const search = obj => obj.id_practicante == $(this).val();
+                    practicantes.splice(practicantes.findIndex(search),1);
                 }
+                var jsonPracticantes = JSON.stringify(practicantes);
+                $("input[name='jsonPracticantes']").val(jsonPracticantes);
             });
 
             $('#btnSearchPract').on('change', function(){
@@ -186,15 +136,15 @@
                 }).then((willDelete) => {
                     if (willDelete) {
                         $.ajax({
-                            url: "{{ route('asesor.searchNamePract')}}",
+                            url: "{{ route('asesor.searchPract')}}",
                             data: {
-                                'nombrePrat' : nombrePract,
+                                'name' : nombrePract,
                                 "_token": "{{csrf_token()}}"
                             },
                             dataType:"json",
                             method: "POST",
                             success: function(response){
-                                $('#tableBody').append(response.html);
+                                $('#divTable').html(response.html);
                                 if(response.status=='fail'){
                                     $('#alertContainer').addClass('bg-red-600').removeClass('bg-green-500');
                                     $('#alertText').html('Error, al buscar practicante');
@@ -206,7 +156,43 @@
                     }
                 });
             });
-        });
 
+            $('#btnEnviar').on('click', function(){
+                if (band == 1){
+                    Swal({
+                        icon: "error",
+                        title:"Oops...",
+                        text: 'No se pueden repetir los nombres de grupo',
+                    });
+                    return;
+                }
+
+                if ($('#btnNamegroup').val() == '' || $('#inpJson').val() == '' || $('#levelSchool').val() == '') {
+                    Swal({
+                        icon: "error",
+                        title:"Oops...",
+                        text: 'No puede dejar campos vacios',
+                    });
+                } else {
+                    document.forms["frmSaveGroup"].submit();
+                }
+            });
+
+            if (document.getElementById("existo")) {
+                Swal({
+                    icon: 'success',
+                    title: 'El grupo se ha guardado',
+                    showConfirmButton: false,
+                    timer: 3500
+                });
+            }
+            if (document.getElementById("error")) {
+                Swal({
+                    icon: "error",
+                    title:"Oops...",
+                    text: 'Error al guardar datos',
+                });
+            }
+        });
     </script>
 @endsection

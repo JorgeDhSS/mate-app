@@ -14,4 +14,12 @@ class ActividadCuadernillo extends Model
     protected $fillable = [
         'actividad_id', 'cuadernillo_id'
     ];
+
+    public function cuadernillos(){
+        return $this->belongsToMany(Cuadernillo::class);
+    }
+
+    public function actividad(){
+        return $this->belongsToMany(Actividad::class);
+    }
 }

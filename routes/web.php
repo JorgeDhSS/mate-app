@@ -98,3 +98,5 @@ Route::post('asesor/actividadLeccion/PUT', 'AsesorController@leccionAtividadPut'
 
 //Practicante visualiza cuadernillo
 Route::get('/practicante/cuadernillo',[PracticanteController::class, 'mostrarCuadernos'])->name('practicante_views.cuadernillo');
+
+Route::get('/practicante/actividades/{id}',[PracticanteController::class, 'mostrarActividades'])->name('practicante_views.actividadesMostrar');

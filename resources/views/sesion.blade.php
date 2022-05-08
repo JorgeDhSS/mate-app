@@ -18,9 +18,9 @@
 	@endif
 
 	
- <div class="relative min-h-screen flex items-center justify-center bg-purple-500 py-12 px-4 sm:px-6 lg:px-8 bg-purple-500 bg-no-repeat bg-cover relative items-center">
+ <div class="min-h-screen flex items-center justify-center bg-blue-200 opacity-60 py-12 px-4 sm:px-6 lg:px-8 bg-no-repeat bg-cover items-center">
 
-	<div class="absolute bg-blue-200 opacity-60 inset-0 z-0"></div>
+	<div class="bg-blue-200 opacity-60 inset-0 z-0"></div>
 	<div class="max-w-md w-full space-y-8 p-10 bg-white rounded-xl z-10">
 		<div class="text-center">
 			<h2 class="mt-6 text-3xl font-bold text-gray-900">

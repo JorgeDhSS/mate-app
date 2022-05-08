@@ -14,4 +14,7 @@ class Cuadernillo extends Model
     protected $fillable = [
         'nombre', 'tema', 'asesor_id'
     ];
+    public function cuadernillos(){
+        return $this->belongsToMany(ActividadCuadernillo::class);
+    }   
 }

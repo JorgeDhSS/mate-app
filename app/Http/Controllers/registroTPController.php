@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Tutor;
 use App\User;
 use App\Practicante;
+use Illuminate\Support\Facades\Hash;
 use Throwable;
 
 class registroTPController extends Controller
@@ -26,7 +27,7 @@ class registroTPController extends Controller
                 $user = new User();
                 $user->name = $request->nombre;
                 $user->email = $request->email;
-                $user->password = $request->password;
+                $user->password = Hash::make($request->password);
                 $user->save();
 
                 if ($request->buttonT == "true") {

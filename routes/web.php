@@ -89,7 +89,7 @@ Route::get('asesor/actividadToCuadernillo/view', 'AsesorController@actividadToCu
 Route::post('asesor/actividadToCuadernillo/store', 'AsesorController@actividadToCuadernilloStore')->name('asesor.actividadToCuadernillo.store');
 
 //Mostrar actividad
-Route::get('practicante/showActivity/{id}', 'PracticanteController@showActivity')->name('practicante.showActivity');
+Route::get('practicante/showActivity/{id}/{idCuadernillo}', 'PracticanteController@showActivity')->name('practicante.showActivity');
 
 //Modificar información
 Route::get('data/modifyData', 'UsersController@modifyDataView')->name('data.modifyData');
@@ -99,6 +99,9 @@ Route::post('data/modifyData', 'UsersController@guardarCambios')->name('data.gua
 Route::get('asesor/actividadLeccion', 'AsesorController@listaActividadesLeccion')->name('asesor.actividadesLeccion.index');
 Route::post('asesor/actividadLeccion/PUT', 'AsesorController@leccionAtividadPut')->name('asesor.actividadesLeccion.put');
 
+
+//Agregar respuestas
+Route::post('asesor/sendAnswers', 'PracticanteController@sendAnswers')->name('practicante.sendAnswers');
 //Practicante visualiza cuadernillo
 Route::get('/practicante/cuadernillo',[PracticanteController::class, 'mostrarCuadernos'])->name('practicante_views.cuadernillo');
 

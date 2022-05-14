@@ -47,5 +47,9 @@
                 'datos' => $datos2
             ]);
         }
+
+        public function recuperarcuentaView(Request $request) {
+            return view('recuperarcuenta');
+        }
     }
 ?>

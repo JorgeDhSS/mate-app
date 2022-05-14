@@ -29,6 +29,9 @@ Route::get('sesion','sesionController@LoginView')->name('sesion.index');
 Route::post('sesion','sesionController@authenticate')->name('sesion.authenticate');
 Route::get('home','homeController@HomeView')->name('home.index');
 
+//Recuperar cuenta
+Route::get('recuperarcuenta','UsersController@recuperarcuentaView')->name('recuperarcuenta.index');
+
 Route::post('director/createUser','DirectorController@createUser')->name('director.createUser');
 Route::post('director/saveAsesor','DirectorController@saveAsesor')->name('director.saveAsesor');
 

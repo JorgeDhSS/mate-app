@@ -200,15 +200,6 @@
                                     @endforeach
                                 </select>
                             </div>
-                            <div class="w-full flex flex-col ml-4">
-                                <label class="font-semibold leading-none text-gray-300">Cuadernillo: </label>
-                                <select name="selecionaGrupo" id="selecionaGrupo" class="w-full border-2 rounded-md mt-2 block text-base py-2 border-b border-gray-500 focus:outline-none focus:border-green-500">  
-                                    <option class="bg-white" value="">Cuadernillo</option> 
-                                    @foreach(App\Cuadernillo::get() as $cuadernillo)
-                                        <option class="bg-white" value="{{$cuadernillo->id}}">{{$cuadernillo->nombre}}</option>
-                                    @endforeach
-                                </select>
-                            </div>
                             <div class="w-full md:w-1/2 flex flex-col md:ml-6 md:mt-0 mt-4">
                                 <label class="font-semibold leading-none text-gray-300">Valor: </label>
                                 <input type="" onkeyup="this.value=Numeros(this.value)" class="w-full border-2 rounded-md mt-2 block text-base py-2 border-b border-gray-500 focus:outline-none focus:border-green-500" id="valorActividad" name="valorActividad">

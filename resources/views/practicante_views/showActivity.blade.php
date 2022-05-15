@@ -19,7 +19,7 @@
                         <label class="text-lg" for="">{{$preguntaAc->pregunta}}</label>
                     </div>
                 @endforeach
-            </div>
+            </div> 
         </div>
     </div>
 @endsection

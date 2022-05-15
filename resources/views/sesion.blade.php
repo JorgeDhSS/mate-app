@@ -18,6 +18,8 @@
 	@endif
 
 	
+
+	
  <div class="relative min-h-screen flex items-center justify-center bg-purple-500 py-12 px-4 sm:px-6 lg:px-8 bg-purple-500 bg-no-repeat bg-cover relative items-center">
 
 	<div class="absolute bg-blue-200 opacity-60 inset-0 z-0"></div>

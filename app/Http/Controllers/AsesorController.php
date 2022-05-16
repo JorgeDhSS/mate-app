@@ -209,11 +209,10 @@ class AsesorController extends Controller{
 
     public function leccionAtividadPut(Request $request)
     {
-        
-            $actividad = Actividad::find($request->id_activity);
-            $actividad->leccion_id = $request->id_leccion;
-            $actividad->save();
-            return back();
+        $actividad = Actividad::find($request->id_activity);
+        $actividad->leccion_id = $request->id_leccion;
+        $actividad->save();
+        return back();
     }
 }
 

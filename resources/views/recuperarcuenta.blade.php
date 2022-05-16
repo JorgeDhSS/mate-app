@@ -1,6 +1,20 @@
 @extends('mainLayout')
  
  @section('body')
+
+ @if(Session::has('Datos_incorrectos'))
+ <div role="alert">
+	 <div class="bg-red-500 text-white font-bold rounded-t px-4 py-2">
+	 Error al intentar verificar credenciales
+	 </div>
+	 <div class="border border-t-0 border-red-400 rounded-b bg-red-100 px-4 py-3 text-red-700">
+		 <p>{{session('Datos_incorrectos')}}</p>
+	 </div>
+ </div>
+
+
+	 
+ @endif
     
 	
  <div class="relative min-h-screen flex items-center justify-center bg-purple-500 py-12 px-4 sm:px-6 lg:px-8 bg-purple-500 bg-no-repeat bg-cover relative items-center">
@@ -20,7 +34,11 @@
 		</div>
 		<form class="mt-8 space-y-6" action="" method="POST">
 			@csrf
-
+			<div class="mt-8 content-center">
+				<label class="text-sm font-bold text-gray-700 tracking-wide">Nombre</label>
+				<input class="w-full content-center text-base py-2 border-b border-gray-500 focus:outline-none focus:border-green-500" name="name" type="text " placeholder="Nombre de usuario" value ="{{ old('name') }}" > 
+                {!! $errors->first('name','<span class="helpblock">:message</span>')!!}
+            </div>
 			<div class="relative">
 				<div class="absolute right-0 mt-4"><svg xmlns="http://www.w3.org/2000/svg"
 						class="h-6 w-6 text-green-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -33,8 +51,9 @@
                 {!! $errors->first('email','<span class="helpblock">:message</span>')!!}
             </div>
 			<div class="mt-8 content-center">
-				<label class="text-sm font-bold text-gray-700 tracking-wide">Clabe de recuperación</label>
-				<input class="w-full content-center text-base py-2 border-b border-gray-300 focus:outline-none focus:border-green-500" name="password" type="password" placeholder="Ingresa tu clave de recuperación" > {!! $errors->first('password','<span class="helpblock">:message</span>')!!}
+				<label class="text-sm font-bold text-gray-700 tracking-wide">Clave de recuperación</label>
+				<input class="w-full content-center text-base py-2 border-b border-gray-300 focus:outline-none focus:border-green-500" name="claverecuperacion" type="text" placeholder="Ingresa tu clave de recuperación" > 
+				{!! $errors->first('claverecuperacion','<span class="helpblock">:message</span>')!!}
             </div>
 
 			<div class="mt-8 content-center">

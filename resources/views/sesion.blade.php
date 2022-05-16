@@ -70,7 +70,7 @@
                         </label>
 					</div>
 				<div class="text-sm">
-					<a href="#" class="font-medium text-green-500 hover:text-green-500">
+					<a href="{{route('recuperarcuenta.index')}}" class="font-medium text-green-500 hover:text-green-500">
 								¿Olvidaste tu contraseña?
 					</a>
 				</div>

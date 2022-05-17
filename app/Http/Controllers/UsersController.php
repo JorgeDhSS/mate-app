@@ -56,6 +56,10 @@
             return view('recuperarcuenta');
         }
 
+        public function cambiarcontrasenaView(Request $request) {
+            return view('cambiarcontrasena');
+        }
+
         
     }
 ?>

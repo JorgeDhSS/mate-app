@@ -13,7 +13,7 @@
  </div>
 
 
-	 
+	  
  @endif
     
 	
@@ -57,9 +57,7 @@
             </div>
 
 			<div class="mt-8 content-center">
-				
-				
-				
+		
             </div>
 			<div>
 				<button type="submit" class="w-full flex justify-center bg-green-500 text-gray-100 p-4  rounded-full tracking-wide

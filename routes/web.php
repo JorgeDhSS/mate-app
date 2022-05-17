@@ -31,8 +31,12 @@ Route::get('home','homeController@HomeView')->name('home.index');
 
 //Recuperar cuenta
 Route::get('recuperarcuenta','UsersController@recuperarcuentaView')->name('recuperarcuenta.index');
+<<<<<<< HEAD
 Route::get('cambiarcontrasena','UsersController@cambiarcontrasenaView')->name('cambiarcontrasena.index');
 
+=======
+Route::post('recuperarcuenta','UsersController@authenticateR')->name('recuperarcuenta.authenticateR');
+>>>>>>> d5fec643003042112de5c0131a37ed6cec1450b4
 
 
 Route::post('director/createUser','DirectorController@createUser')->name('director.createUser');

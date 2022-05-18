@@ -103,3 +103,14 @@ Route::post('asesor/sendAnswers', 'PracticanteController@sendAnswers')->name('pr
 Route::get('/practicante/cuadernillo',[PracticanteController::class, 'mostrarCuadernos'])->name('practicante_views.cuadernillo');
 
 Route::get('/practicante/actividades/{id}',[PracticanteController::class, 'mostrarActividades'])->name('practicante_views.actividadesMostrar');
+
+
+
+
+
+
+
+
+//VISTA PARA GENERAR REPORTE PDF
+Route::get('tutor/generarReporte','TutorController@generarReporteView')->name('tutor.generarReporte');
+

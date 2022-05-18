@@ -33,6 +33,7 @@ class sesionController extends Controller{
             $con = 'OK';
         }
         
+        
         $email = $request->get('email');
         $query = User::where('email', '=', $email)->get();
 

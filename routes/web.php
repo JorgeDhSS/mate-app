@@ -8,6 +8,7 @@ use App\Http\Controllers\ActividadesController;
 use App\Http\Controllers\registroTPController;
 use App\Http\Controllers\DirectorController;
 Use App\Http\Controllers\PracticanteController;
+use App\Http\Controllers\TutorController;
 use App\Http\Controllers\UsersController;
 
 /*
@@ -103,3 +104,7 @@ Route::post('asesor/sendAnswers', 'PracticanteController@sendAnswers')->name('pr
 Route::get('/practicante/cuadernillo',[PracticanteController::class, 'mostrarCuadernos'])->name('practicante_views.cuadernillo');
 
 Route::get('/practicante/actividades/{id}',[PracticanteController::class, 'mostrarActividades'])->name('practicante_views.actividadesMostrar');
+
+
+// REPORTES 
+Route::get('/tutor/listarPuntajes/', [TutorController::class, 'getPuntuajes'])->name('tutor.listarPuntajes');

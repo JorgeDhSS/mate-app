@@ -31,3 +31,47 @@
     </div>
     @endforeach 
 @endsection	
+@section('scripts')
+    <script type="text/javascript">
+        @isset($alert)
+            {!!$alert!!}
+        @endisset
+        $('#btnSub').on("click", function (){
+            flag = false;
+            $('.answer option:selected').each(function(){
+                if($(this).val() != "")
+                {
+                    flag = true;
+                }
+            });
+            alert(flag)
+            if(flag)
+            {
+                Swal({
+                    title: "Espera un momento...",
+                    text: "Hay preguntas sin respuesta, dichas preguntas no serán contabilizadas por el sistema",
+                    icon: "warning",
+                    buttons: true,
+                    dangerMode: true,
+                })
+                .then((willDelete) => {
+                    if (willDelete) {
+                        formulario.submit();
+                    }
+                });
+            }
+            else
+            {
+                formulario.submit();
+            }
+        });
+        
+    </script>
+@endsection
+@section('scripts')
+    <script type="text/javascript">
+        @isset($alert)
+            {!!$alert!!}
+        @endisset
+    </script>
+@endsection

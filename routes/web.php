@@ -8,6 +8,7 @@ use App\Http\Controllers\ActividadesController;
 use App\Http\Controllers\registroTPController;
 use App\Http\Controllers\DirectorController;
 Use App\Http\Controllers\PracticanteController;
+use App\Http\Controllers\TutorController;
 use App\Http\Controllers\UsersController;
 
 /*
@@ -28,6 +29,11 @@ Route::get('director/addAsesor','DirectorController@createAsesorView')->name('di
 Route::get('sesion','sesionController@LoginView')->name('sesion.index');
 Route::post('sesion','sesionController@authenticate')->name('sesion.authenticate');
 Route::get('home','homeController@HomeView')->name('home.index');
+
+//Recuperar cuenta
+Route::get('recuperarcuenta','UsersController@recuperarcuentaView')->name('recuperarcuenta.index');
+Route::post('recuperarcuenta','UsersController@authenticateR')->name('recuperarcuenta.authenticateR');
+
 
 Route::post('director/createUser','DirectorController@createUser')->name('director.createUser');
 Route::post('director/saveAsesor','DirectorController@saveAsesor')->name('director.saveAsesor');
@@ -109,8 +115,8 @@ Route::get('/practicante/actividades/{id}',[PracticanteController::class, 'mostr
 
 
 
-
-
 //VISTA PARA GENERAR REPORTE PDF
 Route::get('tutor/generarReporte','TutorController@generarReporteView')->name('tutor.generarReporte');
 
+// REPORTES 
+Route::get('/tutor/listarPuntajes/', [TutorController::class, 'getPuntuajes'])->name('tutor.listarPuntajes');

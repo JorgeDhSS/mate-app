@@ -32,7 +32,7 @@ class DirectorController extends Controller
                 $user->password = Hash::make($password);
                 $user->save();
 
-                /*$objDemo = new \stdClass();
+                $objDemo = new \stdClass();
                 $objDemo->demo_one = 'Demo One Value';
                 $objDemo->demo_two = 'Demo Two Value';
                 $objDemo->sender = 'SenderUserName';

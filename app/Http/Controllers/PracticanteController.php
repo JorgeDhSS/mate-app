@@ -14,7 +14,6 @@ use App\ActividadCuadernillo;
 
 
 class PracticanteController extends Controller{
-    
     public function showActivity($idActividad, $idCuadernillo){
         $actividad = Actividad::where('id', '=', $idActividad)
             ->first();
@@ -49,40 +48,45 @@ class PracticanteController extends Controller{
         {
             try
             {
-            foreach($request->respuesta as $idPregunta => $idRespuesta)
-            {
-                $respuestaPregunta = new Respuesta_Pregunta();
-                $respuestaPregunta->actividad_id = $request->idActivity;
-                $respuestaPregunta->cuadernillo_id = $request->idCuadernillo;
-                $practicante = Practicante::where('user_id', Auth::id())->first();
-                $respuestaPregunta->practicante_id = $practicante->id;
-                $respuestaPregunta->pregunta_id = $idPregunta;
-
-                $respuesta = respuesta::find($idRespuesta);
-                if($respuesta != null)
+                foreach($request->respuesta as $idPregunta => $idRespuesta)
                 {
-                    if($respuesta->valor == 1)
+                    $respuestaPregunta = new Respuesta_Pregunta();
+                    $respuestaPregunta->actividad_id = $request->idActivity;
+                    $respuestaPregunta->cuadernillo_id = $request->idCuadernillo;
+                    $practicante = Practicante::where('user_id', Auth::id())->first();
+                    $respuestaPregunta->practicante_id = $practicante->id;
+                    $respuestaPregunta->pregunta_id = $idPregunta;
+
+                    $respuesta = respuesta::find($idRespuesta);
+                    if($respuesta != null)
                     {
-                        $respuestaPregunta->correcta = true;
+                        if($respuesta->valor == 1)
+                        {
+                            $respuestaPregunta->correcta = true;
+                        }
+                        else
+                        {
+                            $respuestaPregunta->correcta = false;
+                        }
                     }
                     else
                     {
-                        $respuestaPregunta->correcta = false;
+                        $respuestaPregunta->correcta = true;
                     }
+                    $respuestaPregunta->save();
+                    
                 }
-                else
-                {
-                    $respuestaPregunta->correcta = true;
-                }
-                $respuestaPregunta->save();
                 $actividad = Actividad::where('id', '=', $request->idActivity)->first();
 
                 $preguntaActiv = pregunta::where('idActividad', '=', $request->idActivity)->get();
                 
-                return view('practicante_views.showActivity')->with([
-                    'actividad' => $actividad,
-                    'preguntaActiv' => $preguntaActiv,
-                    'idCuadernillo' => $request->idCuadernillo,
+                $actividades = ActividadCuadernillo::where('cuadernillo_id','=',$request->idCuadernillo)
+                    ->join('actividads','actividad_cuadernillos.actividad_id','=','actividads.id')
+                    ->select('actividads.id','actividads.titulo', 'actividads.fechaInicio','actividads.fechaCierre')
+                    ->get();
+                
+                return view('practicante_views.actividadesMostrar', compact('actividades'))
+                ->with([
                     'alert' => "Swal({
                         title: '¡Éxito!',
                         text: 'Respuestas recibida',
@@ -91,7 +95,6 @@ class PracticanteController extends Controller{
                         showConfirmButton: 'false'
                     });"
                 ]);
-            }
             } catch (Throwable $e) 
             {
                 $actividad = Actividad::where('id', '=', $request->idActivity)->first();

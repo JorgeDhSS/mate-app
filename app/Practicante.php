@@ -31,4 +31,8 @@ class Practicante extends Model
     {
         return $this->hasMany(PracticanteGrupo::class);
     }
+    public function respuesta_pregunta()
+    {
+        return $this->hasMany(Respuesta_Pregunta::class);
+    }
 }

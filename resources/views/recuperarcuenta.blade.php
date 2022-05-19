@@ -21,23 +21,10 @@
 		</div>
 		<form class="mt-8 space-y-6" action="{{route('recuperarcuenta.authenticateR')}}" method="POST">
 			@csrf
-			<div class="mt-8 content-center">
-				<label class="text-sm font-bold text-gray-700 tracking-wide">Nombre</label>
-				<input class="w-full content-center text-base py-2 border-b border-gray-500 focus:outline-none focus:border-green-500" name="name" type="text " placeholder="Nombre de usuario" value ="{{ old('name') }}" > 
-            </div>
-			<div class="relative">
-				<div class="absolute right-0 mt-4"><svg xmlns="http://www.w3.org/2000/svg"
-						class="h-6 w-6 text-green-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-						<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-							d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
-					</svg>
-                </div>
-				<label class="text-sm font-bold text-gray-700 tracking-wide">Correo electrónico</label>
-				<input class=" w-full text-base py-2 border-b border-gray-300 focus:outline-none focus:border-green-500" name="email" type="text" placeholder="Dirección de correo electrónico" value ="{{ old('email') }}"> 
-            </div>
+
 			<div class="mt-8 content-center">
 				<label class="text-sm font-bold text-gray-700 tracking-wide">Clave de recuperación</label>
-				<input class="w-full content-center text-base py-2 border-b border-gray-300 focus:outline-none focus:border-green-500" name="claverecuperacion" type="text" placeholder="Ingresa tu clave de recuperación" > 
+				<input class="w-full content-center text-base py-2 border-b border-gray-300 focus:outline-none focus:border-green-500" name="claverecuperacion" di="claverecuperacion" type="text" placeholder="Ingresa tu clave de recuperación" > 
 
             </div>
 
@@ -46,14 +33,12 @@
 				<input class="w-full content-center text-base py-2 border-b border-gray-300 focus:outline-none focus:border-green-500" name="newname" type="text" placeholder="Ingresa tu nombre nuevo" > 
 
             </div>
-
 			<div class="mt-8 content-center">
-		
             </div>
 			<div>
 				<button type="submit" class="w-full flex justify-center bg-green-500 text-gray-100 p-4  rounded-full tracking-wide
                                 font-semibold  focus:outline-none focus:shadow-outline hover:bg-green-700 shadow-lg cursor-pointer transition ease-in duration-300">
-                    Verificar información
+                    Cambiar contraseña
                 </button>
 			</div>
 			

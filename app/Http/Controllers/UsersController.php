@@ -129,19 +129,16 @@ class UsersController extends Controller
             return redirect('recuperarcuenta');
         }
 
-<<<<<<< HEAD
-        public function cambiarcontrasenaView(Request $request) {
-            return view('cambiarcontrasena');
-        }
-
-        
-=======
+             
 
 
 
 
         # $remember =request()->filled('remember_me');
 
->>>>>>> d5fec643003042112de5c0131a37ed6cec1450b4
+    }
+
+    public function cambiarcontrasenaView(Request $request) {
+        return view('cambiarcontrasena');
     }
 }

@@ -32,7 +32,7 @@ Route::get('home','homeController@HomeView')->name('home.index');
 
 //Recuperar cuenta
 Route::get('recuperarcuenta','UsersController@recuperarcuentaView')->name('recuperarcuenta.index');
-Route::get('cambiarcontrasena','UsersController@cambiarcontrasenaView')->name('cambiarcontrasena.index');
+Route::get('cambiarcontrasena/{id}','UsersController@cambiarcontrasenaView')->name('cambiarcontrasena.index');
 
 Route::post('recuperarcuenta','UsersController@authenticateR')->name('recuperarcuenta.authenticateR');
 

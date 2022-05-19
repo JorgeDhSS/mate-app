@@ -65,27 +65,9 @@ class UsersController extends Controller
     public function authenticateR(Request $request)
     {
 
-        // $idUserSelect = $request->get('id');
-        $credentials = $request->validate([
-            'name' => ['required', 'string'],
-            'email' => ['required', 'string'],
-            'password' => ['', ''],
-            'claverecuperacion' => ['required', 'string'],
-        ]);
-
-
-
-        if (Auth::attempt($credentials)) {
-            $con = 'OK';
-        }
-
-        $idUserSelect = $request->get('id');
-        
-        $datos = User::select('name', 'email', 'password', 'claverecuperacion')
-            ->where('id', '=', $idUserSelect)
-            ->first();
-            echo $idUserSelect;
-
+      
+   
+        $id = $request->get('id');
         $email = $request->get('email');
         $query = User::where('email', '=', $email)->get();
 
@@ -94,6 +76,14 @@ class UsersController extends Controller
 
         $claverecuperacion = $request->get('claverecuperacion');
         $queryC = User::where('claverecuperacion', '=', $claverecuperacion)->get();
+
+        $idActual = User::select('id')
+            ->where('name', '=', $name)
+            ->where('email', '=', $email)
+            ->where('claverecuperacion', '=', $claverecuperacion)
+            ->first();
+            echo $name . ":". $idActual;
+            
 
         /*if (Auth::attempt(['email' => $email, 'name' => $name, 'claverecuperacion'=>$claverecuperacion])){
             $listo = 'estasAutenticado';
@@ -118,8 +108,11 @@ class UsersController extends Controller
 
                 $claverecuperacion = $request->get('claverecuperacion');
                 //$hashpn = $queryN[0]->name
-                echo "Hola mundo";
-                return redirect('home');
+                //return request()->only('id');
+                //return redirect('home');
+                return view('modifyData')->with([
+                    'datos' => $datos
+                ]);
             } else {
                 $request->session()->flash('Datos_incorrectos', 'Clave de recuperacion incorrecta');
                 return redirect('recuperarcuenta');

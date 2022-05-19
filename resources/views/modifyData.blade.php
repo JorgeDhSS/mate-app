@@ -54,7 +54,7 @@
                         //footer: '<a href="">Why do I have this issue?</a>'
                     });
                 }
-                if ($('#claverecuperacion').val() == ''){
+                else if ($('#claverecuperacion').val() == ''){
                     Swal.fire({
                         icon: 'error',
                         title: 'Oops...',

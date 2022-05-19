@@ -122,11 +122,16 @@ class UsersController extends Controller
             return redirect('recuperarcuenta');
         }
 
+             
 
 
 
 
         # $remember =request()->filled('remember_me');
 
+    }
+
+    public function cambiarcontrasenaView(Request $request) {
+        return view('cambiarcontrasena');
     }
 }

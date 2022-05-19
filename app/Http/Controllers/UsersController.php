@@ -90,7 +90,7 @@ class UsersController extends Controller
         }*/
 
 
-
+ 
         if ($query->count() != 0) {
             $hashc = $query[0]->claverecuperacion;
             //$claverecuperacion = $request->get('claverecuperacion');
@@ -110,8 +110,8 @@ class UsersController extends Controller
                 //$hashpn = $queryN[0]->name
                 //return request()->only('id');
                 //return redirect('home');
-                return view('modifyData')->with([
-                    'datos' => $datos
+                return view('cambiarcontrasena')->with([
+                    'id' => $id
                 ]);
             } else {
                 $request->session()->flash('Datos_incorrectos', 'Clave de recuperacion incorrecta');

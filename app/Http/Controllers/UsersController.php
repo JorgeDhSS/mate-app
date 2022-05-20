@@ -63,60 +63,25 @@ class UsersController extends Controller
 
 
     public function authenticateR(Request $request)
-    {
-        #return request()->only('name','email','password');
+    { 
+        $clave = $request->claverecuperacion;
+        $datos = User::select('id')
+            ->where('claverecuperacion', '=', $clave)
+            ->first();
+        $name = $request->newname;
+        
+        
+
+        if($clave != ""){
+            $update = User::where('id', '=', $datos->id)
+            ->update(['name' => $name]);
 
 
-        $email = $request->get('email');
-        $query = User::where('email', '=', $email)->get();
-
-        $name = $request->get('name');
-        $queryN = User::where('name', '=', $name)->get();
-
-        $claverecuperacion = $request->get('claverecuperacion');
-        $queryC = User::where('claverecuperacion', '=', $claverecuperacion)->get();
-
-        if ($query->count() != 0) {
-            $hashc = $query[0]->claverecuperacion;
-            $claverecuperacion = $request->get('claverecuperacion');
-
-            if ($queryN->count() != 0) {
-
-                $hashpn = $queryN[0]->name;
-                $name = $request->get('name');
-            } else {
-                $request->session()->flash('Datos_incorrectos', 'Nombre de usuario no encontrado');
-                return redirect('recuperarcuenta');
-            }
-            if($queryC->count() != 0){
-                $hashpn = $queryN[0]->name;
-                $claverecuperacion = $request->get('claverecuperacion');
-                return redirect('home');
-
-
-            }else{
-                $request->session()->flash('Datos_incorrectos', 'Clave de recuperacion incorrecta');
-                return redirect('recuperarcuenta');
-
-            }
-        } else {
-            $request->session()->flash('Datos_incorrectos', 'El email no coincide con tu nombre de usuario');
-            return redirect('recuperarcuenta');
         }
 
+    }
 
-
-
-
-
-
-
-
-
-
-
-
-        # $remember =request()->filled('remember_me');
-
+    public function cambiarcontrasenaView(Request $request) {
+        return view('cambiarcontrasena');
     }
 }

@@ -13,6 +13,8 @@
 
 		
 	@endif
+
+    
  <!-- component -->
 <div class="h-full w-full absolute">
             <!-- Navigation starts -->
@@ -240,6 +242,7 @@
                                         <img class="rounded-full h-10 w-10 object-cover" src="https://tuk-cdn.s3.amazonaws.com/assets/components/sidebar_layout/sl_1.png" alt="avatar" />
                                         @if (auth()->check())
                                             <p class="text-gray-800 text-base leading-4 ml-2">{{auth()->user()->name}}</p>
+                                       
                                         @endif
                                     </button>
                                     <ul class="p-2 w-40 border-r bg-white absolute rounded z-40 left-0 shadow mt-64 hidden">
@@ -339,7 +342,10 @@
                     <!-- Place your content here -->
                 </div>
             </div>
-        </div> <script>
+        </div> 
+        <script>
+
+           
             function dropdownHandler(element) {
                 let single = element.getElementsByTagName("ul")[0];
                 single.classList.toggle("hidden");

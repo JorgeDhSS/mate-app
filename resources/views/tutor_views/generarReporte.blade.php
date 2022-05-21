@@ -25,9 +25,9 @@
                     </a>
                 </div>
                 <div class="w-1/2 p-2 text-center">
-                    <button class="bg-blue-500 hover:bg-blue-400 text-white font-bold py-2 px-4 border-b-4 border-blue-700 hover:border-blue-500 rounded">
+                    <a class="bg-blue-500 hover:bg-blue-400 text-white font-bold py-2 px-4 border-b-4 border-blue-700 hover:border-blue-500 rounded">
                     Enviar por email
-                    </button>
+                    </a>
                 </div>
             </div>
         </div>
@@ -35,35 +35,38 @@
 
     <!--MOSTRAR PRACTICANTES-->
     @foreach($respuestas as $r)
-        <div class="w-full rounded overflow-hidden shadow-lg">
-            <div class="w-full p-2 bg-gray-400 text-center"><div class="font-bold text-xl mb-2 text-center">{{$r->user->name}}</div></div>
+        <div class="p-8 m-8 rounded overflow-hidden shadow-2xl border-8 border-8 border-8 lg:border-l-0 lg:border-t lg:border-black bg-blue-300 border-8">
+            <div class="w-full p-2 text-center"><div class="text-3xl font-black font-serif text-lg text-gray-800 text-center">{{$r->user->name}}</div></div>
             <div class="flex mb-4">
-                <div class="w-1/2 p-2 bg-gray-400 text-center">
+                <div class="w-1/2 p-2 text-center">
                     <div class="px-6 py-4">
                         <p class="">
-                            <label >Matricula: </label>{{$r->matricula}}
+                            <label class="text-3xl font-black " >Matricula: </label> <label class="font-medium text-2xl">{{$r->matricula}}</label>
                             <br>
                             <br>
-                            <label >Nivel Escolar: </label>{{$r->nivelEscolar}}
+                            <label class="text-3xl font-black" >Nivel Escolar: </label><label class="font-medium text-2xl">{{$r->nivelEscolar}}</label>
                         </p>
                     </div>
                 </div>
-                <div class="w-1/2 p-2 bg-gray-500 text-center">
+                <div class="w-1/2 p-2 text-center">
                     <div class="px-6 py-4">
                         <div class="font-bold text-xl mb-2 text-center"></div>
                             <div class="flex mb-4">
-                                <div class="w-1/2 p-2 bg-gray-400 text-center">
+                                <div class="w-1/2 p-2 text-center">
                                     <p class="">
-                                        <label class="text-center">Aciertos</label>
+                                        <label class="text-center font-black text-3xl text-green-500">Aciertos</label>
                                         <br>
                                         <input class="border border-green-500 text-center h-20 w-20" type="text" value="{{$r->correctas}}">
                                     </p>
                                 </div>
-                                <div class="w-1/2 p-2 bg-gray-500 text-center">
+                                <div class="w-1/2 p-2 text-center">
                                     <p class="">
-                                        <label class="text-center">Total de puntos</label>
+                                        <label class="text-center font-black text-3xl text-red-500">Errores</label>
                                         <br>
-                                        <input class="border border-green-500 text-center h-20 w-20" type="text" value="{{$r->total}}">
+                                        <?php 
+                                            $errores = $r->total - $r->correctas
+                                        ?>
+                                        <input class="border border-4 border-red-500  text-center h-20 w-20" type="text" value="{{$errores}}">
                                     </p>
                                 </div>
                             </div>

@@ -34,6 +34,7 @@
     </div>
 
     <!--MOSTRAR PRACTICANTES-->
+    @isset($respuestas)
     @foreach($respuestas as $r)
         <div class="w-full rounded overflow-hidden shadow-lg">
             <div class="w-full p-2 bg-gray-400 text-center"><div class="font-bold text-xl mb-2 text-center">{{$r->user->name}}</div></div>
@@ -73,5 +74,5 @@
             
         </div>
     @endforeach
-
+    @endisset
 @endsection

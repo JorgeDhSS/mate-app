@@ -42,6 +42,7 @@
                 <div class="w-1/2 p-2 text-center">
                     <div class="px-6 py-4">
                         <p class="">
+                            <br>
                             <label class="text-3xl font-black " >Matricula: </label> <label class="font-medium text-2xl">{{$r->matricula}}</label>
                             <br>
                             <br>
@@ -54,21 +55,17 @@
                         <div class="font-bold text-xl mb-2 text-center"></div>
                             <div class="flex mb-4">
                                 <div class="w-1/2 p-2 text-center">
-                                    <p class="">
-                                        <label class="text-center font-black text-3xl text-green-500">Aciertos</label>
-                                        <br>
-                                        <input class="border border-green-500 text-center h-20 w-20" type="text" value="{{$r->correctas}}">
-                                    </p>
+                                    <label class="text-center font-black text-3xl text-green-500">Aciertos</label>
+                                    <br>
+                                    <input class="border border-green-500 text-center h-20 w-20" type="text" value="{{$r->correctas}}">
                                 </div>
                                 <div class="w-1/2 p-2 text-center">
-                                    <p class="">
-                                        <label class="text-center font-black text-3xl text-red-500">Errores</label>
-                                        <br>
-                                        <?php 
-                                            $errores = $r->total - $r->correctas
-                                        ?>
-                                        <input class="border border-4 border-red-500  text-center h-20 w-20" type="text" value="{{$errores}}">
-                                    </p>
+                                    <label class="text-center font-black text-3xl text-red-500">Errores</label>
+                                    <br>
+                                    <?php 
+                                        $errores = $r->total - $r->correctas
+                                    ?>
+                                    <input class="border border-4 border-red-500  text-center h-20 w-20" type="text" value="{{$errores}}">
                                 </div>
                             </div>
                         </div>

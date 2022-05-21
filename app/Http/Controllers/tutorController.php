@@ -6,9 +6,9 @@ use App\Practicante;
 use App\Tutor;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+//use Barryvdh\DomPDF\Facade as PDF;
 //use PDF;
-//use Barryvdh\DomPDF\PDF;
-use Barryvdh\DomPDF\Facade as PDF;
+use Barryvdh\DomPDF\Facade\Pdf as PDF;
 use Illuminate\Support\Facades\Storage;
 
 class TutorController extends Controller{

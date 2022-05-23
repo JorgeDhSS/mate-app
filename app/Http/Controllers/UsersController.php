@@ -62,12 +62,26 @@ class UsersController extends Controller
     }
 
 
+    /*public function authenticateR(Request $request)
+    { 
+        $clave = $request->claverecuperacion;
+        $datos = User::select('id')
+            ->where('claverecuperacion', '=', $clave)
+            ->first();
+        $name = $request->newname;
+        
+        
+        if($clave != ""){
+            $update = User::where('id', '=', $datos->id)
+            ->update(['name' => $name]);
+        }
+    }*/
+
     public function authenticateR(Request $request)
     {
+        #return request()->only('name','email','password');
 
-      
-   
-        $id = $request->get('id');
+
         $email = $request->get('email');
         $query = User::where('email', '=', $email)->get();
 
@@ -77,54 +91,33 @@ class UsersController extends Controller
         $claverecuperacion = $request->get('claverecuperacion');
         $queryC = User::where('claverecuperacion', '=', $claverecuperacion)->get();
 
-        $idActual = User::select('id')
-            ->where('name', '=', $name)
-            ->where('email', '=', $email)
-            ->where('claverecuperacion', '=', $claverecuperacion)
-            ->first();
-            echo $name . ":". $idActual;
-            
-
-        /*if (Auth::attempt(['email' => $email, 'name' => $name, 'claverecuperacion'=>$claverecuperacion])){
-            $listo = 'estasAutenticado';
-        }*/
-
-
- 
         if ($query->count() != 0) {
-            $hashc = $query[0]->claverecuperacion;
-            //$claverecuperacion = $request->get('claverecuperacion');
+            
+            $claverecuperacion = $request->get('claverecuperacion');
 
             if ($queryN->count() != 0) {
 
-                //$hashpn = $queryN[0]->name;
+                $hashpn = $queryN[0]->name;
                 $name = $request->get('name');
-                //return redirect('home');
             } else {
                 $request->session()->flash('Datos_incorrectos', 'Nombre de usuario no encontrado');
                 return redirect('recuperarcuenta');
             }
-            if ($queryC->count() != 0) {
-
+            if($queryC->count() != 0){
+                $hashpn = $queryN[0]->name;
                 $claverecuperacion = $request->get('claverecuperacion');
-                //$hashpn = $queryN[0]->name
-                //return request()->only('id');
-                //return redirect('home');
-                return view('cambiarcontrasena')->with([
-                    'id' => $id
-                ]);
-            } else {
+                return redirect('home');
+
+
+            }else{
                 $request->session()->flash('Datos_incorrectos', 'Clave de recuperacion incorrecta');
                 return redirect('recuperarcuenta');
+
             }
         } else {
             $request->session()->flash('Datos_incorrectos', 'El email no coincide con tu nombre de usuario');
             return redirect('recuperarcuenta');
         }
-
-             
-
-
 
 
         # $remember =request()->filled('remember_me');

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Crypt;
 use Illuminate\Contracts\Encryption\DecryptException;
@@ -68,15 +69,13 @@ class UsersController extends Controller
         $datos = User::select('id')
             ->where('claverecuperacion', '=', $clave)
             ->first();
-        $name = $request->newname;
+        $pass = $request->newpassword;
         
         
 
         if($clave != ""){
             $update = User::where('id', '=', $datos->id)
-            ->update(['name' => $name]);
-
-
+            ->update(['password' => Hash::make($pass)]);
         }
 
     }

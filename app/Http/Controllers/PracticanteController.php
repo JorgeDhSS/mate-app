@@ -7,6 +7,10 @@ use App\pregunta;
 
 
 class PracticanteController extends Controller{
+
+    public function __construct(){
+        $this->middleware('auth.practicante')->except('');
+    }
     
     public function showActivity($idActividad){
         $actividad = Actividad::select('descripcion', 'titulo', 'fechaInicio', 'fechaCierre')

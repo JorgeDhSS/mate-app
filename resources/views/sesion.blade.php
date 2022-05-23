@@ -85,6 +85,28 @@
 		</form>
 	</div>
 </div>
+@if (session()->has('alert'))
+	@isset($alert)
+		{!!$alert!!}
+	@endisset
+	{{-- <input type="hidden" id="existo"> --}}
+@endif 
+@endsection
+@section('scripts')
+	<script>
+		$(document).ready(function(){
+			if (document.getElementById("existo")) {
+                Swal({
+                    icon: 'success',
+                    title: 'El grupo se ha guardado',
+                    showConfirmButton: false,
+                    timer: 3500
+                });
+            }
 
- @endsection
- 
+			@isset($alert)
+	        	{!!$alert!!}
+    		@endisset
+		});
+	</script> 
+@endsection

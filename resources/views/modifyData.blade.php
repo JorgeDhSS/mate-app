@@ -11,16 +11,16 @@
                 @csrf
                 <div class="grid grid-cols-2 gap-4">
                     <div class="col-span-2 md:col-span-2 mb-4">        
-                        <label class="block text-gray-700 text-lg font-bold mb-2" for="username">
+                        <label class="block text-lg font-bold text-blue-700 tracking-wide mb-2" for="username">
                             Nombre completo
                         </label>
-                        <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="username" name="username" type="text" value="{{$datos->name}}">
+                        <input class="ml-2 px-4 py-2 content-center text-base border-b border-gray-500 focus:outline-none focus:border-green-500 w-full" id="username" name="username" type="text" value="{{$datos->name}}">
                     </div>
                     <div class="col-span-2 md:col-span-2 mb-4">        
-                        <label class="block text-gray-700 text-lg font-bold mb-2" for="username">
+                        <label class="block text-lg font-bold text-blue-700 tracking-wide mb-2" for="username">
                             Correo electronico
                         </label>
-                        <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="email" name="email" type="email" value="{{$datos->email}}">
+                        <input class="ml-2 px-4 py-2 content-center text-base border-b border-gray-500 focus:outline-none focus:border-green-500 w-full" id="email" name="email" type="email" value="{{$datos->email}}">
                     </div>
                     <div class="flex items-center justify-between">
                         <input type="button" id="btnEnviar" value="Guardar información" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">

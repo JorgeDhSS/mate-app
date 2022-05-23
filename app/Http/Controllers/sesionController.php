@@ -9,7 +9,7 @@ use App\User;
 #use Illuminate\Validation\ValidationException;
 
 class sesionController extends Controller{
-    
+
     public function LoginView(Request $request) {
         return view('sesion');
     }
@@ -72,6 +72,15 @@ class sesionController extends Controller{
 
        # $remember =request()->filled('remember_me');
         
+    }
+
+    public function logout(){
+        try{
+            Auth::logout();
+            return view('sesion');
+        } catch (\Exception $th){
+            return back()->withErrors(['Error'=>'Al cerrar sesión']);
+        }
     }
 }
 

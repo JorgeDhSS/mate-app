@@ -10,6 +10,11 @@ use Throwable;
 
 class registroTPController extends Controller
 {
+
+    public function __construct(){
+        $this->middleware('auth.asesor')->except('');
+    }
+
     public function createRegistroView()
     {
         return view('asesor_views.registro');

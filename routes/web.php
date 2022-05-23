@@ -95,3 +95,6 @@ Route::post('data/modifyData', 'UsersController@guardarCambios')->name('data.gua
 //Modificar información
 Route::get('asesor/actividadLeccion', 'AsesorController@listaActividadesLeccion')->name('asesor.actividadesLeccion.index');
 Route::post('asesor/actividadLeccion/PUT', 'AsesorController@leccionAtividadPut')->name('asesor.actividadesLeccion.put');
+
+//Cerrar sesión
+Route::get('sesion','sesionController@logout')->name('sesion.logout');

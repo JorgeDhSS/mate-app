@@ -140,6 +140,21 @@
                                         </ul>
                                     </div>
                                 </li>
+                                <li class="nav-item">
+                                    {{--Nombre del usuario--}}
+                                    @if (auth()->check())
+                                        <div class="inline">
+                                            <form action="{{action('sesionController@logout')}}" method="GET" id="frmLogout">
+                                                <input id="cerrarSesion" class="px-3 py-2 flex items-center text-xs uppercase font-bold leading-snug text-white hover:opacity-75 bg-red-600 rounded-md" type="button" value="Cerrar Sesión">
+                                            </form>
+                                            {{-- <a id="cerrarSesion" class="px-3 py-2 flex items-center text-xs uppercase font-bold leading-snug text-white hover:opacity-75 bg-red-600 rounded-md" >Cerrar sesión</a> --}}
+                                            {{-- <button type="button" id="cerrarSesion" class="px-3 py-2 flex items-center text-xs uppercase font-bold leading-snug text-white hover:opacity-75 bg-red-600 rounded-md">
+                                                Cerrar sesión
+                                            </button> --}}
+                                        </div>
+                                    @endif
+                                    {{--Cerrar sesión--}}
+                                </li>
                             </ul>
                         </div>
                     </div>
@@ -194,6 +209,23 @@
             {
                 $(this).parent().find('.div-hidden').addClass("hidden");
             }
+        });
+
+        $(document).ready(function(){
+            $('#cerrarSesion').on('click', function(){
+                Swal({
+                    title:"¿Desea cerrar sesión?",
+                    icon: "warning",
+                    buttons: true,
+                    dangerMode: true,
+                    confirmButtonText: 'Confirmar',
+                }).then((willDelete) => {
+                    if (willDelete) {
+                        //document.getElementById('cerrarSesion').href = '{{action('sesionController@logout')}}';
+                        document.forms["frmLogout"].submit();
+                    }
+                });
+            });
         });
     </script>
     @yield('scripts')

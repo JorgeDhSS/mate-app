@@ -15,6 +15,11 @@ use Throwable;
 
 class DirectorController extends Controller
 {
+
+    public function __construct(){
+        $this->middleware('auth.director')->except('');
+    }
+
     public function createAsesorView()
     {
         return view('director_views.createAsesor');

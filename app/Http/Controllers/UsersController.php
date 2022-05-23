@@ -8,6 +8,11 @@
     use App\User;
 
     class UsersController extends Controller{
+
+        public function __construct(){
+            $this->middleware('auth.sesion')->except('');
+        }
+
         public function modifyDataView(){
             $idUser = Auth::user()->id;
             $datos = User::select('name', 'email', 'password')

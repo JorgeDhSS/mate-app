@@ -29,8 +29,8 @@
             </div>
 
 			<div class="mt-8 content-center">
-				<label class="text-sm font-bold text-gray-700 tracking-wide">Nombre nuevo</label>
-				<input class="w-full content-center text-base py-2 border-b border-gray-300 focus:outline-none focus:border-green-500" name="newname" type="text" placeholder="Ingresa tu nombre nuevo" > 
+				<label class="text-sm font-bold text-gray-700 tracking-wide">Contraseña nueva</label>
+				<input class="w-full content-center text-base py-2 border-b border-gray-300 focus:outline-none focus:border-green-500" name="newpassword" type="text" placeholder="Ingresa tu contraseña nueva" > 
 
             </div>
 			<div class="mt-8 content-center">

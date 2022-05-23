@@ -117,8 +117,10 @@ Route::get('/practicante/actividades/{id}',[PracticanteController::class, 'mostr
 
 
 
-//VISTA PARA GENERAR REPORTE PDF
-Route::get('tutor/generarReporte','TutorController@generarReporteView')->name('tutor.generarReporte');
+
+
 
 // REPORTES 
 Route::get('/tutor/listarPuntajes/', [TutorController::class, 'getPuntuajes'])->name('tutor.listarPuntajes');
+Route::get('tutor/generarReporte','TutorController@imprimir')->name('tutor.generarReporte');
+

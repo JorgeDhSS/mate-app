@@ -15,19 +15,6 @@
     </header>
         
         <!-- INPUTS PRINCIPALES-->
-        @error('email')
-        <div class="error">
-          <div role="alert">
-            <div class="bg-red-500 text-white font-bold rounded-t px-4 py-2">
-              ¡Advertencia!
-            </div>
-            <div class="border border-t-0 border-red-400 rounded-b bg-red-100 px-4 py-3 text-red-700">
-              <p>El Email o CURP que intenta ingresar ya fue registrado anteriormente</p>
-            </div>
-          </div>
-        </div>
-        @enderror
-        <br>
         <div class="px-8">
           <form  id="registro" name="registro" class="w-full max-w-full" method="POST" action="{{route('asesor.enviarUsuario')}}">
             @csrf
@@ -195,6 +182,8 @@
               document.getElementById('registro1').style.visibility = 'visible';
 
               const telefono = document.getElementById("numT");
+              const curp = document.getElementById("curp");
+              const domicilio = document.getElementById("domicilio");
               const form = document.getElementById("registro");
 
               form.addEventListener("submit", e=>{
@@ -204,6 +193,37 @@
                   alert("El número de telefono debe ser de tipo numerico");
                   return;
                 }
+
+                if (telefono.value.length < 10){
+                    alert("El numero de telefono no puede ser menor a 10 digitos");
+                    return;
+                }
+
+                if (telefono.value.length > 10){
+                    alert("El numero de telefono no puede ser mayor a 10 digitos");
+                    return;
+                }
+
+                if (curp.value.length < 18){
+                    alert("El curp del tutor no puede ser menor a 18 digitos");
+                    return;
+                }
+
+                if (curp.value.length > 18){
+                    alert("El curp del tutor no puede ser mayor a 18 digitos");
+                    return;
+                }
+
+                if (isNaN(parseInt(domicilio.value))){
+                  
+                  
+                }else{
+                  alert("El domicilio no puede estar conformado solo por numeros");
+                  return;
+
+                }
+
+
 
                 form.submit();
 
@@ -216,6 +236,7 @@
               const nivEsc = document.getElementById("nivelEsc");
               const HorasSem = document.getElementById("horasSem");
               const calificacion = document.getElementById("calificacion");
+              const matricula = document.getElementById("matriculaP");
               const NoMaterias = document.getElementById("noMaterias");
 
               form.addEventListener("submit", e=>{
@@ -226,8 +247,30 @@
                   return;
                 }
 
+                if (nivEsc.value == '0' ){
+                  alert("El Nivel Escolar debe ser mayor a 0");
+                  return;
+                }
+
+
+                if (nivEsc.value >= '7' ){
+                  alert("El Nivel Escolar debe ser menor a 7");
+                  return;
+                }
+
+                if (matricula.value == '0' ){
+                  alert("La matricula no puede ser 0");
+                  return;
+                }
+
+
                 if (isNaN(parseInt(HorasSem.value))){
                   alert("Las horas semanales deben ser de tipo numerico");
+                  return;
+                }
+
+                if(HorasSem.value == '0'){
+                  alert("Las horas semanales no pueden ser 0");
                   return;
                 }
 
@@ -236,8 +279,18 @@
                   return;
                 }
 
+                if (calificacion.value >= 11){
+                  alert("La calificación no puede ser mayor a 11");
+                  return;
+                }
+
                 if (isNaN(parseInt(NoMaterias.value))){
                   alert("El número de materias debe ser de tipo numerico");
+                  return;
+                }
+
+                if (NoMaterias.value == 0){
+                  alert("El número de materias no puede ser igual a 0");
                   return;
                 }
 

@@ -123,17 +123,17 @@
                                     <div class="absolute div-hidden hidden">
                                         <ul class="flex flex-col list-none ml-auto bg-green-500">
                                             <li class="nav-item">
-                                                <a class="px-3 py-2 flex items-center text-xs uppercase font-bold leading-snug text-white hover:opacity-75" href="/practicante/showActivity/1">
+                                                <a class="px-3 py-2 flex items-center text-xs uppercase font-bold leading-snug text-white hover:opacity-75" href="/practicante/showActivity/165/37">
                                                     Mostrar actividad
                                                 </a> 
                                             </li>
                                             <li class="nav-item">
-                                                <a class="px-3 py-2 flex items-center text-xs uppercase font-bold leading-snug text-white hover:opacity-75" href="#">
+                                                <a class="px-3 py-2 flex items-center text-xs uppercase font-bold leading-snug text-white hover:opacity-75" href="">
                                                     Responder actividades
                                                 </a> 
                                             </li>
                                             <li class="nav-item">
-                                                <a class="px-3 py-2 flex items-center text-xs uppercase font-bold leading-snug text-white hover:opacity-75" href="#">
+                                                <a class="px-3 py-2 flex items-center text-xs uppercase font-bold leading-snug text-white hover:opacity-75" href="/practicante/cuadernillo">
                                                     Navegar en el cuadernillo
                                                 </a> 
                                             </li>
@@ -200,7 +200,7 @@
     <script src="{{ asset('js/app.js') }}"></script>
     <script>
         $('.a-menu').on('click', function(){
-            $('.absolute').addClass('hidden').removeClass('block');
+            $('.div-hidden').addClass('hidden').removeClass('block');
             if($(this).parent().find('.div-hidden').hasClass("hidden"))
             {
                 $(this).parent().find('.div-hidden').removeClass("hidden").addClass("block");

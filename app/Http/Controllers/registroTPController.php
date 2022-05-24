@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Tutor;
 use App\User;
 use App\Practicante;
+use Illuminate\Support\Facades\Hash;
 use Throwable;
 
 class registroTPController extends Controller
@@ -26,15 +27,32 @@ class registroTPController extends Controller
         try{
             $countE = User::where('email',$request->email)->count();
             $countC = Tutor::where('curp',$request->curp)->count();
+            $countP = Practicante::where('matricula',$request->matricula)->count();
 
-            if ($countE == 0 && $countC == 0) {
-                $user = new User();
-                $user->name = $request->nombre;
-                $user->email = $request->email;
-                $user->password = $request->password;
-                $user->save();
-
+            if($countE >= 1){
+                return view('asesor_views.registro')->with(['alert' => "Swal({
+                    title: 'Error!',
+                    text: 'El email que ingreso, ya ha sido ingresado anteriormente',
+                    icon: 'error',
+                    showCancelButton: 'false', 
+                    showConfirmButton: 'false'
+                });"]);
+            }elseif($countC >= 1){
+                return view('asesor_views.registro')->with(['alert' => "Swal({
+                    title: 'Error!',
+                    text: 'El CURP que ingreso, ya ha sido ingresado anteriormente',
+                    icon: 'error',
+                    showCancelButton: 'false', 
+                    showConfirmButton: 'false'
+                });"]);
+            }else{
                 if ($request->buttonT == "true") {
+                    $user = new User();
+                    $user->name = $request->nombre;
+                    $user->email = $request->email;
+                    $user->password = Hash::make($request->password);
+                    $user->save();
+
                     $tutor = new Tutor();
                     $tutor->curp = $request->curpT;
                     $tutor->domicilio = $request->domicilioT;
@@ -42,8 +60,40 @@ class registroTPController extends Controller
                     $tutor->user_id = $user->id;
                     $tutor->save();
 
-                    return back();
-                }else{
+                    return view('asesor_views.registro')->with(['alert' => "Swal({
+                        title: 'Éxito!',
+                        text: 'Ha agregado un Tutor',
+                        icon: 'success',
+                        showCancelButton: 'false', 
+                        showConfirmButton: 'false'
+                    });"]);
+                }
+            }
+
+            if($countE >= 1){
+                return view('asesor_views.registro')->with(['alert' => "Swal({
+                    title: 'Error!',
+                    text: 'El email que ingreso, ya ha sido ingresado anteriormente',
+                    icon: 'error',
+                    showCancelButton: 'false', 
+                    showConfirmButton: 'false'
+                });"]);
+            }elseif ($countP >= 1) {
+                return view('asesor_views.registro')->with(['alert' => "Swal({
+                    title: 'Error!',
+                    text: 'La Matricula que ingreso ha sido ingresada anteriormente',
+                    icon: 'error',
+                    showCancelButton: 'false', 
+                    showConfirmButton: 'false'
+                });"]);
+            }else{
+                if ($request->buttonT != "true"){
+                    $user = new User();
+                    $user->name = $request->nombre;
+                    $user->email = $request->email;
+                    $user->password = Hash::make($request->password);
+                    $user->save();
+    
                     $practicante = new Practicante();
                     $practicante->matricula = $request->matricula;
                     $practicante->nivelEscolar = $request->nivelEsc;
@@ -54,11 +104,15 @@ class registroTPController extends Controller
                     $practicante->tutor_id = "0";
                     $practicante->asesor_id = "0";
                     $practicante->save();
-
-                    return back();
+    
+                    return view('asesor_views.registro')->with(['alert' => "Swal({
+                        title: 'Éxito!',
+                        text: 'Ha agregado un Practicante',
+                        icon: 'success',
+                        showCancelButton: 'false', 
+                        showConfirmButton: 'false'
+                    });"]);
                 }
-            }else{
-                return back()->withErrors(['email'=>'Email ya registrado anteriormente'])->withInput([request('email')]);
             }
         } catch (Throwable $e) {
             return $e;

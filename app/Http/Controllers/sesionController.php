@@ -33,40 +33,49 @@ class sesionController extends Controller{
             $con = 'OK';
         }
         
+        
         $email = $request->get('email');
         $query = User::where('email', '=', $email)->get();
 
         $name = $request->get('name');
         $queryN = User::where('name', '=', $name)->get();
-
-
-        if ($query->count() != 0){
-            $hashp = $query[0]->password;
-            $password = $request->get('password');
-
-                if($queryN->count() != 0){
-
-                    $hashpn = $queryN[0]->name;
-                    $name = $request->get('name');
-                    
+        
+            if ($query->count() != 0){
+                $hashp = $query[0]->password;
+                $password = $request->get('password');
+    
+                    if($queryN->count() != 0){
+    
+                        $hashpn = $queryN[0]->name;
+                        $name = $request->get('name');
+                        
+                    }else {
+                        $request->session()->flash('Datos_incorrectos', 'Nombre de usuario no encontrado');
+                        return redirect('sesion');
+                        
+                    }
+    
+                if (password_verify($password, $hashp)){
+                    return view('home');
                 }else {
-                    $request->session()->flash('Datos_incorrectos', 'Nombre de usuario no encontrado');
+                    
+                    $request->session()->flash('Datos_incorrectos', 'Tu contraseña no coincide con tu nombre de usuario');
                     return redirect('sesion');
+                  
                 }
-
-            if (password_verify($password, $hashp)){
-                return view('home');
+               
             }else {
-                
-                $request->session()->flash('Datos_incorrectos', 'Tu contraseña no coincide con tu nombre de usuario');
+                $request->session()->flash('Datos_incorrectos', 'El email no coincide con tu nombre de usuario');
                 return redirect('sesion');
-              
             }
-           
-        }else {
-            $request->session()->flash('Datos_incorrectos', 'El email no coincide con tu nombre de usuario');
-            return redirect('sesion');
-        }
+            
+            
+
+      
+
+
+        
+        
         
 
 

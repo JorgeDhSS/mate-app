@@ -1,70 +1,81 @@
 @extends('mainLayout')
 @section('body')
-@csrf
-<div class="py-16 bg-gray-50 overflow-hidden">
-    <div class="container m-auto px-6 space-y-8 text-gray-500 md:px-12">
-        <div>
-            <span class="text-gray-600 text-lg font-semibold">Main features</span>
-            <h2 class="mt-4 text-2xl text-gray-900 font-bold md:text-4xl">A technology-first approach to payments <br class="lg:block" hidden> and finance</h2>
-        </div>
-        <div class="mt-16 grid border divide-x divide-y rounded-xl overflow-hidden sm:grid-cols-2 lg:divide-y-0 lg:grid-cols-3 xl:grid-cols-4">
-            <div class="relative group bg-white transition hover:z-[1] hover:shadow-2xl">
-                <div class="relative p-8 space-y-8">
-                    <img src="https://tailus.io/sources/blocks/stacked/preview/images/avatars/burger.png" class="w-10" width="512" height="512" alt="burger illustration">
-                    
-                    <div class="space-y-2">
-                        <h5 class="text-xl text-gray-800 font-medium transition group-hover:text-yellow-600">First feature</h5>
-                        <p class="text-sm text-gray-600">Neque Dolor, fugiat non cum doloribus aperiam voluptates nostrum.</p>
-                    </div>
-                    <a href="#" class="flex justify-between items-center group-hover:text-yellow-600">
-                        <span class="text-sm">Read more</span>
-                        <span class="-translate-x-4 opacity-0 text-2xl transition duration-300 group-hover:opacity-100 group-hover:translate-x-0">&RightArrow;</span>
-                    </a>
-                </div>
-            </div>
-            <div class="relative group bg-white transition hover:z-[1] hover:shadow-2xl">
-                <div class="relative p-8 space-y-8">
-                    <img src="https://tailus.io/sources/blocks/stacked/preview/images/avatars/trowel.png" class="w-10" width="512" height="512" alt="burger illustration">
-                    
-                    <div class="space-y-2">
-                        <h5 class="text-xl text-gray-800 font-medium transition group-hover:text-yellow-600">Second feature</h5>
-                        <p class="text-sm text-gray-600">Neque Dolor, fugiat non cum doloribus aperiam voluptates nostrum.</p>
-                    </div>
-                    <a href="#" class="flex justify-between items-center group-hover:text-yellow-600">
-                        <span class="text-sm">Read more</span>
-                        <span class="-translate-x-4 opacity-0 text-2xl transition duration-300 group-hover:opacity-100 group-hover:translate-x-0">&RightArrow;</span>
-                    </a>
-                </div>
-            </div>
-            <div class="relative group bg-white transition hover:z-[1] hover:shadow-2xl">
-                <div class="relative p-8 space-y-8">
-                    <img src="https://tailus.io/sources/blocks/stacked/preview/images/avatars/package-delivery.png" class="w-10" width="512" height="512" alt="burger illustration">
-                    
-                    <div class="space-y-2">
-                        <h5 class="text-xl text-gray-800 font-medium transition group-hover:text-yellow-600">Third feature</h5>
-                        <p class="text-sm text-gray-600">Neque Dolor, fugiat non cum doloribus aperiam voluptates nostrum.</p>
-                    </div>
-                    <a href="#" class="flex justify-between items-center group-hover:text-yellow-600">
-                        <span class="text-sm">Read more</span>
-                        <span class="-translate-x-4 opacity-0 text-2xl transition duration-300 group-hover:opacity-100 group-hover:translate-x-0">&RightArrow;</span>
-                    </a>
-                </div>
-            </div>
-            <div class="relative group bg-gray-100 transition hover:z-[1] hover:shadow-2xl lg:hidden xl:block">
-                <div class="relative p-8 space-y-8 border-dashed rounded-lg transition duration-300 group-hover:bg-white group-hover:border group-hover:scale-90">
-                    <img src="https://tailus.io/sources/blocks/stacked/preview/images/avatars/metal.png" class="w-10" width="512" height="512" alt="burger illustration">
-                    
-                    <div class="space-y-2">
-                        <h5 class="text-xl text-gray-800 font-medium transition group-hover:text-yellow-600">More features</h5>
-                        <p class="text-sm text-gray-600">Neque Dolor, fugiat non cum doloribus aperiam voluptates nostrum.</p>
-                    </div>
-                    <a href="#" class="flex justify-between items-center group-hover:text-yellow-600">
-                        <span class="text-sm">Read more</span>
-                        <span class="-translate-x-4 opacity-0 text-2xl transition duration-300 group-hover:opacity-100 group-hover:translate-x-0">&RightArrow;</span>
-                    </a>
-                </div>
+<header class="interfaz_Principal">
+    <div class="titulo_cata">
+        <div class="bg-blue-700">
+            <div class="max-w-7xl mx-auto py-3 px-3 sm:px-6 lg:px-8">
+                <h1 style="font-size: 32px;" class="font-extrabold; text-white pl-16 "> Tus cuadernillos disponibles</h1>
             </div>
         </div>
     </div>
+    <link href="https://unpkg.com/tailwindcss@^1.0/dist/tailwind.min.css" rel="stylesheet">
+</header>
+@csrf
+
+@foreach(App\Cuadernillo::get() as $cuadernillo)
+<!--<div class="container m-auto px-12 space-y-56 text-gray-500 md:px-56">
+    <a href="">
+        <div class="w-full max-w-sm md:w-1/3 p-3 mb-6 md:mb-0">
+            <div class="rounded overflow-hidden shadow-lg">
+                <div class="titulo_cata">
+                    <div class="h-14 bg-gradient-to-r from-cyan-500 to-blue-500">
+                        <div class="px-6 py-4 ">
+                            <div class="font-bold text-xl mb-2 ">{{$cuadernillo->nombre}}</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="px-6 pt-4 pb-2">
+                    <div class="flex flex-wrap -mx-3 mb-6 text-black">
+                        {{$cuadernillo->tema}}
+                    </div>
+                    <div class="w-full md:w-1/2 px-3 mb-6 md:mb-0">
+                        <a class="bg-blue-500 hover:bg-blue-400 text-white font-bold py-2 px-4 border-b-4 border-blue-700 hover:border-blue-500 rounded" href="{{route('practicante_views.actividadesMostrar', $cuadernillo->id)}}">Ver actividades
+
+                        </a>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+    </a>
+
+</div>-->
+
+
+
+<!--<div class="bg-gradient-to-b from-blue-100 to-blue-100">-->
+<br>
+<br>
+<div class="container m-auto px-12 space-y-56 text-green-400 md:px-64">
+    <a href="#" class="flex flex-col items-center bg-green rounded-lg border shadow-md md:flex-row md:max-w-xl hover:bg-green-200 dark:border-red-700 dark:bg-green-800 dark:hover:bg-green-700">
+        <div class="flex flex-col justify-between p-4 leading-normal">
+            <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-green">{{$cuadernillo->nombre}}</h5>
+            <p class="mb-3 font-normal text-gray-700 dark:text-gray-400"> {{$cuadernillo->tema}}</p>
+
+            <div id="botones">
+                <input type="button" onclick="javascript:cambia_de_pagina();" value="Ver activiades" name="btnActividades" id="btnActividades" class="pl-auto bg-blue-100 rounded-lg font-bold text-blue-700 text-center px-4 py-3 transition duration-300 ease-in-out hover:bg-blue-700 hover:text-blue-100 mr-6" />
+            </div>
+        </div>
+    </a>
 </div>
-@endsection	
+<!--</div>-->
+@endforeach
+@endsection
+
+@section('scripts')
+<script>
+        function cambia_de_pagina() {
+
+        location.href = "{{route('practicante_views.actividadesMostrar', $cuadernillo->id)}}"
+        }
+            
+        
+       
+    </script>
+
+
+
+
+
+@endsection

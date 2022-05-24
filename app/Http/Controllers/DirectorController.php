@@ -37,13 +37,13 @@ class DirectorController extends Controller
                 $user->password = Hash::make($password);
                 $user->save();
 
-                /*$objDemo = new \stdClass();
+                $objDemo = new \stdClass();
                 $objDemo->demo_one = 'Demo One Value';
                 $objDemo->demo_two = 'Demo Two Value';
                 $objDemo->sender = 'SenderUserName';
                 $objDemo->receiver = 'ReceiverUserName';
     
-                Mail::to($user->email)->send(new SendWelcomeEmail($objDemo));*/
+                Mail::to($user->email)->send(new SendWelcomeEmail($objDemo));
                 return (['status' => 'ok', 'hashedPassword' => $user->password, 'userId' => $user->id]);
             }
             else

@@ -8,6 +8,7 @@ use App\Http\Controllers\ActividadesController;
 use App\Http\Controllers\registroTPController;
 use App\Http\Controllers\DirectorController;
 Use App\Http\Controllers\PracticanteController;
+use App\Http\Controllers\TutorController;
 use App\Http\Controllers\UsersController;
 
 /*
@@ -28,6 +29,13 @@ Route::get('director/addAsesor','DirectorController@createAsesorView')->name('di
 Route::get('sesion','sesionController@LoginView')->name('sesion.index');
 Route::post('sesion','sesionController@authenticate')->name('sesion.authenticate');
 Route::get('home','homeController@HomeView')->name('home.index');
+
+//Recuperar cuenta
+Route::get('recuperarcuenta','UsersController@recuperarcuentaView')->name('recuperarcuenta.index');
+Route::get('cambiarcontrasena','UsersController@cambiarcontrasenaView')->name('cambiarcontrasena.index');
+
+Route::post('recuperarcuenta','UsersController@authenticateR')->name('recuperarcuenta.authenticateR');
+
 
 Route::post('director/createUser','DirectorController@createUser')->name('director.createUser');
 Route::post('director/saveAsesor','DirectorController@saveAsesor')->name('director.saveAsesor');
@@ -86,7 +94,7 @@ Route::get('asesor/actividadToCuadernillo/view', 'AsesorController@actividadToCu
 Route::post('asesor/actividadToCuadernillo/store', 'AsesorController@actividadToCuadernilloStore')->name('asesor.actividadToCuadernillo.store');
 
 //Mostrar actividad
-Route::get('practicante/showActivity/{id}', 'PracticanteController@showActivity')->name('practicante.showActivity');
+Route::get('practicante/showActivity/{id}/{idCuadernillo}', 'PracticanteController@showActivity')->name('practicante.showActivity');
 
 //Modificar información
 Route::get('data/modifyData', 'UsersController@modifyDataView')->name('data.modifyData');
@@ -98,3 +106,15 @@ Route::post('asesor/actividadLeccion/PUT', 'AsesorController@leccionAtividadPut'
 
 //Cerrar sesión
 Route::get('sesion','sesionController@logout')->name('sesion.logout');
+
+//Agregar respuestas
+Route::post('asesor/sendAnswers', 'PracticanteController@sendAnswers')->name('practicante.sendAnswers');
+//Practicante visualiza cuadernillo
+Route::get('/practicante/cuadernillo',[PracticanteController::class, 'mostrarCuadernos'])->name('practicante_views.cuadernillo');
+
+Route::get('/practicante/actividades/{id}',[PracticanteController::class, 'mostrarActividades'])->name('practicante_views.actividadesMostrar');
+
+// REPORTES 
+Route::get('/tutor/listarPuntajes/', [TutorController::class, 'getPuntuajes'])->name('tutor.listarPuntajes');
+Route::get('tutor/generarReporte','TutorController@imprimir')->name('tutor.generarReporte');
+

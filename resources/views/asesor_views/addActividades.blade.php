@@ -205,6 +205,7 @@
                                 <input type="" onkeyup="this.value=Numeros(this.value)" class="w-full border-2 rounded-md mt-2 block text-base py-2 border-b border-gray-500 focus:outline-none focus:border-green-500" id="valorActividad" name="valorActividad">
                             </div>        
                         </div>
+                        
                         <div>
                             <div class="w-full flex flex-col mt-8">
                                 <label class="font-semibold leading-none text-gray-300">Nombre de la actividad</label>

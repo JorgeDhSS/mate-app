@@ -15,6 +15,11 @@ use Throwable;
 
 class DirectorController extends Controller
 {
+
+    public function __construct(){
+        $this->middleware('auth.director')->except('');
+    }
+
     public function createAsesorView()
     {
         return view('director_views.createAsesor');
@@ -38,7 +43,7 @@ class DirectorController extends Controller
                 $objDemo->sender = 'SenderUserName';
                 $objDemo->receiver = 'ReceiverUserName';
     
-                Mail::to($user->email)->send(new SendWelcomeEmail($objDemo));*/
+                Mail::to($user->email)->send(new SendWelcomeEmail($objDemo));
                 return (['status' => 'ok', 'hashedPassword' => $user->password, 'userId' => $user->id]);
             }
             else

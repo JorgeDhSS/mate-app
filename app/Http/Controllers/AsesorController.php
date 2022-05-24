@@ -19,6 +19,10 @@ use Illuminate\Support\Facades\Auth;
 use Throwable;
 
 class AsesorController extends Controller{
+
+    public function __construct(){
+        $this->middleware('auth.asesor')->except('');
+    }
     
     public function groupPractView(){
         $resultados = Practicante::join('users', 'users.id', '=', 'practicantes.user_id')
@@ -57,7 +61,7 @@ class AsesorController extends Controller{
 
             return redirect()->back()->with('success', 'IT WORKS!');
         } catch (\Exception $th) {
-            return back()->withErrors(['Error'=>'Contraseña no valida']);
+            return back()->withErrors(['Error'=>'El grupo no se ha guardado']);
         }
     }
 

@@ -104,6 +104,8 @@ Route::post('data/modifyData', 'UsersController@guardarCambios')->name('data.gua
 Route::get('asesor/actividadLeccion', 'AsesorController@listaActividadesLeccion')->name('asesor.actividadesLeccion.index');
 Route::post('asesor/actividadLeccion/PUT', 'AsesorController@leccionAtividadPut')->name('asesor.actividadesLeccion.put');
 
+//Cerrar sesión
+Route::get('sesion','sesionController@logout')->name('sesion.logout');
 
 //Agregar respuestas
 Route::post('asesor/sendAnswers', 'PracticanteController@sendAnswers')->name('practicante.sendAnswers');
@@ -111,14 +113,6 @@ Route::post('asesor/sendAnswers', 'PracticanteController@sendAnswers')->name('pr
 Route::get('/practicante/cuadernillo',[PracticanteController::class, 'mostrarCuadernos'])->name('practicante_views.cuadernillo');
 
 Route::get('/practicante/actividades/{id}',[PracticanteController::class, 'mostrarActividades'])->name('practicante_views.actividadesMostrar');
-
-
-
-
-
-
-
-
 
 // REPORTES 
 Route::get('/tutor/listarPuntajes/', [TutorController::class, 'getPuntuajes'])->name('tutor.listarPuntajes');

@@ -10,6 +10,10 @@ use App\User;
 
 class UsersController extends Controller
 {
+    public function __construct(){
+        $this->middleware('auth.sesion')->except('');
+    }
+
     public function modifyDataView()
     {
         $idUser = Auth::user()->id;
@@ -62,7 +66,7 @@ class UsersController extends Controller
     }
 
 
-    public function authenticateR(Request $request)
+    /*public function authenticateR(Request $request)
     { 
         $clave = $request->claverecuperacion;
         $datos = User::select('id')
@@ -71,13 +75,56 @@ class UsersController extends Controller
         $name = $request->newname;
         
         
-
         if($clave != ""){
             $update = User::where('id', '=', $datos->id)
             ->update(['name' => $name]);
-
-
         }
+    }*/
+
+    public function authenticateR(Request $request)
+    {
+        #return request()->only('name','email','password');
+
+
+        $email = $request->get('email');
+        $query = User::where('email', '=', $email)->get();
+
+        $name = $request->get('name');
+        $queryN = User::where('name', '=', $name)->get();
+
+        $claverecuperacion = $request->get('claverecuperacion');
+        $queryC = User::where('claverecuperacion', '=', $claverecuperacion)->get();
+
+        if ($query->count() != 0) {
+            
+            $claverecuperacion = $request->get('claverecuperacion');
+
+            if ($queryN->count() != 0) {
+
+                $hashpn = $queryN[0]->name;
+                $name = $request->get('name');
+            } else {
+                $request->session()->flash('Datos_incorrectos', 'Nombre de usuario no encontrado');
+                return redirect('recuperarcuenta');
+            }
+            if($queryC->count() != 0){
+                $hashpn = $queryN[0]->name;
+                $claverecuperacion = $request->get('claverecuperacion');
+                return redirect('home');
+
+
+            }else{
+                $request->session()->flash('Datos_incorrectos', 'Clave de recuperacion incorrecta');
+                return redirect('recuperarcuenta');
+
+            }
+        } else {
+            $request->session()->flash('Datos_incorrectos', 'El email no coincide con tu nombre de usuario');
+            return redirect('recuperarcuenta');
+        }
+
+
+        # $remember =request()->filled('remember_me');
 
     }
 

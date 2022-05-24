@@ -65,24 +65,17 @@
 
 @section('scripts')
 <script>
-    function cambia_de_pagina() {
+        function cambia_de_pagina() {
 
         location.href = "{{route('practicante_views.actividadesMostrar', $cuadernillo->id)}}"
-    }
-
-
-    $('#btnActividades').on('click', function() {
-
-        if ($('#btnNamegroup').val() == '' || $('#inpJson').val() == '' || $('#levelSchool').val() == '') {
-            Swal({
-                icon: "error",
-                title: "Oops...",
-                text: 'No puede dejar campos vacios',
-            });
-        } else {
-            document.forms["frmSaveGroup"].submit();
         }
-    });
-</script>
+            
+        
+       
+    </script>
+
+
+
+
 
 @endsection

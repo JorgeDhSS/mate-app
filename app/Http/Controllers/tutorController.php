@@ -13,6 +13,9 @@ use Illuminate\Support\Facades\Storage;
 
 class TutorController extends Controller{
 
+    public function __construct(){
+        $this->middleware('auth.tutor')->except('');
+    }
     public function imprimir(){
         
 
@@ -46,7 +49,6 @@ class TutorController extends Controller{
     public function generarReporteView(){
         return view('tutor_views.generarReporte');
     }
-
 
     public function getPuntuajes()
     {

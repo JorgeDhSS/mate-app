@@ -14,6 +14,11 @@ use App\ActividadCuadernillo;
 
 
 class PracticanteController extends Controller{
+
+    public function __construct(){
+        $this->middleware('auth.practicante')->except('');
+    }
+    
     public function showActivity($idActividad, $idCuadernillo){
         $actividad = Actividad::where('id', '=', $idActividad)
             ->first();

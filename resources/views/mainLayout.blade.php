@@ -147,13 +147,8 @@
                                             <form action="{{action('sesionController@logout')}}" method="GET" id="frmLogout">
                                                 <input id="cerrarSesion" class="px-3 py-2 flex items-center text-xs uppercase font-bold leading-snug text-white hover:opacity-75 bg-red-600 rounded-md" type="button" value="Cerrar Sesión">
                                             </form>
-                                            {{-- <a id="cerrarSesion" class="px-3 py-2 flex items-center text-xs uppercase font-bold leading-snug text-white hover:opacity-75 bg-red-600 rounded-md" >Cerrar sesión</a> --}}
-                                            {{-- <button type="button" id="cerrarSesion" class="px-3 py-2 flex items-center text-xs uppercase font-bold leading-snug text-white hover:opacity-75 bg-red-600 rounded-md">
-                                                Cerrar sesión
-                                            </button> --}}
                                         </div>
                                     @endif
-                                    {{--Cerrar sesión--}}
                                 </li>
                             </ul>
                         </div>

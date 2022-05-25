@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Mail\SendReporteEmail;
 use App\Practicante;
 use App\Tutor;
 use Illuminate\Support\Facades\Auth;
@@ -9,6 +10,7 @@ use Illuminate\Support\Facades\DB;
 //use Barryvdh\DomPDF\Facade as PDF;
 //use PDF;
 use Barryvdh\DomPDF\Facade\Pdf as PDF;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Storage;
 
 class TutorController extends Controller{
@@ -41,6 +43,17 @@ class TutorController extends Controller{
         }
    }
 
+   public function sendEmail()
+   {
+        $objDemo = new \stdClass();
+        $objDemo->demo_one = 'Demo One Value';
+        $objDemo->demo_two = 'Demo Two Value';
+        $objDemo->sender = 'Sistema escolar';
+        $objDemo->receiver = Auth::user()->name;
+
+        Mail::to(Auth::user()->email)->send(new SendReporteEmail($objDemo));
+        redirect(route('tutor.listarPuntajes'));
+   }
 
     // $pdf = PDF::loadView('reports.today', ['Data' => $Data])->setOptions(['defaultFont' => 'sans-serif']);
 

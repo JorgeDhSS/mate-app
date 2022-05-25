@@ -10,6 +10,7 @@ use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Hash;
 use App\Mail\SendWelcomeEmail;
 use App\Practicante;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Mail;
 use Throwable;
 
@@ -40,8 +41,8 @@ class DirectorController extends Controller
                 $objDemo = new \stdClass();
                 $objDemo->demo_one = 'Demo One Value';
                 $objDemo->demo_two = 'Demo Two Value';
-                $objDemo->sender = 'SenderUserName';
-                $objDemo->receiver = 'ReceiverUserName';
+                $objDemo->sender = 'Sistema escolar';
+                $objDemo->receiver = Auth::user()->name;
     
                 Mail::to($user->email)->send(new SendWelcomeEmail($objDemo));
                 return (['status' => 'ok', 'hashedPassword' => $user->password, 'userId' => $user->id]);

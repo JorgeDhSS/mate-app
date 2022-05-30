@@ -4,6 +4,7 @@ namespace App\Http\Middleware;
 
 use Closure;
 use App\Tutor;
+use Illuminate\Support\Facades\Auth;
 
 class TutorAuth
 {
@@ -15,13 +16,15 @@ class TutorAuth
      * @return mixed
      */
     public function handle($request, Closure $next)
-    {
-        $consulta = Tutor::select('id')->where('user_id', '=', auth()->user()->id)->first();
+    {        
         if (auth()->check()){
+            $consulta = Tutor::select('id')->where('user_id', '=', auth()->user()->id)->first();
             if ($consulta){
                 return $next($request);
             }
         }
-        return redirect('/sesion');
+        //return redirect('/sesion');
+        Auth::logout();
+        return redirect()->route('sesion.index')->with(['alert-tutor' => 'hola']);
     }
 }

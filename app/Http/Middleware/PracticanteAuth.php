@@ -4,6 +4,7 @@ namespace App\Http\Middleware;
 
 use Closure;
 use App\Practicante;
+use Illuminate\Support\Facades\Auth;
 
 class PracticanteAuth
 {
@@ -16,12 +17,14 @@ class PracticanteAuth
      */
     public function handle($request, Closure $next)
     {
-        $consulta = Practicante::select('id')->where('user_id', '=', auth()->user()->id)->first();
         if (auth()->check()){
+            $consulta = Practicante::select('id')->where('user_id', '=', auth()->user()->id)->first();
             if ($consulta){
                 return $next($request);
             }
         }
-        return redirect('/sesion');
+        //return redirect('/sesion');
+        Auth::logout();
+        return redirect()->route('sesion.index')->with(['alert-practicante' => 'hola']);
     }
 }

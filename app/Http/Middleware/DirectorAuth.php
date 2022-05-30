@@ -4,6 +4,7 @@ namespace App\Http\Middleware;
 
 use Closure;
 use App\Director;
+use Illuminate\Support\Facades\Auth;
 
 class DirectorAuth
 {
@@ -16,12 +17,14 @@ class DirectorAuth
      */
     public function handle($request, Closure $next)
     {
-        $consulta = Director::select('id')->where('user_id', '=', auth()->user()->id)->first();
         if (auth()->check()){
+            $consulta = Director::select('id')->where('user_id', '=', auth()->user()->id)->first();
             if ($consulta){
                 return $next($request);
             }
         }
-        return redirect('/sesion');
+        //return redirect('/sesion');
+        Auth::logout();
+        return redirect()->route('sesion.index')->with(['alert-director' => 'hola']);
     }
 }

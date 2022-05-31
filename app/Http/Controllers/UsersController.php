@@ -92,19 +92,19 @@ class UsersController extends Controller
                 });"]);
             }
             if (!preg_match('`[A-Z]`', $newPasword)) {
-                $request->session()->flash('Datos_incorrectos', 'La clave debe tener al menos una letra mayúscula');
+                $request->session()->flash('Datos_incorrectos', 'La contraseña debe tener al menos una letra mayúscula');
                 return redirect('recuperarcuenta');
             }
             if (!preg_match('`[a-z]`',$newPasword)){
-                $request->session()->flash('Datos_incorrectos', 'La clave debe tener al menos una letra minúscula');
+                $request->session()->flash('Datos_incorrectos', 'La contraseña debe tener al menos una letra minúscula');
                 return redirect('recuperarcuenta');
              }
              if(strlen($newPasword) < 6){
-                $request->session()->flash('Datos_incorrectos', 'La clave debe tener al menos 6 caracteres');
+                $request->session()->flash('Datos_incorrectos', 'La contraseña debe tener al menos 6 caracteres');
                 return redirect('recuperarcuenta');
              }
              if (!preg_match('`[0-9]`',$newPasword)){
-                $request->session()->flash('Datos_incorrectos', 'La clave debe tener al menos un caracter numérico');
+                $request->session()->flash('Datos_incorrectos', 'La contraseña debe tener al menos un caracter numérico');
                 return redirect('recuperarcuenta');
              }
 

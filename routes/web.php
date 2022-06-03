@@ -117,4 +117,5 @@ Route::get('/practicante/actividades/{id}',[PracticanteController::class, 'mostr
 // REPORTES 
 Route::get('/tutor/listarPuntajes/', [TutorController::class, 'getPuntuajes'])->name('tutor.listarPuntajes');
 Route::get('tutor/generarReporte','TutorController@imprimir')->name('tutor.generarReporte');
+Route::get('tutor/generarReporte/mail','TutorController@sendEmail')->name('tutor.sendEmail');
 

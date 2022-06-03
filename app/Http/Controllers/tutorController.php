@@ -52,7 +52,7 @@ class TutorController extends Controller{
         $objDemo->receiver = Auth::user()->name;
 
         Mail::to(Auth::user()->email)->send(new SendReporteEmail($objDemo));
-        redirect(route('tutor.listarPuntajes'));
+        return back();
    }
 
     // $pdf = PDF::loadView('reports.today', ['Data' => $Data])->setOptions(['defaultFont' => 'sans-serif']);

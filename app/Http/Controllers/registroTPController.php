@@ -105,7 +105,7 @@ class registroTPController extends Controller
                     $practicante->asesor_id = "0";
                     $practicante->save();
     
-                    return view('asesor_views.registro')->with(['alert' => "Swal({
+                    return view('asesor_views.asignarTutor')->with(['alert' => "Swal({
                         title: 'Éxito!',
                         text: 'Ha agregado un Practicante',
                         icon: 'success',

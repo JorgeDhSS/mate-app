@@ -44,7 +44,7 @@
                 @include('asesor_views.showPract', ["users" => $practicantes])
             </div>
             <div class="w-full my-4 ml-4 col-span-2 md:col-span-1">
-                <button class="bg-blue-100 rounded-lg font-bold text-blue-700 text-center px-4 py-3 transition duration-300 ease-in-out hover:bg-blue-700 hover:text-blue-100 mr-6">Nuevo practicante</button>
+                <a href="{{route('asesor.addUsuario')}}" class="bg-blue-100 rounded-lg font-bold text-blue-700 text-center px-4 py-3 transition duration-300 ease-in-out hover:bg-blue-700 hover:text-blue-100 mr-6">Nuevo practicante</a>
             </div>
             <div class="my-2 ml-4 col-span-2 md:col-span-1">
                 <input class="pl-auto bg-blue-100 rounded-lg font-bold text-blue-700 text-center px-4 py-3 transition duration-300 ease-in-out hover:bg-blue-700 hover:text-blue-100 mr-6" name="btnEnviar" id="btnEnviar" value="Crear grupo" type="button">
@@ -60,7 +60,6 @@
     @enderror
 @endsection
 @section('scripts')
-    {{--<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>--}}
     <script type="text/javascript">
         var cambioSelect;
         var seleccion = new Array();

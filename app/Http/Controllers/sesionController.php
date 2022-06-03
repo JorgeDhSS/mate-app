@@ -56,7 +56,7 @@ class sesionController extends Controller{
                     }
     
                 if (password_verify($password, $hashp)){
-                    return view('home');
+                    return redirect()->route('data.modifyData');
                 }else {
                     
                     $request->session()->flash('Datos_incorrectos', 'Tu contraseña no coincide con tu nombre de usuario');

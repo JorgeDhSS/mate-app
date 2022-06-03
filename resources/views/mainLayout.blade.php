@@ -26,6 +26,7 @@
                                 <span class="block relative w-6 h-px rounded-sm bg-white mt-1"></span>
                             </button>
                         </div>
+                        @if (auth()->check())
                         <div class="flex lg:flex-grow items-center" id="example-navbar-info">
                             <ul class="flex flex-col lg:flex-row list-none ml-auto">
                                 <li class="nav-item">
@@ -152,6 +153,7 @@
                                 </li>
                             </ul>
                         </div>
+                        @endif
                     </div>
                 </nav>
             </div>

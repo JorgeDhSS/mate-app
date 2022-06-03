@@ -32,7 +32,7 @@ Route::get('home','homeController@HomeView')->name('home.index');
 
 //Recuperar cuenta
 Route::get('recuperarcuenta','UsersController@recuperarcuentaView')->name('recuperarcuenta.index');
-Route::get('cambiarcontrasena','UsersController@cambiarcontrasenaView')->name('cambiarcontrasena.index');
+
 
 Route::post('recuperarcuenta','UsersController@authenticateR')->name('recuperarcuenta.authenticateR');
 
@@ -105,7 +105,7 @@ Route::get('asesor/actividadLeccion', 'AsesorController@listaActividadesLeccion'
 Route::post('asesor/actividadLeccion/PUT', 'AsesorController@leccionAtividadPut')->name('asesor.actividadesLeccion.put');
 
 //Cerrar sesión
-Route::get('sesion','sesionController@logout')->name('sesion.logout');
+Route::get('sesion/logout','sesionController@logout')->name('sesion.logout');
 
 //Agregar respuestas
 Route::post('asesor/sendAnswers', 'PracticanteController@sendAnswers')->name('practicante.sendAnswers');

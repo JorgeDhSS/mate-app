@@ -68,16 +68,6 @@ class sesionController extends Controller{
                 $request->session()->flash('Datos_incorrectos', 'El email no coincide con tu nombre de usuario');
                 return redirect('sesion');
             }
-            
-            
-
-      
-
-
-        
-        
-        
-
 
        # $remember =request()->filled('remember_me');
         
@@ -86,7 +76,13 @@ class sesionController extends Controller{
     public function logout(){
         try{
             Auth::logout();
-            return view('sesion');
+            return view('sesion')->with(['alert' => "Swal({
+                title: 'Éxito!',
+                text: 'Se ha cerrado la sesión con exito',
+                icon: 'success',
+                showCancelButton: 'false', 
+                showConfirmButton: 'false'
+            });"]);
         } catch (\Exception $th){
             return back()->withErrors(['Error'=>'Al cerrar sesión']);
         }

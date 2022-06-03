@@ -54,7 +54,8 @@
             <p class="mb-3 font-normal text-gray-700 dark:text-gray-400"> {{$cuadernillo->tema}}</p>
 
             <div id="botones">
-                <input type="button" onclick="javascript:cambia_de_pagina();" value="Ver activiades" name="btnActividades" id="btnActividades" class="pl-auto bg-blue-100 rounded-lg font-bold text-blue-700 text-center px-4 py-3 transition duration-300 ease-in-out hover:bg-blue-700 hover:text-blue-100 mr-6" />
+                <input type="button" onclick="location.href = '{{route('practicante_views.actividadesMostrar', $cuadernillo->id)}}'" value="Ver activiades" name="btnActividades" id="btnActividades" class="pl-auto bg-blue-100 rounded-lg font-bold text-blue-700 text-center px-4 py-3 transition duration-300 ease-in-out hover:bg-blue-700 hover:text-blue-100 mr-6" />
+                
             </div>
         </div>
     </a>
@@ -64,15 +65,7 @@
 @endsection
 
 @section('scripts')
-<script>
-        function cambia_de_pagina() {
 
-        location.href = "{{route('practicante_views.actividadesMostrar', $cuadernillo->id)}}"
-        }
-            
-        
-       
-    </script>
 
 
 

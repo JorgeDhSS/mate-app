@@ -18,6 +18,7 @@ class SesionAuth
         if (auth()->check()){
             return $next($request);
         }
-        return redirect('/sesion');
+        //return redirect('/sesion');
+        return redirect()->route('sesion.index')->with(['alert-sesion' => 'hola']);
     }
 }

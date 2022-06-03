@@ -85,28 +85,60 @@
 		</form>
 	</div>
 </div>
-@if (session()->has('alert'))
-	@isset($alert)
-		{!!$alert!!}
-	@endisset
-	{{-- <input type="hidden" id="existo"> --}}
-@endif 
+@if (session()->has('alert-asesor'))
+	<input type="hidden" id="alert-asesor">
+@endif
+@if (session()->has('alert-director'))
+	<input type="hidden" id="alert-director">
+@endif
+@if (session()->has('alert-practicante'))
+	<input type="hidden" id="alert-practicante">
+@endif
+@if (session()->has('alert-tutor'))
+	<input type="hidden" id="alert-tutor">
+@endif
 @endsection
 @section('scripts')
 	<script>
-		$(document).ready(function(){
-			if (document.getElementById("existo")) {
-                Swal({
-                    icon: 'success',
-                    title: 'El grupo se ha guardado',
-                    showConfirmButton: false,
-                    timer: 3500
-                });
-            }
+		@isset($alert)
+			{!!$alert!!}
+		@endisset
 
-			@isset($alert)
-	        	{!!$alert!!}
-    		@endisset
-		});
+		if (document.getElementById('alert-asesor')) {
+			Swal({
+                icon: "error",
+                title:"Oops...",
+				text: "Debe iniciar sesión como asesor",
+                showConfirmButton: false,
+                timer: 3500
+            });
+		}
+		if (document.getElementById('alert-director')) {
+			Swal({
+                icon: "error",
+                title:"Oops...",
+				text: "Debe iniciar sesión como director",
+                showConfirmButton: false,
+                timer: 3500
+            });
+		}
+		if (document.getElementById('alert-practicante')) {
+			Swal({
+                icon: "error",
+                title:"Oops...",
+				text: "Debe iniciar sesión como practicante",
+                showConfirmButton: false,
+                timer: 3500
+            });
+		}
+		if (document.getElementById('alert-tutor')) {
+			Swal({
+                icon: "error",
+                title:"Oops...",
+				text: "Debe iniciar sesión como tutor",
+                showConfirmButton: false,
+                timer: 3500
+            });
+		}
 	</script> 
 @endsection

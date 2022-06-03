@@ -6,12 +6,13 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Crypt;
 use Illuminate\Contracts\Encryption\DecryptException;
+use Illuminate\Support\Facades\Hash;
 use App\User;
 
 class UsersController extends Controller
 {
     public function __construct(){
-        $this->middleware('auth.sesion')->except('');
+        $this->middleware('auth.sesion')->except('recuperarcuentaView', 'authenticateR');
     }
 
     public function modifyDataView()
@@ -66,67 +67,74 @@ class UsersController extends Controller
     }
 
 
-    /*public function authenticateR(Request $request)
-    { 
+    public function authenticateR(Request $request)
+    {
+
+
+        $newPasword = $request->get('newpassword');
         $clave = $request->claverecuperacion;
+        $claveConfirmacion = $request->get('newpasswordC');
+        #$claveInput = $request->get('claverecuperacion');
         $datos = User::select('id')
             ->where('claverecuperacion', '=', $clave)
             ->first();
-        $name = $request->newname;
-        
-        
-        if($clave != ""){
+        $pass = $request->newpassword;
+
+        if ($clave != "" && $newPasword != "" && $claveConfirmacion != "") {
+            if ($newPasword != $claveConfirmacion) {
+               
+                return view('recuperarcuenta')->with(['alert' => "Swal({
+                    title: 'Vuelve a intentarlo',
+                    text: 'Las contraseñas no coinciden',
+                    icon: 'error',
+                    showCancelButton: 'true', 
+                    showConfirmButton: 'true'
+                });"]);
+            }
+            if (!preg_match('`[A-Z]`', $newPasword)) {
+                $request->session()->flash('Datos_incorrectos', 'La contraseña debe tener al menos una letra mayúscula');
+                return redirect('recuperarcuenta');
+            }
+            if (!preg_match('`[a-z]`',$newPasword)){
+                $request->session()->flash('Datos_incorrectos', 'La contraseña debe tener al menos una letra minúscula');
+                return redirect('recuperarcuenta');
+             }
+             if(strlen($newPasword) < 6){
+                $request->session()->flash('Datos_incorrectos', 'La contraseña debe tener al menos 6 caracteres');
+                return redirect('recuperarcuenta');
+             }
+             if (!preg_match('`[0-9]`',$newPasword)){
+                $request->session()->flash('Datos_incorrectos', 'La contraseña debe tener al menos un caracter numérico');
+                return redirect('recuperarcuenta');
+             }
+
             $update = User::where('id', '=', $datos->id)
-            ->update(['name' => $name]);
-        }
-    }*/
-
-    public function authenticateR(Request $request)
-    {
-        #return request()->only('name','email','password');
+                ->update([
+                    'password' => Hash::make($pass)
+                ]);
 
 
-        $email = $request->get('email');
-        $query = User::where('email', '=', $email)->get();
-
-        $name = $request->get('name');
-        $queryN = User::where('name', '=', $name)->get();
-
-        $claverecuperacion = $request->get('claverecuperacion');
-        $queryC = User::where('claverecuperacion', '=', $claverecuperacion)->get();
-
-        if ($query->count() != 0) {
-            
-            $claverecuperacion = $request->get('claverecuperacion');
-
-            if ($queryN->count() != 0) {
-
-                $hashpn = $queryN[0]->name;
-                $name = $request->get('name');
-            } else {
-                $request->session()->flash('Datos_incorrectos', 'Nombre de usuario no encontrado');
-                return redirect('recuperarcuenta');
-            }
-            if($queryC->count() != 0){
-                $hashpn = $queryN[0]->name;
-                $claverecuperacion = $request->get('claverecuperacion');
-                return redirect('home');
 
 
-            }else{
-                $request->session()->flash('Datos_incorrectos', 'Clave de recuperacion incorrecta');
-                return redirect('recuperarcuenta');
-
-            }
+            return view('sesion')->with(['alert' => "Swal({
+                    title: 'Éxito!',
+                    text: 'Tu contraseña fue modificada',
+                    icon: 'success',
+                    showCancelButton: 'true', 
+                    showConfirmButton: 'true'
+                });"]);
         } else {
-            $request->session()->flash('Datos_incorrectos', 'El email no coincide con tu nombre de usuario');
-            return redirect('recuperarcuenta');
+            return view('recuperarcuenta')->with(['alert' => "Swal({
+                title: 'Alerta',
+                text: 'No puedes dejar campos vacios',
+                icon: 'error',
+                showCancelButton: 'true', 
+                showConfirmButton: 'true'
+            });"]);
         }
-
-
-        # $remember =request()->filled('remember_me');
-
     }
+
+   
 
     public function cambiarcontrasenaView(Request $request) {
         return view('cambiarcontrasena');

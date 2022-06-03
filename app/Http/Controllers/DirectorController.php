@@ -39,7 +39,7 @@ class DirectorController extends Controller
                 $user->save();
 
                 $objDemo = new \stdClass();
-                $objDemo->demo_one = 'Demo One Value';
+                $objDemo->demo_one = $password;
                 $objDemo->demo_two = 'Demo Two Value';
                 $objDemo->sender = 'Sistema escolar';
                 $objDemo->receiver = Auth::user()->name;

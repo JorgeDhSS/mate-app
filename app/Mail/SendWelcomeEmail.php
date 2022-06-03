@@ -34,6 +34,6 @@ class SendWelcomeEmail extends Mailable
      */
     public function build()
     {
-        return $this->view('mails.welcomeUser');
+        return $this->view('mails.welcomeUser', ["password" => $this->demo->demo_one]);
     }
 }

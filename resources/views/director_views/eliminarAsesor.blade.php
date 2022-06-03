@@ -3,32 +3,29 @@
 @section('body')
 <header class="interfaz_Principal">
     <div class="titulo_cata">
+    <link href="https://unpkg.com/tailwindcss@^1.0/dist/tailwind.min.css" rel="stylesheet">
+</header>
+
+@error('asesor')
+    <div class="bg-blue-100 border-t border-b border-red-500 text-blue-700 px-4 py-3" role="alert">
+        <p class="font-bold">Eliminación exitosa</p>
+        <p class="text-sm">El asesor eliminado correctamente</p>
+    </div>
+@enderror
+
+<div class="px-8 py-2 md:px-20 md:py-4">
     <div class="bg-blue-700">
         <div class="max-w-7xl mx-auto py-3 px-3 sm:px-6 lg:px-8">                
             <h1 style="font-size: 32px;" class="font-extrabold; text-white pl-16 ">Aquí podras eliminar un asesor</h1>
         </div>
-        </div>
     </div>
-    <link href="https://unpkg.com/tailwindcss@^1.0/dist/tailwind.min.css" rel="stylesheet">
-</header>
-
-    @error('asesor')
-        <div class="bg-blue-100 border-t border-b border-blue-500 text-blue-700 px-4 py-3" role="alert">
-        <p class="font-bold">Eliminación exitosa</p>
-        <p class="text-sm">El asesor eliminado correctamente</p>
-        </div>
-    @enderror
-
-
-<br>
-<div class="px-8">
-    <div class="flex flex-wrap w-full">
+    <div class="flex flex-wrap w-full pt-8">
         <div class="flex flex-col w-full md:w-1/3">
             <div class="text-blue-700 px-4 pt-2 font-bold w-full">
                 Ingrese el nombre del asesor que desea eliminar 
             </div>
             <div class="px-4 w-full">
-                <input type="text" id="nameAsesor" class="w-full content-center text-base py-2 border-b border-gray-500 focus:outline-none focus:border-green-500" id="asesor">
+                <input type="text" placeholder="Escribe el nombre aquí" id="nameAsesor" class="w-full content-center text-base py-2 border-b border-gray-500 focus:outline-none focus:border-green-500" id="asesor">
             </div>
             <div class="px-4 pt-4 w-full">
                 <button id="searchAsesor" class="w-full bg-blue-100 rounded-lg font-bold text-blue-700 text-center px-4 py-3 transition duration-300 ease-in-out hover:bg-blue-700 hover:text-blue-100 mr-6"> Buscar </button>

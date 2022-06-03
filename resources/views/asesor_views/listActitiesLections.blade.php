@@ -48,6 +48,7 @@
                 </div>
                 <div class="w-2/4 pb-4 pl-8">
                     <select class="leccion text-black" id="{{$activity->id}}">
+                        <option>Selecciona una opción</option>
                         @foreach($leccions as $lection)
                             <option value="{{$lection->id}}">{{$lection->nombre}}</option>
                         @endforeach
@@ -66,17 +67,25 @@
             
             $('#name').numeric();
             $('.leccion').on('change', function(){
-                id_activity = $(this).attr("id");
-                id_leccion = $(this).val();
-                let form = document.createElement('form');
-                form.action = "{{route('asesor.actividadesLeccion.put')}}";
-                form.method = 'POST';
-                form.innerHTML = '<input name="id_activity" value="'+id_activity+'" class="hidden"> <input name="id_leccion" value="'+id_leccion+'" class="hidden"> <input name="_token" value="{{csrf_token()}}" class="hidden">';
+                if($(this).val() != "")
+                {
+                    id_activity = $(this).attr("id");
+                    id_leccion = $(this).val();
+                    let form = document.createElement('form');
+                    form.action = "{{route('asesor.actividadesLeccion.put')}}";
+                    form.method = 'POST';
+                    form.innerHTML = '<input name="id_activity" value="'+id_activity+'" class="hidden"> <input name="id_leccion" value="'+id_leccion+'" class="hidden"> <input name="_token" value="{{csrf_token()}}" class="hidden">';
 
-                // the form must be in the document to submit it
-                document.body.append(form);
+                    // the form must be in the document to submit it
+                    document.body.append(form);
 
-                form.submit();
+                    form.submit();
+
+                    Swal({
+                        title:"Asiganación realizada",
+                        icon: "success"
+                    });
+                }
             });
         });
         function selectActivity()

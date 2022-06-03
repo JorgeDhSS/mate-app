@@ -51,12 +51,12 @@
 
 			<div class="mt-8 content-center">
 				<label class="text-sm font-bold text-gray-700 tracking-wide">Contraseña nueva</label>
-				<input class="w-full content-center text-base py-2 border-b border-gray-300 focus:outline-none focus:border-green-500" name="newpassword" type="text" placeholder="Ingresa tu contraseña nueva"  value ="{{ old('newpassword') }}"> 
+				<input class="w-full content-center text-base py-2 border-b border-gray-300 focus:outline-none focus:border-green-500" name="newpassword" type="password" placeholder="Ingresa tu contraseña nueva"  value ="{{ old('newpassword') }}"> 
 
             </div>
 			<div class="mt-8 content-center">
 				<label class="text-sm font-bold text-gray-700 tracking-wide">Confirma tu contraseña nueva</label>
-				<input class="w-full content-center text-base py-2 border-b border-gray-300 focus:outline-none focus:border-green-500" name="newpasswordC" type="text" placeholder="Ingresa nuevamente tu contraseña nueva" value ="{{ old('newpassword') }}"> 
+				<input class="w-full content-center text-base py-2 border-b border-gray-300 focus:outline-none focus:border-green-500" name="newpasswordC" type="password" placeholder="Ingresa nuevamente tu contraseña nueva" value ="{{ old('newpassword') }}"> 
 
             </div>
 

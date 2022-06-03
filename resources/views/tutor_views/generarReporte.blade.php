@@ -25,7 +25,7 @@
                     </a>
                 </div>
                 <div class="w-1/2 p-2 text-center">
-                    <a class="bg-blue-500 hover:bg-blue-400 text-white font-bold py-2 px-4 border-b-4 border-blue-700 hover:border-blue-500 rounded">
+                    <a href="{{route('tutor.sendEmail')}}" class="bg-blue-500 hover:bg-blue-400 text-white font-bold py-2 px-4 border-b-4 border-blue-700 hover:border-blue-500 rounded">
                     Enviar por email
                     </a>
                 </div>

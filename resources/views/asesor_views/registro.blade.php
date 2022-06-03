@@ -4,18 +4,18 @@
 @section('body')
 
     <header class="interfaz_Principal">
-        <div class="titulo_cata">
-        <div class="bg-blue-700">
+        <link href="https://unpkg.com/tailwindcss@^1.0/dist/tailwind.min.css" rel="stylesheet">
+    </header>
+    <div class="grid grid-cols-2 gap-4 px-8 py-2 md:px-20 md:py-4">   
+        <!-- INPUTS PRINCIPALES-->
+        <div class="titulo_cata w-full col-span-2">
+          <div class="bg-blue-700">
             <div class="max-w-7xl mx-auto py-3 px-3 sm:px-6 lg:px-8">                
                 <h1 style="font-size: 32px;" class="font-extrabold; text-white pl-16 "> Bienvenido al registro de un nuevo tutor o practicante</h1>
             </div>
-            </div>
+          </div>
         </div>
-        <link href="https://unpkg.com/tailwindcss@^1.0/dist/tailwind.min.css" rel="stylesheet">
-    </header>
-        
-        <!-- INPUTS PRINCIPALES-->
-        <div class="px-8">
+        <div class="col-span-2">
           <form  id="registro" name="registro" class="w-full max-w-full" method="POST" action="{{route('asesor.enviarUsuario')}}">
             @csrf
               <div class="flex mb-4">
@@ -163,7 +163,7 @@
             </div>
           </form>
         </div>
-          
+    </div>     
 @endsection
 
 

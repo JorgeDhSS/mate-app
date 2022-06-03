@@ -45,6 +45,6 @@ class SendReporteEmail extends Mailable
                         ->select("practicantes.*", DB::raw('SUM(respuesta__preguntas.correcta) as correctas'), DB::raw('count(respuesta__preguntas.correcta) as total'))
                         ->groupBy('practicantes.id')
                         ->get();
-        return view('tutor_views.generarReporte', ["respuestas" => $respuestas]);
+        return $this->view('tutor_views.generarReporte', ["respuestas" => $respuestas]);
     }
 }

@@ -1,7 +1,7 @@
 @extends('mainLayout')
     <title>Modificar información personal</title> 
 @section('body')
-    <div class="w-full mx-10 my-10">
+    <div class="w-full my-4">
         <div class="w-2/5 bg-blue-700 md:rounded-lg h-16 ml-32 my-8">
             <h1 class="ml-8 col-span-2 text-3xl md:text-4xl pl-auto text-white font-bold my-8">Modificar información</h1>
         </div>
@@ -40,14 +40,13 @@
     </div>
 @endsection
 @section('scripts')
-    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.3.2/jspdf.debug.js"></script>
     <script type="text/javascript">
     
         $(document).ready(function(){
             $('#btnEnviar').on('click', function(){
                 if ($('#username').val() == '' || $('#email').val() == ''){
-                    Swal.fire({
+                    Swal({
                         icon: 'error',
                         title: 'Oops...',
                         text: 'No puede dejar campos vacios'
@@ -55,7 +54,7 @@
                     });
                 }
                 else if ($('#claverecuperacion').val() == ''){
-                    Swal.fire({
+                    Swal({
                         icon: 'error',
                         title: 'Oops...',
                         text: 'Por favor genere una clave para recuperar su cuenta en caso de perdida'

@@ -49,7 +49,7 @@
     <br>
     <br>
     <div class="container m-auto px-12 space-y-56 text-gray-500 md:px-64">
-    <a href="#" class="flex flex-col items-center bg-green rounded-lg border shadow-md md:flex-row md:max-w-xl hover:bg-green-200 dark:border-red-700 dark:bg-green-800 dark:hover:bg-green-700">
+    <a href="{{route('practicante.showActivity', [$actividad->id, $actividad->cuadernillo_id])}}" class="flex flex-col items-center bg-green rounded-lg border shadow-md md:flex-row md:max-w-xl hover:bg-green-200 dark:border-red-700 dark:bg-green-800 dark:hover:bg-green-700">
 
             <div class="flex flex-col justify-between p-4 leading-normal">
                 <div>

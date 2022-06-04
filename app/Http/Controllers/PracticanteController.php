@@ -29,7 +29,7 @@ class PracticanteController extends Controller{
         return view('practicante_views.showActivity')->with([
             'actividad' => $actividad,
             'preguntaActiv' => $preguntaActiv,
-            'idCuadernillo' => $idCuadernillo
+            'idCuadernillo' => $idCuadernillo,
         ]);
     }
 
@@ -158,7 +158,7 @@ class PracticanteController extends Controller{
     public function mostrarActividades($cuadernillo_id){
         $actividades = ActividadCuadernillo::where('cuadernillo_id','=',$cuadernillo_id)
             ->join('actividads','actividad_cuadernillos.actividad_id','=','actividads.id')
-            ->select('actividads.id','actividads.titulo', 'actividads.fechaInicio','actividads.fechaCierre')
+            ->select('actividads.id','actividads.titulo', 'actividads.fechaInicio','actividads.fechaCierre', 'actividad_cuadernillos.cuadernillo_id')
             ->get();
         
 

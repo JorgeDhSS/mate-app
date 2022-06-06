@@ -233,6 +233,9 @@
                         <div class="w-wull mt-4" align="center">
                             <input type="button" id="Guardar" name="Guardar" value="Guardar" onclick="EnviarDatos()"class='border-b text-center bg-green-500 text-gray-100 p-4 rounded-full tracking-wide font-bold py-2 px-8 focus:outline-none focus:shadow-outline hover:bg-green-700 shadow-lg cursor-pointer'>
                         </div>
+                        <div class="w-full grid grid-cols-3 text-center mt-6">
+                            <a href="{{route('Answer.index')}}" class="col-start-3 col-end-3 border-b text-center bg-green-800 text-gray-100 p-4 rounded-full tracking-wide font-bold py-2 px-8 focus:outline-none focus:shadow-outline hover:bg-green-500 shadow-lg cursor-pointer">Agregar respuesta</a>
+                        </div>
                     </div>
                 </div>
             </div>

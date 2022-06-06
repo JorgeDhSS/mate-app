@@ -10,7 +10,7 @@ Use App\respuesta;
 
 class ActividadesController extends Controller{
 
-    public function __construct(){
+    public function __construct(){        
         $this->middleware('auth.asesor')->except('');
     }
 

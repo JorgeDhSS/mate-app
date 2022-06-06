@@ -6,10 +6,10 @@
         @csrf
         <input type="hidden" name="jsonPracticantes" id="inpJson" value="">
         <div class="grid grid-cols-2 w-full gap-4 px-8 py-2 md:px-20 md:py-10">
-            <div class="w-full col-span-2 md:col-span-1 bg-blue-700 md:rounded-lg">
-                <h1 class="ml-4 col-span-2 text-3xl md:text-4xl text-white pl-auto">Agrupar practicante</h1>
+            <div class="w-full col-span-2 bg-blue-700 md:rounded-lg">
+                <h1 class="ml-4 col-span-2 text-3xl md:text-4xl text-white pl-auto py-3 px-3">Agrupar practicante</h1>
             </div>
-            <div class="col-span-2 md:col-span-1 w-full">
+            <div class="col-span-2 w-full">
                 <div class="flex bg-green-500 rounded-lg p-4 mb-4 text-sm text-white" id="alertContainer" role="alert">
                     <svg class="w-5 h-5 inline mr-3" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clip-rule="evenodd"></path></svg>
                     <div>

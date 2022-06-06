@@ -3,7 +3,7 @@
 @section('body')
 <form action="{{route('asesor.actividadToCuadernillo.store')}}" method="post">
     <div class="grid grid-cols-4 gap-4 px-8 py-2 md:px-20 md:py-4">    
-        <div class="col-span-4 text-3xl md:text-4xl bg-blue-700">
+        <div class="col-span-4 text-3xl md:text-4xl bg-blue-700 md:rounded-lg">
             <div class="max-w-7xl mx-auto py-3 px-3 sm:px-6 lg:px-8">                
                 <h1 style="font-size: 32px;" class="font-extrabold; text-white pl-16 "> Asignar actividad a cuadernillo </h1>
             </div>

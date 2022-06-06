@@ -1,13 +1,5 @@
 @extends('mainLayout')
 <header class="interfaz_Principal">
-        <div class="titulo_cata">
-        <div class="bg-blue-700">
-            <div class="max-w-7xl mx-auto py-3 px-3 sm:px-6 lg:px-8">                
-                <h1 style="font-size: 32px;" class="font-extrabold; text-white pl-16 "> Actividad nueva</h1>
-            </div>
-            </div>
-
-        </div>
         <link href="https://unpkg.com/tailwindcss@^1.0/dist/tailwind.min.css" rel="stylesheet">
         <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
         <script type="text/javascript"></script> 
@@ -173,8 +165,16 @@
 
     @section('body')
         <form action="{{route('respuesta.guardarPregunta')}}" method="post" submit="" id="addActividad" name="addActividad">
-            <div class="w-full bg-blue-200 h-screen">
+            <div class="w-full h-screen px-8 py-2 md:px-20 md:py-4">
                 <input type="hidden" name="jsonPreguntas">
+                <div class="titulo_cata py-2">
+                    <div class="bg-blue-700 md:rounded-lg ">
+                        <div class="max-w-7xl mx-auto py-3 px-3 sm:px-6 lg:px-8 md:rounded-lg">                
+                            <h1 style="font-size: 32px;" class="font-extrabold; text-white pl-16 "> Actividad nueva</h1>
+                        </div>
+                    </div>
+
+                </div>
                 <div class="bg-gradient-to-b from-blue-200 to-blue-200 h-96"></div>
                 <div class="max-w-5xl mx-auto px-6 sm:px-6 lg:px-8 mb-12">
                     <div class="bg-blue-700 w-full shadow rounded p-8 sm:p-12 -mt-72">

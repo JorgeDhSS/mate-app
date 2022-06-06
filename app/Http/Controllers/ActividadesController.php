@@ -11,8 +11,7 @@ Use App\respuesta;
 class ActividadesController extends Controller{
 
     public function __construct(){
-        $this->middleware('auth.practicante')->except('create');
-        $this->middleware('auth.asesor')->only('create');
+        $this->middleware('auth.asesor')->except('');
     }
 
     //Muestra la vista addActividad
@@ -52,7 +51,8 @@ class ActividadesController extends Controller{
         $actividad->idgrupo = $request->selecionaGrupo;
         $actividad->asesor_id= 1;
         $actividad->save();
-        return view('asesor_views.addActividades');
+        return redirect('asesor_views.respuestas');
+        //return view('asesor_views.addActividades');
     }
      
 

@@ -8,9 +8,9 @@
     </header>
     <div class="grid grid-cols-2 gap-4 px-8 py-2 md:px-20 md:py-4">   
         <!-- INPUTS PRINCIPALES-->
-        <div class="titulo_cata w-full col-span-2">
-          <div class="bg-blue-700">
-            <div class="max-w-7xl mx-auto py-3 px-3 sm:px-6 lg:px-8">                
+        <div class="titulo_cata w-full col-span-2 md:rounded-lg">
+          <div class="bg-blue-700 md:rounded-lg">
+            <div class="max-w-7xl mx-auto py-3 px-3 sm:px-6 lg:px-8 md:rounded-lg">                
                 <h1 style="font-size: 32px;" class="font-extrabold; text-white pl-16 "> Bienvenido al registro de un nuevo tutor o practicante</h1>
             </div>
           </div>
